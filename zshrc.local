@@ -1,0 +1,4 @@
+# .zshrc
+fpath+=("$HOME/.zsh/themes/pure")
+autoload -U promptinit; promptinit
+prompt pure

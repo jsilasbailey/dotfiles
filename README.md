@@ -1,3 +1,4 @@
 # Dotfiles
 
-My development dotfiles and configuration
+My local development dotfiles and configuration that follow the pattern set by
+thoughtbot using [rcm](https://github.com/thoughtbot/rcm).

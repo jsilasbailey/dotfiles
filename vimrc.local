@@ -1,0 +1,88 @@
+"Credit joshdick
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+" Color scheme
+colorscheme one
+set background=light
+let ayucolor="light"
+
+" Syntax coloring lines that are too long just slows down the world
+set synmaxcol=1200
+
+" Relative numbers
+set number relativenumber
+set nu rnu
+
+" Lines with equal indent form a fold.
+set foldmethod=indent
+set foldlevel=1
+set foldnestmax=10
+
+" Open all folds by default
+set nofoldenable
+
+" Use mouse
+set mouse=a
+" Improve scroll speed
+set ttyfast
+set ttyscroll=3
+set lazyredraw
+
+" Searches are case insentisive...
+set ignorecase
+" ... unless they contain at least one capital letter
+set smartcase
+
+" Disable the alert sound
+set vb
+" Only required for mac users to prevent the terminal flash issue
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+" Force short git commits
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" Remove fugitive buffers when done
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" Tag file held in git
+:set tags^=./.git/tags;
+
+" WP for word processor
+" Sets up an ideal word processing env in vim
+func! WordProcessor()
+  " movement changes
+  map j gj
+  map k gk
+
+  " formatting text
+  setlocal formatoptions=1
+  setlocal noexpandtab
+  setlocal wrap
+  setlocal linebreak
+
+  " spelling and thesaurus
+  setlocal spell spelllang=en_us
+  set thesaurus+=/Users/jbailey/.vim/thesaurus/mthesaur.txt
+
+  " complete+=s makes autocompletion search the thesaurus
+  " set complete+=s
+  set complete+=kspell
+endfu
+
+com! WP call WordProcessor()

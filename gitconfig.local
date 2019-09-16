@@ -1,0 +1,5 @@
+[alias]
+  l = log --oneline --graph
+[user]
+  name = Jesse Bailey
+  email = jsilasbailey@thoughtbot.com
