@@ -1,0 +1,11 @@
+tap 'caskroom/cask'
+tap 'goles/battery'
+tap 'homebrew/boneyard'
+tap 'homebrew/bundle'
+tap 'homebrew/core'
+tap 'homebrew/services'
+tap 'homebrew/versions'
+tap 'thoughtbot/formulae'
+tap 'universal-ctags/universal-ctags'
+
+brew 'todo-txt'
