@@ -8,8 +8,5 @@ Plug 'ayu-theme/ayu-vim'
 " Use the golden ratio for auto sizing windows when jumping between them
 Plug 'roman/golden-ratio'
 
-" Highlight trailing whitespace
-Plug 'ntpeters/vim-better-whitespace'
-
 " Distraction free writing
 Plug 'junegunn/goyo.vim'
