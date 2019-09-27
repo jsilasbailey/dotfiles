@@ -1,2 +1,4 @@
 alias be='bundle exec'
 alias t='todo.sh'
+alias dc='docker-compose'
+alias tmx='tmux'
