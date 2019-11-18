@@ -11,6 +11,7 @@ set background=light
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
 
+set colorcolumn=80,150
 
 " Use mouse
 set mouse=a
