@@ -15,6 +15,9 @@ set colorcolumn=80,150
 
 " Use mouse
 set mouse=a
+
+set scrolloff=4
+
 " Improve scroll speed
 set ttyfast
 set ttyscroll=3
