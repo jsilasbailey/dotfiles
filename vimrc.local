@@ -45,6 +45,13 @@ let g:netrw_banner = 0
 " Golden ratio settings
 let g:golden_ratio_exclude_nonmodifiable = 1
 
+" ALE
+let g:ale_linters = { 'ruby': ['rubocop'] }
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
+let g:ale_fix_on_save = 1
 " WP for word processor
 " Sets up an ideal word processing env in vim
 func! WordProcessor()
