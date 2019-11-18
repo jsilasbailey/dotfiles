@@ -19,9 +19,11 @@ set mouse=a
 set scrolloff=4
 
 " Improve scroll speed
-set ttyfast
-set ttyscroll=3
-set lazyredraw
+if !has('nvim')
+  set ttyfast
+  set ttyscroll=3
+  set lazyredraw
+endif
 
 " Searches are case insentisive...
 set ignorecase
