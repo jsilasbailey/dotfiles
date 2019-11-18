@@ -14,3 +14,6 @@ Plug 'junegunn/goyo.vim'
 " Git gutter
 Plug 'airblade/vim-gitgutter'
 
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'

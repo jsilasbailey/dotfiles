@@ -52,6 +52,8 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_fix_on_save = 1
+" vim-markdown options
+let g:vim_markdown_folding_disabled = 1
 " WP for word processor
 " Sets up an ideal word processing env in vim
 func! WordProcessor()
