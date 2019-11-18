@@ -11,9 +11,6 @@ set background=light
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
 
-" Relative numbers
-set number relativenumber
-set nu rnu
 
 " Lines with equal indent form a fold.
 set foldmethod=indent
