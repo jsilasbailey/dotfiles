@@ -12,14 +12,6 @@ set background=light
 set synmaxcol=1200
 
 
-" Lines with equal indent form a fold.
-set foldmethod=indent
-set foldlevel=1
-set foldnestmax=10
-
-" Open all folds by default
-set nofoldenable
-
 " Use mouse
 set mouse=a
 " Improve scroll speed
