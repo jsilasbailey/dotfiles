@@ -42,6 +42,9 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Netrw settings
 let g:netrw_banner = 0
 
+" Golden ratio settings
+let g:golden_ratio_exclude_nonmodifiable = 1
+
 " WP for word processor
 " Sets up an ideal word processing env in vim
 func! WordProcessor()
