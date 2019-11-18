@@ -2,3 +2,6 @@
 fpath+=("$HOME/.zsh/themes/pure")
 autoload -U promptinit; promptinit
 prompt pure
+
+# Direnv hook
+eval "$(direnv hook zsh)"
