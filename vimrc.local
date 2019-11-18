@@ -39,6 +39,9 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Tag file held in git
 :set tags^=./.git/tags;
 
+" Netrw settings
+let g:netrw_banner = 0
+
 " WP for word processor
 " Sets up an ideal word processing env in vim
 func! WordProcessor()
