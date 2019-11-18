@@ -30,12 +30,6 @@ set ignorecase
 " ... unless they contain at least one capital letter
 set smartcase
 
-" Disable the alert sound
-set vb
-" Only required for mac users to prevent the terminal flash issue
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
-
 " Force short git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
