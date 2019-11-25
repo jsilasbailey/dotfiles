@@ -13,6 +13,9 @@ set synmaxcol=1200
 
 set colorcolumn=80,150
 
+" Disable colorcolumn in qickfix windows
+autocmd Filetype qf set colorcolumn&
+
 " Use mouse
 set mouse=a
 
