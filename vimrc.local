@@ -47,7 +47,8 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 let g:netrw_banner = 0
 
 " Golden ratio settings
-let g:golden_ratio_exclude_nonmodifiable = 1
+let g:golden_ratio_autocommand = 0
+nnoremap <C-w><C-r> :GoldenRatioResize<CR>
 
 " ALE
 let g:ale_linters = { 'ruby': ['rubocop'] }
