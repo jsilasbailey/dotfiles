@@ -66,11 +66,17 @@ let g:golden_ratio_autocommand = 0
 nnoremap <C-w><C-r> :GoldenRatioResize<CR>
 
 " ALE
-let g:ale_linters = { 'ruby': ['rubocop'] }
+let g:ale_linters = { 'ruby': ['standardrb'] }
+
+" Get vim-ruby to play nice with standardrb
+let g:ruby_indent_assignment_style = 'variable'
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'ruby': ['standardrb']
 \}
+let g:ale_ruby_standardrb_executable = 'bin/standardrb'
+
 let g:ale_fix_on_save = 1
 
 " bind K to grep word under cursor
