@@ -51,6 +51,9 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Tag file held in git
 :set tags^=./.git/tags;
 
+" WhichKey
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
 " Netrw settings
 let g:netrw_banner = 0
 
