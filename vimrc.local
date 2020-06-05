@@ -51,6 +51,10 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Tag file held in git
 :set tags^=./.git/tags;
 
+" Fzf hotkeys
+nnoremap <Leader>w :Windows<CR>
+nnoremap <Leader>b :Buffers<CR>
+
 " WhichKey
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
