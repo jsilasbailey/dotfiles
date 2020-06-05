@@ -17,3 +17,5 @@ Plug 'airblade/vim-gitgutter'
 " Markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+" Material Theme
+Plug 'kaicataldo/material.vim'
