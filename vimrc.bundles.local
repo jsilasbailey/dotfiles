@@ -23,3 +23,6 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
 " Material Theme
 Plug 'kaicataldo/material.vim'
+
+" TOML
+Plug 'cespare/vim-toml'
