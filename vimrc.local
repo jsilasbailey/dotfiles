@@ -18,6 +18,7 @@ set synmaxcol=1200
 " version.
 " See: https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
 set re=1
+set relativenumber
 
 set cursorline
 set colorcolumn=80,150
