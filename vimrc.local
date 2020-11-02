@@ -76,7 +76,6 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'ruby': ['standardrb']
 \}
-let g:ale_ruby_standardrb_executable = 'bin/standardrb'
 
 let g:ale_fix_on_save = 1
 
