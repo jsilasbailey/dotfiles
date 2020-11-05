@@ -6,3 +6,5 @@
 [user]
   name = Jesse Bailey
   email = jsilasbailey@thoughtbot.com
+[pull]
+  ff = only
