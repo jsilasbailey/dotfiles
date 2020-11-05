@@ -28,3 +28,8 @@ Plug 'kaicataldo/material.vim'
 
 " TOML
 Plug 'cespare/vim-toml'
+
+" Typescript and JSX
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+
