@@ -42,3 +42,6 @@ Plug 'jiangmiao/auto-pairs'
 " Split single line args into multiline
 Plug 'AndrewRadev/splitjoin.vim'
 
+" Emmet style tag generation in vim
+Plug 'mattn/emmet-vim'
+
