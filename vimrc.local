@@ -86,6 +86,7 @@ let g:ale_fix_on_save = 1
 nnoremap K :grep! "<C-R><C-W>"<CR>:cw<CR>
 
 autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
+autocmd BufNewFile,BufRead *.txt set filetype=markdown
 
 " vim-markdown options
 let g:vim_markdown_folding_disabled = 1
@@ -93,6 +94,9 @@ let g:vim_markdown_folding_disabled = 1
 " No hanging args for splitjoin-ruby
 let g:splitjoin_ruby_hanging_args = 0
 let g:splitjoin_ruby_curly_braces = 0
+
+" Focus mode
+nnoremap <silent> <leader>z :Goyo<cr>
 
 " WP for word processor
 " Sets up an ideal word processing env in vim
@@ -117,3 +121,16 @@ func! WordProcessor()
 endfu
 
 com! WP call WordProcessor()
+
+func! Darker()
+  colorscheme pencil
+  set background=dark
+endfunc
+
+func! Lighter()
+  colorscheme pencil
+  set background=light
+endfunc
+
+com! Darker call Darker()
+com! Lighter call Lighter()
