@@ -36,3 +36,6 @@ Plug 'peitalin/vim-jsx-typescript'
 " Liquid
 Plug 'tpope/vim-liquid'
 
+" Auto insert matching "bracket" characters
+Plug 'jiangmiao/auto-pairs'
+
