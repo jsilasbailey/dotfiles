@@ -10,6 +10,8 @@ Plug 'roman/golden-ratio'
 
 " Distraction free writing
 Plug 'junegunn/goyo.vim'
+Plug 'amix/vim-zenroom2'
+Plug 'reedes/vim-colors-pencil'
 
 " Git gutter
 Plug 'airblade/vim-gitgutter'
