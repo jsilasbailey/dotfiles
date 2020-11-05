@@ -25,14 +25,13 @@ set re=1
 set relativenumber
 
 set cursorline
-set colorcolumn=80,150
+set colorcolumn=80
 
 " Disable colorcolumn in qickfix windows
 autocmd Filetype qf set colorcolumn&
 
 " Use mouse
 set mouse=a
-
 set scrolloff=4
 
 " Improve scroll speed
