@@ -1,3 +1,6 @@
+[merge "gemfilelock"]
+  name = relocks Gemfile.lock
+  driver = bundle install
 [alias]
   l = log --oneline --graph
 [user]
