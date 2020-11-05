@@ -39,3 +39,6 @@ Plug 'tpope/vim-liquid'
 " Auto insert matching "bracket" characters
 Plug 'jiangmiao/auto-pairs'
 
+" Split single line args into multiline
+Plug 'AndrewRadev/splitjoin.vim'
+
