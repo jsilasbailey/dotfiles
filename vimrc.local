@@ -58,6 +58,8 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Fzf hotkeys
 nnoremap <Leader>w :Windows<CR>
 nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>fl :BCommits<CR>
+nnoremap <Leader>gl :Commits<CR>
 
 " WhichKey
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
