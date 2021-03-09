@@ -11,9 +11,14 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " colorscheme ayu
 
 " Material
-let g:material_terminal_italics = 1
-let g:material_theme_style = 'palenight'
-colorscheme material
+" let g:material_terminal_italics = 1
+" let g:material_theme_style = 'palenight'
+
+" Paramount
+" colorscheme paramount
+" set background=light
+
+colorscheme antiphoton
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
