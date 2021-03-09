@@ -1,13 +1,11 @@
 # Dotfiles
 
-My local development dotfiles and configuration.
+My local development dotfiles and configuration. Initial configuration based on
+[thoughtbot/dotfiles].
 
-Initial configuration based on thoughtbot/dotfiles.
+[thoughtbot/dotfiles]: https://github.com/thoughtbot/dotfiles
 
+## Installation
 Use [rcm] to symlink dotfiles to your local user directory.
-
-```sh
-rcm -x README.md
-```
 
 [rcm]: https://github.com/thoughtbot/rcm
