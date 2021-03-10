@@ -175,7 +175,127 @@ set complete+=kspell
 " Always use vertical diffs
 set diffopt+=vertical
 
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
+" TRUEEEEE COLORS!!!!
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+colorscheme antiphoton
+
+" Syntax coloring lines that are too long just slows down the world
+set synmaxcol=1200
+
+" Fixes slow ruby syntax highlighting by setting the regex engine to an older
+" version.
+" See: https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
+set re=1
+set relativenumber
+
+set cursorline
+set colorcolumn=80
+
+" Disable colorcolumn in qickfix windows
+autocmd Filetype qf set colorcolumn&
+
+" Use mouse
+set mouse=a
+set scrolloff=4
+
+" Improve scroll speed
+if !has('nvim')
+  set ttyfast
+  set ttyscroll=3
+  set lazyredraw
 endif
+
+" Searches are case insentisive...
+set ignorecase
+" ... unless they contain at least one capital letter
+set smartcase
+
+" Force short git commits
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" Remove fugitive buffers when done
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" Tag file held in git
+:set tags^=./.git/tags;
+
+" Fzf hotkeys
+nnoremap <Leader>w :Windows<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>fl :BCommits<CR>
+nnoremap <Leader>gl :Commits<CR>
+
+" WhichKey
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+" Netrw settings
+let g:netrw_banner = 0
+
+" Golden ratio settings
+let g:golden_ratio_autocommand = 0
+nnoremap <C-w><C-r> :GoldenRatioResize<CR>
+
+" Get vim-ruby to play nice with standardrb
+let g:ruby_indent_assignment_style = 'variable'
+
+" ALE
+let g:ale_linters = {
+      \   'ruby': ['rails_best_practices', 'reek', 'solargraph', 'ruby'],
+      \ }
+
+" bind K to grep word under cursor
+nnoremap K :grep! "<C-R><C-W>"<CR>:cw<CR>
+
+autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
+autocmd BufNewFile,BufRead *.txt set filetype=markdown
+
+" vim-markdown options
+let g:vim_markdown_folding_disabled = 1
+
+" No hanging args for splitjoin-ruby
+let g:splitjoin_ruby_hanging_args = 0
+let g:splitjoin_ruby_curly_braces = 0
+
+" Focus mode
+nnoremap <silent> <leader>z :Goyo<cr>
+
+" WP for word processor
+" Sets up an ideal word processing env in vim
+func! WordProcessor()
+  " movement changes
+  map j gj
+  map k gk
+
+  " formatting text
+  setlocal formatoptions=1
+  setlocal noexpandtab
+  setlocal wrap
+  setlocal linebreak
+
+  " spelling and thesaurus
+  setlocal spell spelllang=en_us
+  set thesaurus+=/Users/jbailey/.vim/thesaurus/mthesaur.txt
+
+  " complete+=s makes autocompletion search the thesaurus
+  " set complete+=s
+  set complete+=kspell
+endfu
+
+com! WP call WordProcessor()
+
+func! Darker()
+  colorscheme pencil
+  set background=dark
+endfunc
+
+func! Lighter()
+  colorscheme pencil
+  set background=light
+endfunc
+
+com! Darker call Darker()
+com! Lighter call Lighter()
+
