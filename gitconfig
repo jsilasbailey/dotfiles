@@ -24,20 +24,7 @@
   prune = true
 [rebase]
   autosquash = true
+[include]
+  path = ~/.gitconfig.local
 [diff]
   colorMoved = zebra
-[merge "gemfilelock"]
-  name = relocks Gemfile.lock
-  driver = bundle install
-[alias]
-  l = log --oneline --graph
-[user]
-  name = Jesse Bailey
-  email = jsilasbailey@thoughtbot.com
-  signingkey = B10719923C734A6E39B7E7F2F6437CEADF88097F
-[gpg]
-  program = /usr/local/MacGPG2/bin/gpg2
-[commit]
-  gpgsign = true
-[pull]
-  ff = only

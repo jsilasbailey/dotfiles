@@ -34,14 +34,8 @@ _load_settings() {
 }
 _load_settings "$HOME/.zsh/configs"
 
+# Local config
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
-
-# Add the global yarn bin to $PATH
-YARN_GLOBAL_BIN=$(yarn global bin)
-export PATH="$YARN_GLOBAL_BIN:$PATH"
-
-# .zshrc
-fpath+=("$HOME/.zsh/themes/pure")
-autoload -U promptinit; promptinit
-prompt pure
