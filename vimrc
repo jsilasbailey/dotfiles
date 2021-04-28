@@ -240,8 +240,10 @@ let g:ruby_indent_assignment_style = 'variable'
 
 " ALE
 let g:ale_linters = {
-      \   'ruby': ['rails_best_practices', 'reek', 'solargraph', 'ruby'],
+      \   'ruby': ['rails_best_practices', 'reek', 'solargraph', 'standardrb'],
       \ }
+let g:ale_fixers = {'ruby': ['standardrb']}
+let g:ale_fix_on_save = 1
 
 " bind K to grep word under cursor
 nnoremap K :grep! "<C-R><C-W>"<CR>:cw<CR>
