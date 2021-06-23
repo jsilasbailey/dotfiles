@@ -100,6 +100,9 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Emmet style tag generation in vim
 Plug 'mattn/emmet-vim'
 
+" Documentation generation
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 

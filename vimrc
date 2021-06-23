@@ -290,6 +290,19 @@ let g:ale_fix_on_save = 1
 " bind K to grep word under cursor
 nnoremap K :grep! "<C-R><C-W>"<CR>:cw<CR>
 
+" Use H to show documentation in preview window.
+nnoremap <silent> H :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
 autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
 autocmd BufNewFile,BufRead *.txt set filetype=markdown
 
