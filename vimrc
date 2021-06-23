@@ -83,18 +83,16 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+" Use ripgrep
+if executable('rg')
+  " Use Rg over Grep
+  set grepprg=rg
 
-  " Use ag in fzf for listing files. Lightning fast and respects .gitignore
-  let $FZF_DEFAULT_COMMAND = 'ag --literal --files-with-matches --nocolor --hidden -g ""'
+  " Use Rg in fzf for listing files. Lightning fast and respects .gitignore
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 
-  if !exists(":Ag")
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
-  endif
+  nnoremap \ :Rg<SPACE>
+  nnoremap K :Rg <C-r><C-w><cr>
 endif
 
 " Make it obvious where 80 characters is
@@ -287,8 +285,6 @@ let g:ale_linters = {
 let g:ale_fixers = {'ruby': ['standardrb']}
 let g:ale_fix_on_save = 1
 
-" bind K to grep word under cursor
-nnoremap K :grep! "<C-R><C-W>"<CR>:cw<CR>
 
 " Use H to show documentation in preview window.
 nnoremap <silent> H :call <SID>show_documentation()<CR>
