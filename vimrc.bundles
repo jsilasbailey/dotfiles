@@ -52,12 +52,16 @@ endif
 " Vim sneak for faster locomotion
 Plug 'justinmk/vim-sneak'
 
-" Good light themes
+" Themes
 Plug 'rakr/vim-one'
 Plug 'ayu-theme/ayu-vim'
 Plug 'bruth/vim-newsprint-theme'
 Plug 'owickstrom/vim-colors-paramount'
 Plug 'axvr/photon.vim'
+Plug 'fenetikm/falcon'
+Plug 'romainl/Apprentice'
+Plug 'srcery-colors/srcery-vim'
+Plug 'embark-theme/vim', { 'as': 'embark' }
 
 " Use the golden ratio for auto sizing windows when jumping between them
 Plug 'roman/golden-ratio'

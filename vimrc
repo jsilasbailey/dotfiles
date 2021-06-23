@@ -177,7 +177,18 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-colorscheme antiphoton
+colorscheme photon
+
+func! Dark()
+  colorscheme photon
+endfunc
+
+func! Light()
+  colorscheme antiphoton
+endfunc
+
+com! Dark call Dark()
+com! Light call Light()
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
@@ -227,6 +238,45 @@ nnoremap <Leader>gl :Commits<CR>
 
 " WhichKey
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+" Terminal colors for photon color scheme
+" Have to set this manually for fzf
+if has('nvim')
+  let g:terminal_color_0 = '#262626'
+  let g:terminal_color_1 = '#ac2c2c'
+  let g:terminal_color_2 = '#4e9a06'
+  let g:terminal_color_3 = '#c4a000'
+  let g:terminal_color_4 = '#3465a4'
+  let g:terminal_color_5 = '#75507b'
+  let g:terminal_color_6 = '#389aad'
+  let g:terminal_color_7 = '#626262'
+  let g:terminal_color_8 = '#767676'
+  let g:terminal_color_9 = '#af5f87'
+  let g:terminal_color_10 = '#87af87'
+  let g:terminal_color_11 = '#d7af5f'
+  let g:terminal_color_12 = '#729fcf'
+  let g:terminal_color_13 = '#af87d7'
+  let g:terminal_color_14 = '#34e2e2'
+  let g:terminal_color_15 = '#c6c6c6'
+else
+  let g:terminal_ansi_colors = [
+        \ '#262626',
+        \ '#ac2c2c',
+        \ '#4e9a06',
+        \ '#c4a000',
+        \ '#3465a4',
+        \ '#75507b',
+        \ '#389aad',
+        \ '#626262',
+        \ '#767676',
+        \ '#af5f87',
+        \ '#87af87',
+        \ '#d7af5f',
+        \ '#729fcf',
+        \ '#af87d7',
+        \ '#34e2e2',
+        \ '#c6c6c6',
+        \ ]
+endif
 
 " Netrw settings
 let g:netrw_banner = 0
@@ -284,17 +334,3 @@ func! WordProcessor()
 endfu
 
 com! WP call WordProcessor()
-
-func! Darker()
-  colorscheme pencil
-  set background=dark
-endfunc
-
-func! Lighter()
-  colorscheme pencil
-  set background=light
-endfunc
-
-com! Darker call Darker()
-com! Lighter call Lighter()
-
