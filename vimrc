@@ -193,12 +193,6 @@ com! Light call Light()
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
 
-" Fixes slow ruby syntax highlighting by setting the regex engine to an older
-" version.
-" See: https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
-set re=1
-set relativenumber
-
 set cursorline
 set colorcolumn=80
 
