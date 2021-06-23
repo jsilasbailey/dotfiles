@@ -168,8 +168,59 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Ayu Dark)
 schemes:
+  embark: &embark
+    primary:
+      background: '0x1e1c31'
+      foreground: '0xcbe3e7'
+    cursor:
+      text: '0x1e1c31'
+      cursor: '0xa1efd3'
+    normal:
+      black: '0x1e1c31'
+      red: '0xf48fb1'
+      green: '0xa1efd3'
+      yellow: '0xffe6b3'
+      blue: '0x91ddff'
+      magenta: '0xd4bfff'
+      cyan: '0x87dfeb'
+      white: '0xcbe3e7'
+    bright:
+      black: '0x585273'
+      red: '0xf02e6e'
+      green: '0x62d196'
+      yellow: '0xf2b482'
+      blue: '0x65b2ff'
+      magenta: '0xa37acc'
+      cyan: '0x63f2f1'
+      white: '0x8a889d'
+  # https://github.com/srcery-colors/srcery-terminal/
+  # Colors (Srcery)
+  srcery: &srcery
+    primary:
+      background: '#1c1b19'
+      foreground: '#fce8c3'
+    cursor:
+      text: CellBackground
+      cursor: '#fbb829'
+    normal:
+      black:   '#1c1b19'
+      red:     '#ef2f27'
+      green:   '#519f50'
+      yellow:  '#fbb829'
+      blue:    '#2c78bf'
+      magenta: '#e02c6d'
+      cyan:    '#0aaeb3'
+      white:   '#baa67f'
+    bright:
+      black:   '#918175'
+      red:     '#f75341'
+      green:   '#98bc37'
+      yellow:  '#fed06e'
+      blue:    '#68a8e4'
+      magenta: '#ff5c8f'
+      cyan:    '#2be4d0'
+      white:   '#fce8c3'
   photon: &photon
     primary:
       background: '#262626'
@@ -186,7 +237,7 @@ schemes:
       magenta: '#75507b'
       cyan: '#389aad'
       white: '#626262'
-    bright: 
+    bright:
       black: '#767676'
       red: '#af5f87'
       green: '#87af87'
@@ -211,7 +262,7 @@ schemes:
       magenta: '#a347ba'
       cyan:  '#2aa1b3'
       white: '#949494'
-    bright: 
+    bright:
       black: '#6c6c6c'
       red: '#d75f5f'
       green: '#33d17a'
@@ -221,12 +272,9 @@ schemes:
       cyan: '#33c7de'
       white: '#ffffff'
   ayu_dark: &ayu_dark
-    # Default colors
     primary:
       background: '0x0f1419'
       foreground: '0xe6e1cf'
-
-    # Normal colors
     normal:
       black:   '0x000000'
       red:     '0xf34a4a'
@@ -236,8 +284,6 @@ schemes:
       magenta: '0xd4bfff'
       cyan:    '0x83CEC6'
       white:   '0xf2f2f2'
-
-    # Bright colors
     bright:
       black:   '0x737d87'
       red:     '0xff3333'
