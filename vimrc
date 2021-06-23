@@ -236,8 +236,6 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>fl :BCommits<CR>
 nnoremap <Leader>gl :Commits<CR>
 
-" WhichKey
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 " Terminal colors for photon color scheme
 " Have to set this manually for fzf
 if has('nvim')
