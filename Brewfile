@@ -1,0 +1,7 @@
+brew "delta"
+brew "exa"
+brew "fzf"
+brew "glances"
+brew "jq"
+brew "nvim"
+brew "ripgrep"
