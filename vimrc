@@ -177,16 +177,6 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 colorscheme photon
 
-func! Dark()
-  colorscheme photon
-endfunc
-
-func! Light()
-  colorscheme antiphoton
-endfunc
-
-com! Dark call Dark()
-com! Light call Light()
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
