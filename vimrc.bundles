@@ -45,7 +45,7 @@ Plug 'rakr/vim-one'
 Plug 'rakr/vim-two-firewatch'
 Plug 'ayu-theme/ayu-vim'
 Plug 'axvr/photon.vim'
-Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 Plug 'mhartington/oceanic-next'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'jacoborus/tender.vim'
@@ -64,7 +64,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
 " TOML
-Plug 'cespare/vim-toml'
+Plug 'cespare/vim-toml', { 'branch': 'main' }
 
 " Typescript and JSX
 Plug 'leafgarland/typescript-vim'
