@@ -107,14 +107,8 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
-" Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<Space>
-
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
-
-" Set tags for vim-fugitive
-set tags^=.git/tags
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -180,44 +174,10 @@ set ignorecase
 " ... unless they contain at least one capital letter
 set smartcase
 
-" Remove fugitive buffers when done
-autocmd BufReadPost fugitive://* set bufhidden=delete
-
-" Tag file held in git
-:set tags^=./.git/tags;
-
 " Netrw settings
 let g:netrw_banner = 0
 
-" Golden ratio settings
-let g:golden_ratio_autocommand = 0
-nnoremap <C-w><C-r> :GoldenRatioResize<CR>
-
-" Get vim-ruby to play nice with standardrb
-let g:ruby_indent_assignment_style = 'variable'
-
-" Use H to show documentation in preview window.
-nnoremap <silent> H :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
 autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
-autocmd BufNewFile,BufRead *.txt set filetype=markdown
-
-" vim-markdown options
-let g:vim_markdown_folding_disabled = 1
-
-" No hanging args for splitjoin-ruby
-let g:splitjoin_ruby_hanging_args = 0
-let g:splitjoin_ruby_curly_braces = 0
 
 " WP for word processor
 " Sets up an ideal word processing env in vim

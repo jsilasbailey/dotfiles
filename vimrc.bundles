@@ -10,8 +10,6 @@ function! s:UnPlug(plug_name)
 endfunction
 command!  -nargs=1 UnPlug call s:UnPlug(<args>)
 
-let g:has_async = v:version >= 800 || has('nvim')
-
 call plug#begin('~/.vim/bundle')
 
 " Define bundles via Github repos
@@ -23,14 +21,26 @@ Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
+
 Plug 'tpope/vim-fugitive'
+
+" Set tags for vim-fugitive
+set tags^=.git/tags
+
+" Remove fugitive buffers when done
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
+
 Plug 'vim-ruby/vim-ruby'
+" Get vim-ruby to play nice with standardrb
+let g:ruby_indent_assignment_style = 'variable'
+
 Plug 'vim-scripts/tComment'
 
 " Rust
@@ -56,12 +66,19 @@ Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
 " Use the golden ratio for auto sizing windows when jumping between them
 Plug 'roman/golden-ratio'
 
+" Golden ratio settings
+let g:golden_ratio_autocommand = 0
+nnoremap <C-w><C-r> :GoldenRatioResize<CR>
+
 " Git gutter
 Plug 'airblade/vim-gitgutter'
 
 " Markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+
+" vim-markdown options
+let g:vim_markdown_folding_disabled = 1
 
 " TOML
 Plug 'cespare/vim-toml', { 'branch': 'main' }
@@ -81,6 +98,10 @@ Plug 'jiangmiao/auto-pairs'
 
 " Split single line args into multiline
 Plug 'AndrewRadev/splitjoin.vim'
+
+" No hanging args for splitjoin-ruby
+let g:splitjoin_ruby_hanging_args = 0
+let g:splitjoin_ruby_curly_braces = 0
 
 " Emmet style tag generation in vim
 Plug 'mattn/emmet-vim'
