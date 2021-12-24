@@ -10,6 +10,10 @@ elif which brew >/dev/null &&
   . "$BREW_DIR/opt/asdf/asdf.sh"
 fi
 
+# Add the global yarn bin to $PATH
+YARN_GLOBAL_BIN=$(yarn global bin)
+export PATH="$YARN_GLOBAL_BIN:$PATH"
+
 # mkdir .git/safe in the root of repositories you trust
 PATH=".git/safe/../../bin:$PATH"
 

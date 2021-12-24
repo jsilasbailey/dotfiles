@@ -34,10 +34,6 @@ _load_settings() {
 }
 _load_settings "$HOME/.zsh/configs"
 
-# Add the global yarn bin to $PATH
-YARN_GLOBAL_BIN=$(yarn global bin)
-export PATH="$YARN_GLOBAL_BIN:$PATH"
-
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
