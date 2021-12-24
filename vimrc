@@ -87,10 +87,6 @@ set nojoinspaces
 if executable('rg')
   " Use Rg over Grep
   set grepprg=rg
-
-  " Use Rg in fzf for listing files. Lightning fast and respects .gitignore
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
-
   nnoremap \ :Rg<SPACE>
   nnoremap K :Rg <C-r><C-w><cr>
 endif
@@ -157,9 +153,6 @@ nnoremap <C-l> <C-w>l
 nnoremap ]r :ALENextWrap<CR>
 nnoremap [r :ALEPreviousWrap<CR>
 
-" Map Ctrl + p to open fuzzy find (FZF)
-nnoremap <c-p> :Files<cr>
-
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
 set spellfile=$HOME/.vim-spell-en.utf-8.add
@@ -222,52 +215,6 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " Tag file held in git
 :set tags^=./.git/tags;
-
-" Fzf hotkeys
-nnoremap <Leader>w :Windows<CR>
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>fl :BCommits<CR>
-nnoremap <Leader>gl :Commits<CR>
-
-" Terminal colors for photon color scheme
-" Have to set this manually for fzf
-if has('nvim')
-  let g:terminal_color_0 = '#262626'
-  let g:terminal_color_1 = '#ac2c2c'
-  let g:terminal_color_2 = '#4e9a06'
-  let g:terminal_color_3 = '#c4a000'
-  let g:terminal_color_4 = '#3465a4'
-  let g:terminal_color_5 = '#75507b'
-  let g:terminal_color_6 = '#389aad'
-  let g:terminal_color_7 = '#626262'
-  let g:terminal_color_8 = '#767676'
-  let g:terminal_color_9 = '#af5f87'
-  let g:terminal_color_10 = '#87af87'
-  let g:terminal_color_11 = '#d7af5f'
-  let g:terminal_color_12 = '#729fcf'
-  let g:terminal_color_13 = '#af87d7'
-  let g:terminal_color_14 = '#34e2e2'
-  let g:terminal_color_15 = '#c6c6c6'
-else
-  let g:terminal_ansi_colors = [
-        \ '#262626',
-        \ '#ac2c2c',
-        \ '#4e9a06',
-        \ '#c4a000',
-        \ '#3465a4',
-        \ '#75507b',
-        \ '#389aad',
-        \ '#626262',
-        \ '#767676',
-        \ '#af5f87',
-        \ '#87af87',
-        \ '#d7af5f',
-        \ '#729fcf',
-        \ '#af87d7',
-        \ '#34e2e2',
-        \ '#c6c6c6',
-        \ ]
-endif
 
 " Netrw settings
 let g:netrw_banner = 0

@@ -17,18 +17,6 @@ call plug#begin('~/.vim/bundle')
 " Define bundles via Github repos
 Plug 'christoomey/vim-run-interactive'
 
-" If fzf has already been installed via Homebrew, use the existing fzf
-" Otherwise, install fzf. The `--all` flag makes fzf accessible outside of vim
-if isdirectory("/usr/local/opt/fzf")
-  Plug '/usr/local/opt/fzf'
-else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-endif
-
-" FZF
-Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
-
 " Run tests from vim
 Plug 'janko-m/vim-test'
 let g:test#javascript#jest#file_pattern = '\v(__tests__/.*)\.(js|jsx|coffee|ts|tsx)$'
