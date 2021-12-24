@@ -3,6 +3,11 @@ set encoding=utf-8
 " Leader
 let mapleader = " "
 
+" Load plugins
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
@@ -20,10 +25,6 @@ set nomodeline
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
-endif
-
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
 endif
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
