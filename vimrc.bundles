@@ -37,10 +37,6 @@ Plug 'vim-scripts/tComment'
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
 
-if g:has_async
-  Plug 'dense-analysis/ale'
-endif
-
 " Vim sneak for faster locomotion
 Plug 'justinmk/vim-sneak'
 

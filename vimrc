@@ -50,23 +50,6 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile */zsh/configs/* set filetype=sh
 augroup END
 
-" ALE linting events
-augroup ale
-  autocmd!
-
-  if g:has_async
-    autocmd VimEnter *
-      \ set updatetime=1000 |
-      \ let g:ale_lint_on_text_changed = 0
-    autocmd CursorHold * call ale#Queue(0)
-    autocmd CursorHoldI * call ale#Queue(0)
-    autocmd InsertEnter * call ale#Queue(0)
-    autocmd InsertLeave * call ale#Queue(0)
-  else
-    echoerr "The thoughtbot dotfiles require NeoVim or Vim 8"
-  endif
-augroup END
-
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
 " shell for syntax highlighting purposes.
 let g:is_posix = 1
@@ -142,10 +125,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Move between linting errors
-nnoremap ]r :ALENextWrap<CR>
-nnoremap [r :ALEPreviousWrap<CR>
-
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
 set spellfile=$HOME/.vim-spell-en.utf-8.add
@@ -218,13 +197,6 @@ nnoremap <C-w><C-r> :GoldenRatioResize<CR>
 
 " Get vim-ruby to play nice with standardrb
 let g:ruby_indent_assignment_style = 'variable'
-
-" ALE
-let g:ale_linters = {
-      \   'ruby': ['rails_best_practices', 'reek', 'solargraph', 'standardrb'],
-      \ }
-let g:ale_fixers = {'ruby': ['standardrb']}
-let g:ale_fix_on_save = 1
 
 " Use H to show documentation in preview window.
 nnoremap <silent> H :call <SID>show_documentation()<CR>
