@@ -90,9 +90,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Emmet style tag generation in vim
 Plug 'mattn/emmet-vim'
 
-" Documentation generation
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
-
 function! s:SourceConfigFilesIn(directory)
   let directory_splat = '~/.vim/' . a:directory . '/*'
 
