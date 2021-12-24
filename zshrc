@@ -38,9 +38,6 @@ _load_settings "$HOME/.zsh/configs"
 YARN_GLOBAL_BIN=$(yarn global bin)
 export PATH="$YARN_GLOBAL_BIN:$PATH"
 
-fpath+=$HOME/.zsh/themes/pure
-autoload -U promptinit; promptinit
-prompt pure
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
