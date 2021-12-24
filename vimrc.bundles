@@ -62,14 +62,15 @@ Plug 'justinmk/vim-sneak'
 
 " Themes
 Plug 'rakr/vim-one'
+Plug 'rakr/vim-two-firewatch'
 Plug 'ayu-theme/ayu-vim'
-Plug 'bruth/vim-newsprint-theme'
-Plug 'owickstrom/vim-colors-paramount'
 Plug 'axvr/photon.vim'
-Plug 'fenetikm/falcon'
-Plug 'romainl/Apprentice'
-Plug 'srcery-colors/srcery-vim'
 Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'mhartington/oceanic-next'
+Plug 'kyoz/purify', { 'rtp': 'vim' }
+Plug 'jacoborus/tender.vim'
+Plug 'jaredgorski/spacecamp'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
 
 " Use the golden ratio for auto sizing windows when jumping between them
@@ -86,9 +87,6 @@ Plug 'airblade/vim-gitgutter'
 " Markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-
-" Material Theme
-Plug 'kaicataldo/material.vim'
 
 " TOML
 Plug 'cespare/vim-toml'
