@@ -219,9 +219,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:splitjoin_ruby_hanging_args = 0
 let g:splitjoin_ruby_curly_braces = 0
 
-" Focus mode
-nnoremap <silent> <leader>z :Goyo<cr>
-
 " WP for word processor
 " Sets up an ideal word processing env in vim
 func! WordProcessor()

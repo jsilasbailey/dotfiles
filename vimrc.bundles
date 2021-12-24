@@ -56,11 +56,6 @@ Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
 " Use the golden ratio for auto sizing windows when jumping between them
 Plug 'roman/golden-ratio'
 
-" Distraction free writing
-Plug 'junegunn/goyo.vim'
-Plug 'amix/vim-zenroom2'
-Plug 'reedes/vim-colors-pencil'
-
 " Git gutter
 Plug 'airblade/vim-gitgutter'
 
