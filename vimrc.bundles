@@ -26,8 +26,6 @@ else
 endif
 
 Plug 'junegunn/fzf.vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'fatih/vim-go'
 
 " Run tests from vim
 Plug 'janko-m/vim-test'
