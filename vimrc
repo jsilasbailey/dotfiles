@@ -286,17 +286,6 @@ let g:ale_linters = {
 let g:ale_fixers = {'ruby': ['standardrb']}
 let g:ale_fix_on_save = 1
 
-" Coc Settings
-
-" Coc Prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
 " Use H to show documentation in preview window.
 nnoremap <silent> H :call <SID>show_documentation()<CR>
 

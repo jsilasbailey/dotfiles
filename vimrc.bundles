@@ -113,19 +113,6 @@ Plug 'mattn/emmet-vim'
 " Documentation generation
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
-" COC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-let g:coc_global_extensions = [
-      \ 'coc-tsserver',
-      \ 'coc-rls',
-      \ 'coc-json',
-      \ 'coc-solargraph'
-      \ ]
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
 function! s:SourceConfigFilesIn(directory)
   let directory_splat = '~/.vim/' . a:directory . '/*'
 
@@ -136,9 +123,6 @@ function! s:SourceConfigFilesIn(directory)
   endfor
 endfunction
 
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
 call s:SourceConfigFilesIn('rcplugins')
 
 call plug#end()
