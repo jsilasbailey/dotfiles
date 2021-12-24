@@ -180,9 +180,6 @@ set ignorecase
 " ... unless they contain at least one capital letter
 set smartcase
 
-" Force short git commits
-autocmd Filetype gitcommit setlocal spell textwidth=72
-
 " Remove fugitive buffers when done
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
