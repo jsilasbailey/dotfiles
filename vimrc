@@ -178,8 +178,12 @@ endif
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-colorscheme photon
+colorscheme aquarium
 
+" On = 1 (default) | Off = 0
+let g:aqua_bold = 1
+" On = 1 | Off = 0 (default)
+let g:aqua_transparency = 1
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200

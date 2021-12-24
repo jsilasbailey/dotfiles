@@ -62,6 +62,7 @@ Plug 'fenetikm/falcon'
 Plug 'romainl/Apprentice'
 Plug 'srcery-colors/srcery-vim'
 Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
 
 " Use the golden ratio for auto sizing windows when jumping between them
 Plug 'roman/golden-ratio'
