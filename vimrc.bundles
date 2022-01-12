@@ -106,6 +106,8 @@ let g:splitjoin_ruby_curly_braces = 0
 " Emmet style tag generation in vim
 Plug 'mattn/emmet-vim'
 
+Plug 'romainl/vim-devdocs'
+
 function! s:SourceConfigFilesIn(directory)
   let directory_splat = '~/.vim/' . a:directory . '/*'
 
