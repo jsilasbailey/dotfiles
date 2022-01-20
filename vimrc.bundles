@@ -75,9 +75,8 @@ Plug 'airblade/vim-gitgutter'
 
 " Markdown
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 
-" vim-markdown options
+Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
 
 " TOML
