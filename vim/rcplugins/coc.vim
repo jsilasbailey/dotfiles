@@ -3,7 +3,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 let g:coc_global_extensions = [
       \ 'coc-tsserver',
-      \ 'coc-rls',
+      \ 'coc-rust-analyzer',
       \ 'coc-json',
       \ 'coc-solargraph'
       \ ]
