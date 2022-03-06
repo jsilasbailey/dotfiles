@@ -169,6 +169,14 @@ if !has('nvim')
   set lazyredraw
 endif
 
+" META j/k moves lines up or down
+nnoremap <M-j> :m .+1<CR>==
+nnoremap <M-k> :m .-2<CR>==
+inoremap <M-j> <Esc>:m .+1<CR>==gi
+inoremap <M-k> <Esc>:m .-2<CR>==gi
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
+
 " Searches are case insentisive...
 set ignorecase
 " ... unless they contain at least one capital letter
