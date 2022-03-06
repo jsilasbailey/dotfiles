@@ -81,6 +81,10 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
 
+Plug 'JamshedVesuna/vim-markdown-preview'
+let vim_markdown_preview_github=1
+let vim_markdown_preview_hotkey='<leader>p'
+
 " TOML
 Plug 'cespare/vim-toml', { 'branch': 'main' }
 
