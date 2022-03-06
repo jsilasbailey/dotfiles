@@ -25,6 +25,10 @@
   template = ~/.gitmessage
 [gpg]
   program = /usr/local/MacGPG2/bin/gpg2
+[user]
+	name = Jesse Bailey
+	email = jsilasbailey@thoughtbot.com
+	signingkey = B10719923C734A6E39B7E7F2F6437CEADF88097F
 [fetch]
   prune = true
 [rebase]
