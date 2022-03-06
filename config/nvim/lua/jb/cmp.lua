@@ -27,6 +27,7 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'vsnip' }, -- For vsnip users.
+    { name = 'nvim_lsp' }, -- LSP completion.
   }, {
     { name = 'buffer' },
   })
@@ -35,7 +36,7 @@ cmp.setup({
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it. 
+    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
   }, {
     { name = 'buffer' },
   })
@@ -56,10 +57,3 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
-
--- Setup lspconfig.
--- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---   capabilities = capabilities
--- }

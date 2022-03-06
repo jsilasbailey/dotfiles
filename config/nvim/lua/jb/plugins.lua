@@ -52,7 +52,7 @@ return packer.startup(function(use)
 
   -- Add "end" when needed
   use "tpope/vim-endwise"
-  
+
   -- Simply designed fast navigation
   use "ggandor/lightspeed.nvim"
 
@@ -63,7 +63,7 @@ return packer.startup(function(use)
   use "jiangmiao/auto-pairs"
 
   -- Work with surrounding brackets/characters
-  use "tpope/vim-surround" 
+  use "tpope/vim-surround"
 
   -- Doing the git
   use "tpope/vim-fugitive"
@@ -79,6 +79,12 @@ return packer.startup(function(use)
     "petertriho/cmp-git",
     requires = "nvim-lua/plenary.nvim",
   } -- git completion
+  use "hrsh7th/cmp-nvim-lsp" -- LSP completion
+
+  -- LSP plugins
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "jose-elias-alvarez/nvim-lsp-ts-utils"
 
   -- Sync packer
   if PACKER_BOOTSTRAP then
