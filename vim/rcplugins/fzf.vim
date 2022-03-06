@@ -15,6 +15,9 @@ endif
 " FZF
 Plug 'junegunn/fzf.vim'
 
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = []
+
 " Fzf hotkeys
 nnoremap <Leader>w :Windows<CR>
 nnoremap <Leader>b :Buffers<CR>
