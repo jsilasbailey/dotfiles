@@ -9,7 +9,7 @@ endif
 if isdirectory("/usr/local/opt/fzf")
   Plug '/usr/local/opt/fzf'
 else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 endif
 
 " FZF
