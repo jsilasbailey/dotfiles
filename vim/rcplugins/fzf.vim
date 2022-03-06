@@ -14,7 +14,6 @@ endif
 
 " FZF
 Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
 
 " Fzf hotkeys
 nnoremap <Leader>w :Windows<CR>
