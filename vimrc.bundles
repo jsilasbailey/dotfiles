@@ -48,7 +48,9 @@ Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
 
 " Vim sneak for faster locomotion
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
+" Lightspeed replaces sneak
+Plug 'ggandor/lightspeed.nvim', { 'branch': 'main' }
 
 " Themes
 Plug 'rakr/vim-one'
