@@ -47,10 +47,10 @@ Plug 'vim-scripts/tComment'
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
 
-" Vim sneak for faster locomotion
-" Plug 'justinmk/vim-sneak'
-" Lightspeed replaces sneak
-Plug 'ggandor/lightspeed.nvim', { 'branch': 'main' }
+" Lightspeed replaces sneak for locomotion
+if has('nvim')
+  Plug 'ggandor/lightspeed.nvim', { 'branch': 'main' }
+end
 
 " Themes
 Plug 'rakr/vim-one'
