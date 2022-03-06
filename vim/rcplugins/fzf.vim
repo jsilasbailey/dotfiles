@@ -19,7 +19,7 @@ Plug 'stsewd/fzf-checkout.vim'
 " Fzf hotkeys
 nnoremap <Leader>w :Windows<CR>
 nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>fl :BCommits<CR>
+nnoremap <Leader>c :BCommits<CR>
 nnoremap <Leader>gl :Commits<CR>
 
 " Map Ctrl + p to open fuzzy find (FZF)
