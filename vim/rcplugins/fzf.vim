@@ -1,3 +1,9 @@
+" Use ripgrep
+if executable('rg')
+  " Use Rg in fzf for listing files. Lightning fast and respects .gitignore
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+endif
+
 " If fzf has already been installed via Homebrew, use the existing fzf
 " Otherwise, install fzf. The `--all` flag makes fzf accessible outside of vim
 if isdirectory("/usr/local/opt/fzf")
@@ -18,9 +24,3 @@ nnoremap <Leader>gl :Commits<CR>
 
 " Map Ctrl + p to open fuzzy find (FZF)
 nnoremap <c-p> :Files<cr>
-
-" Use ripgrep
-if executable('rg')
-  " Use Rg in fzf for listing files. Lightning fast and respects .gitignore
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
-endif
