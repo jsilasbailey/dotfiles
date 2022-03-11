@@ -68,6 +68,15 @@ return packer.startup(function(use)
   -- Doing the git
   use "tpope/vim-fugitive"
 
+  -- Rake/Rails navigation and help
+  -- https://github.com/tpope/vim-rails
+  -- https://github.com/tpope/vim-rake
+  use { "tpope/vim-rails" }
+  use {
+    "tpope/vim-rake",
+    requires = "tpope/vim-projectionist",
+  }
+
   -- cmp completion plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
