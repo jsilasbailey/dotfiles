@@ -93,6 +93,13 @@ return packer.startup(function(use)
     requires = "tpope/vim-projectionist",
   }
 
+  -- File finder
+  -- https://github.com/nvim-telescope/telescope.nvim
+  use {
+    "nvim-telescope/telescope.nvim",
+    requires = "nvim-lua/plenary.nvim",
+  }
+
   -- cmp completion plugins
   -- https://github.com/hrsh7th/nvim-cmp
   use "hrsh7th/nvim-cmp" -- The completion plugin
