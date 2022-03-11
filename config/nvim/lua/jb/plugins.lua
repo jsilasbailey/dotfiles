@@ -72,6 +72,10 @@ return packer.startup(function(use)
   -- https://github.com/tpope/vim-surround
   use "tpope/vim-surround"
 
+  -- Repeat plugin commands with `.`
+  -- https://github.com/tpope/vim-repeat
+  use "tpope/vim-repeat"
+
   -- Doing the git
   -- https://github.com/tpope/vim-fugitive
   use "tpope/vim-fugitive"
