@@ -56,6 +56,10 @@ return packer.startup(function(use)
   -- https://github.com/tpope/endwise
   use "tpope/vim-endwise"
 
+  -- Dispatch testing from vim
+  -- https://github.com/vim-test/vim-test
+  use { "vim-test/vim-test" }
+
   -- Simply designed fast navigation
   -- https://github.com/ggandor/lightspeed.nvim
   use "ggandor/lightspeed.nvim"
