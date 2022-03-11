@@ -45,27 +45,35 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim"
 
   -- Split and join lines more intelligently
+  -- https://github.com/AndrewRadev/splitjoin.vim
   use "AndrewRadev/splitjoin.vim"
 
   -- Easy commenting of lines
+  -- https://github.com/tpope/vim-commentary
   use "tpope/vim-commentary"
 
   -- Add "end" when needed
+  -- https://github.com/tpope/endwise
   use "tpope/vim-endwise"
 
   -- Simply designed fast navigation
+  -- https://github.com/ggandor/lightspeed.nvim
   use "ggandor/lightspeed.nvim"
 
   -- Dark pastels colorscheme
+  -- https://github.com/frenzyexists/aquarium-vim
   use "frenzyexists/aquarium-vim"
 
   -- Auto instert bracket pairs
+  -- https://github.com/jiangmiao/auto-pairs
   use "jiangmiao/auto-pairs"
 
   -- Work with surrounding brackets/characters
+  -- https://github.com/tpope/vim-surround
   use "tpope/vim-surround"
 
   -- Doing the git
+  -- https://github.com/tpope/vim-fugitive
   use "tpope/vim-fugitive"
 
   -- Rake/Rails navigation and help
@@ -78,6 +86,7 @@ return packer.startup(function(use)
   }
 
   -- cmp completion plugins
+  -- https://github.com/hrsh7th/nvim-cmp
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
@@ -91,6 +100,8 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp" -- LSP completion
 
   -- LSP plugins
+  -- https://github.com/neovim/nvim-lspconfig
+  -- https://github.com/williamboman/nvim-lsp-installer
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
