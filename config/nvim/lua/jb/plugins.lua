@@ -80,6 +80,10 @@ return packer.startup(function(use)
   -- https://github.com/tpope/vim-fugitive
   use "tpope/vim-fugitive"
 
+  -- Git gutter signs
+  -- https://github.com/airblade/vim-gitgutter
+  use "airblade/vim-gitgutter"
+
   -- Rake/Rails navigation and help
   -- https://github.com/tpope/vim-rails
   -- https://github.com/tpope/vim-rake
