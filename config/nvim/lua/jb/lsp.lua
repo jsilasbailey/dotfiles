@@ -168,8 +168,8 @@ null_ls.setup({
 		diagnostics.write_good.with({
 			extra_filetypes = { "gitcommit" },
 		}),
-		-- formatting.eslint_d.with(eslint_d_options),
 		diagnostics.shellcheck,
+		formatting.eslint_d.with(eslint_d_options),
 		formatting.prettierd.with(prettierd_opts),
 		formatting.standardrb,
 		formatting.stylua,
