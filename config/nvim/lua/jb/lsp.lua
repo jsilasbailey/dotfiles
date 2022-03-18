@@ -113,3 +113,65 @@ lsp_installer.on_server_ready(function(server)
 	server:setup(opts)
 end)
 
+local status_ok, null_ls = pcall(require, "null-ls")
+if not status_ok then
+	return
+end
+
+local eslint_d_options = {
+	prefer_local = "node_modules/.bin",
+	condition = function(utils)
+		return utils.root_has_file({
+			".eslintrc.js",
+			".eslintrc.cjs",
+			".eslintrc.yaml",
+			".eslintrc.yml",
+			".eslintrc.json",
+		})
+	end,
+}
+
+local prettierd_opts = {
+	condition = function(utils)
+		return utils.root_has_file({
+			".prettierrc",
+			".prettierrc.json",
+			".prettierrc.yml",
+			".prettierrc.yaml",
+			".prettierrc.json5",
+			".prettierrc.js",
+			".prettierrc.cjs",
+			".prettierrc.toml",
+			"prettier.config.js",
+			"prettier.config.cjs",
+		})
+	end,
+	prefer_local = "node_modules/.bin",
+}
+
+local code_actions = null_ls.builtins.code_actions
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+
+null_ls.setup({
+	on_attach = on_attach,
+	sources = {
+		code_actions.eslint_d.with(eslint_d_options),
+		code_actions.proselint.with({
+			extra_filetypes = { "gitcommit" },
+		}),
+		diagnostics.eslint_d.with(eslint_d_options),
+		diagnostics.gitlint,
+		diagnostics.proselint.with({
+			extra_filetypes = { "gitcommit" },
+		}),
+		diagnostics.standardrb,
+		diagnostics.write_good.with({
+			extra_filetypes = { "gitcommit" },
+		}),
+		-- formatting.eslint_d.with(eslint_d_options),
+		formatting.prettierd.with(prettierd_opts),
+		formatting.standardrb,
+		formatting.stylua,
+	},
+})

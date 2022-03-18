@@ -125,6 +125,12 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
 
+  -- Null.ls
+  use {
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = "nvim-lua/plenary.nvim",
+  }
+
   -- Sync packer
   if PACKER_BOOTSTRAP then
     require("packer").sync()
