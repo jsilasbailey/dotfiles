@@ -61,7 +61,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "gy", ":LspTypeDefinition<cr>", opts)
 
 	if client.resolved_capabilities.document_formatting then
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 2000)")
 	end
 end
 
