@@ -57,6 +57,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "[d", ":LspDiagnosticPrev<cr>", opts)
 	buf_set_keymap("n", "]d", ":LspDiagnosticNext<cr>", opts)
 	buf_set_keymap("n", "<leader>d", ":LspDiagnosticCurrent<cr>", opts)
+	buf_set_keymap("n", "<leader>a", ":LspCodeAction<cr>", opts)
 	buf_set_keymap("n", "gd", ":LspDefintion<cr>", opts)
 	buf_set_keymap("n", "gy", ":LspTypeDefinition<cr>", opts)
 
