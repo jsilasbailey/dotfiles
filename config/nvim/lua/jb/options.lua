@@ -1,17 +1,24 @@
-vim.opt.backup = false
+vim.o.backup = false
 
-vim.opt.clipboard = "unnamedplus"
+vim.o.clipboard = "unnamedplus"
 
-vim.opt.colorcolumn = "+1"
-vim.opt.number = true
+vim.o.number = true
 
-vim.opt.mouse = "a"
+-- Make it obvious where 80 characters is
+vim.o.textwidth = 80
+vim.o.colorcolumn = "+1"
+vim.cmd([[
+  autocmd! Filetype qf set colorcolumn&
+]])
 
-vim.opt.splitbelow = true
-vim.opt.splitright = true
+vim.o.mouse = "a"
 
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+vim.o.splitbelow = true
+vim.o.splitright = true
 
-vim.opt.termguicolors = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.shiftround = true
+vim.o.expandtab = true
+
+vim.o.termguicolors = true
