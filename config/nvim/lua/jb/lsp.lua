@@ -169,6 +169,7 @@ null_ls.setup({
 			extra_filetypes = { "gitcommit" },
 		}),
 		-- formatting.eslint_d.with(eslint_d_options),
+		diagnostics.shellcheck,
 		formatting.prettierd.with(prettierd_opts),
 		formatting.standardrb,
 		formatting.stylua,
