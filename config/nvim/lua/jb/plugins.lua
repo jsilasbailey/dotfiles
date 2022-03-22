@@ -98,6 +98,13 @@ return packer.startup(function(use)
 		requires = "tpope/vim-projectionist",
 	})
 
+	-- Treesitter, for syntax
+	-- https://github.com/nvim-treesitter/nvim-treesitter#quickstart
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+	})
+
 	-- File finder
 	-- https://github.com/nvim-telescope/telescope.nvim
 	use({
