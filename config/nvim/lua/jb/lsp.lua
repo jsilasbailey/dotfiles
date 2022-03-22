@@ -160,8 +160,10 @@ null_ls.setup({
 		code_actions.proselint.with({
 			extra_filetypes = { "gitcommit" },
 		}),
+		code_actions.shellcheck,
 		diagnostics.eslint_d.with(eslint_d_options),
 		diagnostics.gitlint,
+		diagnostics.shellcheck,
 		diagnostics.proselint.with({
 			extra_filetypes = { "gitcommit" },
 		}),
