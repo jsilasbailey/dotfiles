@@ -40,6 +40,11 @@ vim.api.nvim_set_keymap("n", "<leader>ff", [[<cmd> lua require("telescope.builti
 	silent = true,
 })
 
+vim.api.nvim_set_keymap("n", "<leader>fb", [[<cmd> lua require("telescope.builtin").buffers()<cr>]], {
+	noremap = true,
+	silent = true,
+})
+
 vim.api.nvim_set_keymap("n", "<leader>fg", [[<cmd> lua require("telescope.builtin").live_grep()<cr>]], {
 	noremap = true,
 	silent = true,
