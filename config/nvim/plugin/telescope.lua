@@ -35,17 +35,17 @@ telescope.setup({
 
 -- TODO: Figure out what our other options are here
 
-vim.api.nvim_set_keymap("n", "<leader>ff", [[<cmd> lua require("telescope.builtin").find_files()<cr>]], {
+vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files<cr>", {
 	noremap = true,
 	silent = true,
 })
 
-vim.api.nvim_set_keymap("n", "<leader>fb", [[<cmd> lua require("telescope.builtin").buffers()<cr>]], {
+vim.api.nvim_set_keymap("n", "<leader>fb", ":Telescope buffers<cr>", {
 	noremap = true,
 	silent = true,
 })
 
-vim.api.nvim_set_keymap("n", "<leader>fg", [[<cmd> lua require("telescope.builtin").live_grep()<cr>]], {
+vim.api.nvim_set_keymap("n", "<leader>fg", ":Telescope live_grep<cr>", {
 	noremap = true,
 	silent = true,
 })
