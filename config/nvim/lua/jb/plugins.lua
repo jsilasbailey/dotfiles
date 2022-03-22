@@ -67,6 +67,7 @@ return packer.startup(function(use)
 	-- Dark pastels colorscheme
 	-- https://github.com/frenzyexists/aquarium-vim
 	use("frenzyexists/aquarium-vim")
+	use("marko-cerovac/material.nvim")
 
 	-- Auto instert bracket pairs
 	-- https://github.com/jiangmiao/auto-pairs
