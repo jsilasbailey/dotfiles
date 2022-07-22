@@ -21,6 +21,7 @@ brew "tmux"
 brew "wget"
 brew "write-good"
 brew "zsh"
+brew "zsh-completions"
 brew "thoughtbot/formulae/rcm"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "gpg-suite"
