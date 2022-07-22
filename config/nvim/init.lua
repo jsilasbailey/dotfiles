@@ -1,0 +1,6 @@
+require("jb.plugins")
+require("jb.options")
+require("jb.keymaps")
+require("jb.cmp")
+require("jb.lsp")
+require("jb.colorscheme")

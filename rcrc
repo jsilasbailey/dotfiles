@@ -1,2 +1,3 @@
 EXCLUDES="README.md LICENSE"
 COPY_ALWAYS="git_template/HEAD"
+UNDOTTED="Brewfile"

@@ -36,12 +36,11 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 
 Plug 'vim-ruby/vim-ruby'
 " Get vim-ruby to play nice with standardrb
 let g:ruby_indent_assignment_style = 'variable'
-
-Plug 'vim-scripts/tComment'
 
 " Rust
 Plug 'rust-lang/rust.vim'

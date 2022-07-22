@@ -10,6 +10,7 @@
   l = log --oneline --graph
   pf = push --force-with-lease
   st = status
+  dft = difftool
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
@@ -36,13 +37,24 @@
   autostash = true
 [diff]
   colorMoved = zebra
+  tool = difftastic
+[difftool]
+  prompt = false
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
 [delta]
-  syntax-theme = 1337
+  syntax-theme = Dracula
   features = line-numbers side-by-side decorations
 [pager]
   diff = delta
   log = delta
   reflog = delta
   show = delta
+  difftool = true
 [interactive]
   diffFilter = delta --color-only
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
