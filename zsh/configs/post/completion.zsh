@@ -6,8 +6,6 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
 
-echo $FPATH
-
 # completion; use cache if updated within 24h
 autoload -Uz compinit
 
