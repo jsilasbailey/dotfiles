@@ -6,8 +6,8 @@ endif
 
 " If fzf has already been installed via Homebrew, use the existing fzf
 " Otherwise, install fzf. The `--all` flag makes fzf accessible outside of vim
-if isdirectory("/usr/local/opt/fzf")
-  Plug '/usr/local/opt/fzf'
+if isdirectory("/opt/homebrew/opt/fzf")
+  Plug '/opt/homebrew/opt/fzf'
 else
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 endif

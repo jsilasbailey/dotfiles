@@ -33,14 +33,9 @@ telescope.setup({
 	},
 })
 
--- TODO: Figure out what our other options are here
+telescope.load_extension("fzf")
 
-vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files<cr>", {
-	noremap = true,
-	silent = true,
-})
-
-vim.api.nvim_set_keymap("n", "<leader>fb", ":Telescope buffers<cr>", {
+vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope git_files<cr>", {
 	noremap = true,
 	silent = true,
 })

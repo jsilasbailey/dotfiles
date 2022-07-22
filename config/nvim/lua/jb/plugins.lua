@@ -58,16 +58,17 @@ return packer.startup(function(use)
 
 	-- Dispatch testing from vim
 	-- https://github.com/vim-test/vim-test
-	use({ "vim-test/vim-test" })
+	use({ "vim-test/vim-test", requires = "tpope/vim-dispatch" })
 
 	-- Simply designed fast navigation
 	-- https://github.com/ggandor/lightspeed.nvim
 	use("ggandor/lightspeed.nvim")
 
-	-- Dark pastels colorscheme
-	-- https://github.com/frenzyexists/aquarium-vim
-	use("frenzyexists/aquarium-vim")
-	use("marko-cerovac/material.nvim")
+	-- Catppuccin colorschemes
+	use({ "catppuccin/nvim", as = "catppuccin" })
+
+	-- Distraction free editing
+	use("junegunn/goyo.vim")
 
 	-- Auto instert bracket pairs
 	-- https://github.com/jiangmiao/auto-pairs
@@ -85,6 +86,12 @@ return packer.startup(function(use)
 	-- https://github.com/tpope/vim-fugitive
 	use("tpope/vim-fugitive")
 
+	-- Unix helpers
+	use("tpope/vim-eunuch")
+
+	-- Navigate tmux panes like vim
+	use({ "christoomey/vim-tmux-navigator" })
+
 	-- Git gutter signs
 	-- https://github.com/airblade/vim-gitgutter
 	use("airblade/vim-gitgutter")
@@ -93,6 +100,7 @@ return packer.startup(function(use)
 	-- https://github.com/tpope/vim-rails
 	-- https://github.com/tpope/vim-rake
 	use({ "tpope/vim-rails" })
+	use({ "tpope/vim-bundler" })
 	use({
 		"tpope/vim-rake",
 		requires = "tpope/vim-projectionist",
@@ -112,14 +120,27 @@ return packer.startup(function(use)
 		requires = "nvim-lua/plenary.nvim",
 	})
 
+	-- Native sorter for better performance
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+
 	-- cmp completion plugins
 	-- https://github.com/hrsh7th/nvim-cmp
 	use("hrsh7th/nvim-cmp") -- The completion plugin
 	use("hrsh7th/cmp-buffer") -- buffer completions
 	use("hrsh7th/cmp-path") -- path completions
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
-	use("hrsh7th/vim-vsnip") -- snippets
-	use("hrsh7th/cmp-vsnip") -- snippet completion
+
+	-- Ultisnips
+	use("SirVer/ultisnips")
+	use("quangnguyen30192/cmp-nvim-ultisnips")
+	use("honza/vim-snippets")
+
+	-- vsnip
+	-- use("hrsh7th/vim-vsnip") -- snippets
+	-- use("hrsh7th/vim-vsnip-integ") -- snippets
+	-- use("rafamadriz/friendly-snippets")
+	-- use("hrsh7th/cmp-vsnip") -- snippet completion
+
 	use({
 		"petertriho/cmp-git",
 		requires = "nvim-lua/plenary.nvim",

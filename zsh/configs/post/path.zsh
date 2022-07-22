@@ -4,10 +4,11 @@ PATH="$HOME/.bin:/usr/local/sbin:$PATH"
 # Try loading ASDF from the regular home dir location
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
   . "$HOME/.asdf/asdf.sh"
-elif which brew >/dev/null &&
-  BREW_DIR="$(dirname `which brew`)/.." &&
-  [ -f "$BREW_DIR/opt/asdf/asdf.sh" ]; then
-  . "$BREW_DIR/opt/asdf/asdf.sh"
+# Othwerwise we might have it via brew
+elif type brew &>/dev/null &&
+  BREW_ASDF_DIR="$(brew --prefix asdf)" &&
+  [ -f "$BREW_ASDF_DIR/libexec/asdf.sh" ]; then
+  . "$BREW_ASDF_DIR/libexec/asdf.sh"
 fi
 
 # Add the global yarn bin to $PATH

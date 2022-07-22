@@ -4,14 +4,8 @@ vim.o.clipboard = "unnamedplus"
 
 vim.o.number = true
 
--- Make it obvious where 80 characters is
-vim.o.textwidth = 80
-vim.o.colorcolumn = "+1"
-vim.cmd([[
-  autocmd! Filetype qf set colorcolumn&
-]])
-
 vim.o.mouse = "a"
+vim.o.cursorline = true
 
 vim.o.splitbelow = true
 vim.o.splitright = true

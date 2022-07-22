@@ -14,6 +14,7 @@ local servers = {
 	"solargraph",
 	"tailwindcss",
 	"tsserver",
+	"sumneko_lua",
 }
 
 for _, name in pairs(servers) do
@@ -61,9 +62,8 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "gd", ":LspDefintion<cr>", opts)
 	buf_set_keymap("n", "gy", ":LspTypeDefinition<cr>", opts)
 
-	if client.resolved_capabilities.document_formatting then
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 2000)")
-	end
+	-- Format on <leader>f
+	buf_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.formatting()<cr>", opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -80,22 +80,46 @@ lsp_installer.on_server_ready(function(server)
 		capabilities = capabilities,
 	}
 
+	if server.name == "sumneko_lua" then
+		-- Use null_ls for formatting
+		opts.init_options = {
+			formatting = false,
+		}
+
+		opts.on_attach = function(client, bufnr)
+			client.resolved_capabilities.document_formatting = false
+			client.resolved_capabilities.document_range_formatting = false
+
+			on_attach(client, bufnr)
+		end
+	end
+
 	if server.name == "solargraph" then
+		opts.filetypes = {
+			"ruby",
+			"eruby",
+		}
 		opts.init_options = {
 			formatting = false,
 		}
 		opts.root_dir = nvim_lsp.util.root_pattern(".solargraph.yml")
+		opts.on_attach = function(client, bufnr)
+			client.resolved_capabilities.document_formatting = false
+			client.resolved_capabilities.document_range_formatting = false
+
+			on_attach(client, bufnr)
+		end
 	end
 
 	if server.name == "tsserver" then
 		-- Needed for inlayHints. Merge this table with your settings or copy
 		-- it from the source if you want to add your own init_options.
-		opts.init_options = require("nvim-lsp-ts-utils").init_options
+		local ts_utils = require("nvim-lsp-ts-utils")
+		opts.init_options = ts_utils.init_options
 		opts.on_attach = function(client, bufnr)
 			client.resolved_capabilities.document_formatting = false
 			client.resolved_capabilities.document_range_formatting = false
 
-			local ts_utils = require("nvim-lsp-ts-utils")
 			ts_utils.setup({})
 			-- required to fix code action ranges and filter diagnostics
 			ts_utils.setup_client(client)
@@ -119,9 +143,9 @@ if not status_ok then
 end
 
 local eslint_d_options = {
-	prefer_local = "node_modules/.bin",
 	condition = function(utils)
 		return utils.root_has_file({
+			".eslintrc",
 			".eslintrc.js",
 			".eslintrc.cjs",
 			".eslintrc.yaml",
@@ -146,7 +170,22 @@ local prettierd_opts = {
 			"prettier.config.cjs",
 		})
 	end,
-	prefer_local = "node_modules/.bin",
+}
+
+local standardrb_options = {
+	condition = function(utils)
+		return utils.root_has_file({
+			".standard.yml",
+		})
+	end,
+}
+
+local rubocop_options = {
+	condition = function(utils)
+		return utils.root_has_file({
+			".rubocop.yml",
+		})
+	end,
 }
 
 local code_actions = null_ls.builtins.code_actions
@@ -154,6 +193,7 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
+	debug = true,
 	on_attach = on_attach,
 	sources = {
 		code_actions.eslint_d.with(eslint_d_options),
@@ -167,7 +207,8 @@ null_ls.setup({
 		diagnostics.proselint.with({
 			extra_filetypes = { "gitcommit" },
 		}),
-		diagnostics.standardrb,
+		diagnostics.rubocop.with(rubocop_options),
+		diagnostics.standardrb.with(standardrb_options),
 		diagnostics.write_good.with({
 			extra_filetypes = { "gitcommit" },
 		}),
@@ -175,7 +216,8 @@ null_ls.setup({
 		diagnostics.zsh,
 		formatting.eslint_d.with(eslint_d_options),
 		formatting.prettierd.with(prettierd_opts),
-		formatting.standardrb,
+		formatting.rubocop.with(rubocop_options),
+		formatting.standardrb.with(standardrb_options),
 		formatting.stylua,
 	},
 })

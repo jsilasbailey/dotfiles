@@ -19,6 +19,13 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal --
+-- Save with leader
+keymap("n", "<leader>w", ":w<cr>", opts)
+-- Kill buffers with leader
+keymap("n", "<leader>q", ":bd<cr>", opts)
+-- Save and kill buffers with leader
+keymap("n", "<leader>wq", ":w<cr>:bd<cr>", opts)
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
