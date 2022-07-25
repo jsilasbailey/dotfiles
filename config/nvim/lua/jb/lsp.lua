@@ -1,4 +1,4 @@
-local lspconfig_status, nvim_lsp = pcall(require, "lspconfig")
+local lspconfig_status, lsp_config = pcall(require, "lspconfig")
 if not lspconfig_status then
 	return
 end
@@ -8,8 +8,10 @@ if not lsp_installer_status then
 	return
 end
 
+lsp_installer.setup({})
+
 -- Include the servers you want to have installed by default below
-local servers = {
+local default_servers = {
 	"html",
 	"solargraph",
 	"tailwindcss",
@@ -17,8 +19,9 @@ local servers = {
 	"sumneko_lua",
 }
 
-for _, name in pairs(servers) do
+for _, name in pairs(default_servers) do
 	local server_is_found, server = lsp_installer.get_server(name)
+
 	if server_is_found then
 		if not server:is_installed() then
 			print("Installing " .. name)
@@ -69,94 +72,74 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-	local opts = {
-		on_attach = on_attach,
-		flags = {
-			debounce_text_changes = 150,
-		},
-		capabilities = capabilities,
-	}
+lsp_config.sumneko_lua.setup({
+	on_attach = function(client, bufnr)
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
 
-	if server.name == "sumneko_lua" then
-		opts.settings = {
-			Lua = {
-				runtime = {
-					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-					version = "LuaJIT",
-				},
-				diagnostics = {
-					-- Get the language server to recognize the `vim` global
-					globals = { "vim" },
-				},
-				workspace = {
-					-- Make the server aware of Neovim runtime files
-					library = vim.api.nvim_get_runtime_file("", true),
-				},
-				-- Do not send telemetry data containing a randomized but unique identifier
-				telemetry = {
-					enable = false,
-				},
+		on_attach(client, bufnr)
+	end,
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
 			},
-		}
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { "vim" },
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+	init_options = {
+		formatting = false,
+	},
+})
 
-		-- Use null_ls for formatting
-		opts.init_options = {
-			formatting = false,
-		}
+lsp_config.solargraph.setup({
+	filetypes = {
+		"ruby",
+		"eruby",
+	},
+	capabilities = capabilities,
+	init_options = {
+		formatting = false,
+	},
+	on_attach = function(client, bufnr)
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
 
-		opts.on_attach = function(client, bufnr)
-			client.resolved_capabilities.document_formatting = false
-			client.resolved_capabilities.document_range_formatting = false
+		on_attach(client, bufnr)
+	end,
+})
 
-			on_attach(client, bufnr)
-		end
-	end
+local ts_utils = require("nvim-lsp-ts-utils")
+lsp_config.tsserver.setup({
+	init_options = ts_utils.init_options,
+	on_attach = function(client, bufnr)
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
 
-	if server.name == "solargraph" then
-		opts.filetypes = {
-			"ruby",
-			"eruby",
-		}
-		opts.init_options = {
-			formatting = false,
-		}
-		opts.root_dir = nvim_lsp.util.root_pattern(".solargraph.yml")
-		opts.on_attach = function(client, bufnr)
-			client.resolved_capabilities.document_formatting = false
-			client.resolved_capabilities.document_range_formatting = false
+		ts_utils.setup({})
+		-- required to fix code action ranges and filter diagnostics
+		ts_utils.setup_client(client)
 
-			on_attach(client, bufnr)
-		end
-	end
+		vim.cmd("command! LspTSOrganize TSLspOrganize")
+		vim.cmd("command! LspTSRenameFile TSLspRenameFile")
+		vim.cmd("command! LspTSImportAll TSLspImportAll")
 
-	if server.name == "tsserver" then
-		-- Needed for inlayHints. Merge this table with your settings or copy
-		-- it from the source if you want to add your own init_options.
-		local ts_utils = require("nvim-lsp-ts-utils")
-		opts.init_options = ts_utils.init_options
-		opts.on_attach = function(client, bufnr)
-			client.resolved_capabilities.document_formatting = false
-			client.resolved_capabilities.document_range_formatting = false
-
-			ts_utils.setup({})
-			-- required to fix code action ranges and filter diagnostics
-			ts_utils.setup_client(client)
-
-			vim.cmd("command! LspTSOrganize TSLspOrganize")
-			vim.cmd("command! LspTSRenameFile TSLspRenameFile")
-			vim.cmd("command! LspTSImportAll TSLspImportAll")
-
-			on_attach(client, bufnr)
-		end
-	end
-
-	-- This setup() function is exactly the same as lspconfig's setup function.
-	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	server:setup(opts)
-end)
+		on_attach(client, bufnr)
+	end,
+})
 
 local status_ok, null_ls = pcall(require, "null-ls")
 if not status_ok then
