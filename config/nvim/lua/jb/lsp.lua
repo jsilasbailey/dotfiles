@@ -141,7 +141,8 @@ if not status_ok then
 	return
 end
 
-local eslint_d_options = {
+local eslint_options = {
+	prefer_local = "node_modules/.bin",
 	condition = function(utils)
 		return utils.root_has_file({
 			".eslintrc",
@@ -195,12 +196,12 @@ null_ls.setup({
 	debug = true,
 	on_attach = on_attach,
 	sources = {
-		code_actions.eslint_d.with(eslint_d_options),
+		code_actions.eslint.with(eslint_options),
 		code_actions.proselint.with({
 			extra_filetypes = { "gitcommit" },
 		}),
 		code_actions.shellcheck,
-		diagnostics.eslint_d.with(eslint_d_options),
+		diagnostics.eslint.with(eslint_options),
 		diagnostics.gitlint,
 		diagnostics.shellcheck,
 		diagnostics.proselint.with({
@@ -213,7 +214,7 @@ null_ls.setup({
 		}),
 		diagnostics.shellcheck,
 		diagnostics.zsh,
-		formatting.eslint_d.with(eslint_d_options),
+		formatting.eslint.with(eslint_options),
 		formatting.prettierd.with(prettierd_opts),
 		formatting.rubocop.with(rubocop_options),
 		formatting.standardrb.with(standardrb_options),
