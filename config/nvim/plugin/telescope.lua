@@ -17,10 +17,10 @@ telescope.setup({
 	},
 	pickers = {
 		-- Default configuration for builtin pickers goes here:
-		-- picker_name = {
-		--   picker_config_key = value,
-		--   ...
-		-- }
+		find_files = {
+			theme = "ivy",
+			hidden = true,
+		},
 		-- Now the picker_config_key will be applied every time you call this
 		-- builtin picker
 	},
@@ -35,7 +35,7 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 
-vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope git_files<cr>", {
+vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files<cr>", {
 	noremap = true,
 	silent = true,
 })
