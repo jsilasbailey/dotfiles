@@ -3,32 +3,19 @@ if not lspconfig_status then
 	return
 end
 
-local lsp_installer_status, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not lsp_installer_status then
+local mason_status, mason = pcall(require, "mason")
+if not mason_status then
+	return
+end
+local mason_lspconfig_status, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not mason_lspconfig_status then
 	return
 end
 
-lsp_installer.setup({})
-
--- Include the servers you want to have installed by default below
-local default_servers = {
-	"html",
-	"solargraph",
-	"tailwindcss",
-	"tsserver",
-	"sumneko_lua",
-}
-
-for _, name in pairs(default_servers) do
-	local server_is_found, server = lsp_installer.get_server(name)
-
-	if server_is_found then
-		if not server:is_installed() then
-			print("Installing " .. name)
-			server:install()
-		end
-	end
-end
+mason.setup({})
+mason_lspconfig.setup({
+	ensure_installed = { "sumneko_lua", "solargraph", "typescript-language-server" },
+})
 
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
@@ -113,6 +100,14 @@ lsp_config.solargraph.setup({
 	capabilities = capabilities,
 	init_options = {
 		formatting = false,
+	},
+	settings = {
+		solargraph = {
+			useBundler = true,
+		},
+	},
+	solargraph = {
+		useBundler = true,
 	},
 	on_attach = function(client, bufnr)
 		client.resolved_capabilities.document_formatting = false

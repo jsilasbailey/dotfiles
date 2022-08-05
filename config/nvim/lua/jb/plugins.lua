@@ -149,9 +149,9 @@ return packer.startup(function(use)
 
 	-- LSP plugins
 	-- https://github.com/neovim/nvim-lspconfig
-	-- https://github.com/williamboman/nvim-lsp-installer
 	use("neovim/nvim-lspconfig") -- enable LSP
-	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+	use({ "williamboman/mason.nvim" })
+	use({ "williamboman/mason-lspconfig.nvim" })
 	use("jose-elias-alvarez/nvim-lsp-ts-utils")
 
 	-- Null.ls
