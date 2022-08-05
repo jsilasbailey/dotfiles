@@ -14,7 +14,12 @@ end
 
 mason.setup({})
 mason_lspconfig.setup({
-	ensure_installed = { "sumneko_lua", "solargraph", "typescript-language-server" },
+	ensure_installed = {
+		"sumneko_lua",
+		"solargraph",
+		"typescript-language-server",
+		"tailwindcss-language-server",
+	},
 })
 
 local on_attach = function(client, bufnr)
@@ -88,6 +93,10 @@ lsp_config.tsserver.setup({
 
 		on_attach(client, bufnr)
 	end,
+})
+
+lsp_config.tailwindcss.setup({
+	on_attach = on_attach
 })
 
 local status_ok, null_ls = pcall(require, "null-ls")
