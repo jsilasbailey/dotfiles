@@ -68,6 +68,7 @@ lsp_config.solargraph.setup({
 	init_options = {
 		formatting = false,
 	},
+	root_dir = lsp_config.util.root_pattern(".solargraph.yml"),
 })
 
 local ts_utils = require("nvim-lsp-ts-utils")
