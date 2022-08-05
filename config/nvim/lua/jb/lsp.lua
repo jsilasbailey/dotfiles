@@ -93,28 +93,11 @@ lsp_config.sumneko_lua.setup({
 })
 
 lsp_config.solargraph.setup({
-	filetypes = {
-		"ruby",
-		"eruby",
-	},
 	capabilities = capabilities,
+	on_attach = on_attach,
 	init_options = {
 		formatting = false,
 	},
-	settings = {
-		solargraph = {
-			useBundler = true,
-		},
-	},
-	solargraph = {
-		useBundler = true,
-	},
-	on_attach = function(client, bufnr)
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
-
-		on_attach(client, bufnr)
-	end,
 })
 
 local ts_utils = require("nvim-lsp-ts-utils")
