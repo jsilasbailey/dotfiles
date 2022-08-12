@@ -138,7 +138,7 @@ endif
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-colorscheme one
+colorscheme catppuccin_mocha
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
