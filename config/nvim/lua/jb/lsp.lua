@@ -15,6 +15,7 @@ end
 mason.setup({})
 mason_lspconfig.setup({
 	ensure_installed = {
+		"rust-analyzer",
 		"sumneko_lua",
 		"solargraph",
 		"typescript-language-server",
@@ -96,6 +97,10 @@ lsp_config.tsserver.setup({
 })
 
 lsp_config.tailwindcss.setup({
+	on_attach = on_attach
+})
+
+lsp_config.rust_analyzer.setup({
 	on_attach = on_attach
 })
 
