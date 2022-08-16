@@ -15,6 +15,7 @@ brew "jq"
 brew "neovim"
 brew "redis", restart_service: true
 brew "ripgrep"
+brew "spotify-tui"
 brew "starship"
 brew "thoughtbot/formulae/rcm"
 brew "tmux"
