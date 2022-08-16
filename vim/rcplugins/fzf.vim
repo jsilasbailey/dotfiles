@@ -4,15 +4,18 @@ if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 endif
 
+" FZF
 " If fzf has already been installed via Homebrew, use the existing fzf
 " Otherwise, install fzf. The `--all` flag makes fzf accessible outside of vim
-if isdirectory("/opt/homebrew/opt/fzf")
+if isdirectory('/usr/local/opt/fzf')
+  Plug '/usr/local/opt/fzf'
+elseif isdirectory('/opt/homebrew/opt/fzf')
   Plug '/opt/homebrew/opt/fzf'
 else
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 endif
 
-" FZF
+" FZF.vim
 Plug 'junegunn/fzf.vim'
 
 " Empty value to disable preview window altogether
