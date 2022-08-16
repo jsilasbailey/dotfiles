@@ -10,16 +10,14 @@ let g:coc_global_extensions = [
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
+
+  " Coc Prettier
+  command! -nargs=0 Prettier :CocCommand prettier.formatFile
 endif
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
-
-" Coc Settings
-
-" Coc Prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
