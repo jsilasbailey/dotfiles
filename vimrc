@@ -49,6 +49,7 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
   autocmd BufRead,BufNewFile */zsh/configs/* set filetype=sh
+  autocmd BufRead,BufNewFile Dockerfile* set syntax=dockerfile
 augroup END
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
@@ -175,8 +176,6 @@ set smartcase
 
 " Netrw settings
 let g:netrw_banner = 0
-
-autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
 
 " WP for word processor
 " Sets up an ideal word processing env in vim
