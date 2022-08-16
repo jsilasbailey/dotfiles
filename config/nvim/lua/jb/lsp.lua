@@ -20,6 +20,10 @@ mason_lspconfig.setup({
 		"solargraph",
 		"typescript-language-server",
 		"tailwindcss-language-server",
+		"proselint",
+		"shellcheck",
+		"write-good",
+		"gitlint",
 	},
 })
 
