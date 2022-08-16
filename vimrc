@@ -144,7 +144,6 @@ set synmaxcol=1200
 
 set cursorline
 set colorcolumn=80
-
 " Disable colorcolumn in qickfix windows
 autocmd Filetype qf set colorcolumn&
 
@@ -153,11 +152,9 @@ set mouse=a
 set scrolloff=4
 
 " Improve scroll speed
-if !has('nvim')
-  set ttyfast
-  set ttyscroll=3
-  set lazyredraw
-endif
+set ttyfast
+set ttyscroll=3
+set lazyredraw
 
 " META j/k moves lines up or down
 nnoremap <M-j> :m .+1<CR>==
