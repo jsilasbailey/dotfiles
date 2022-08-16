@@ -121,11 +121,12 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+setlocal spell spelllang=en_us
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 
-" Autocomplete with dictionary words when spell check is on
+" Auto complete with dictionary words when spell check is on
 set complete+=kspell
 
 " Always use vertical diffs
@@ -166,9 +167,9 @@ inoremap <M-k> <Esc>:m .-2<CR>==gi
 vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '<-2<CR>gv=gv
 
-" Searches are case insentisive...
+" Searches are case insensitive...
 set ignorecase
-" ... unless they contain at least one capital letter
+" ...unless they contain at least one capital letter
 set smartcase
 
 " Netrw settings
@@ -188,12 +189,10 @@ func! WordProcessor()
   setlocal linebreak
 
   " spelling and thesaurus
-  setlocal spell spelllang=en_us
   set thesaurus+=/Users/jbailey/.vim/thesaurus/mthesaur.txt
 
   " complete+=s makes autocompletion search the thesaurus
-  " set complete+=s
-  set complete+=kspell
+  set complete+=s
 endfu
 
 com! WP call WordProcessor()
