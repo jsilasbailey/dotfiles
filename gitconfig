@@ -24,12 +24,10 @@
 [commit]
   gpgsign = true
   template = ~/.gitmessage
-[gpg]
-  program = /usr/local/MacGPG2/bin/gpg2
 [user]
-	name = Jesse Bailey
-	email = jsilasbailey@thoughtbot.com
-	signingkey = B10719923C734A6E39B7E7F2F6437CEADF88097F
+  name = Jesse Bailey
+  email = jesse@jsilasbailey.com
+  signingkey = FD8F583FD8970F92
 [fetch]
   prune = true
 [rebase]
