@@ -12,8 +12,10 @@ elif type brew &>/dev/null &&
 fi
 
 # Add the global yarn bin to $PATH
-YARN_GLOBAL_BIN=$(yarn global bin)
-export PATH="$YARN_GLOBAL_BIN:$PATH"
+if command -v yarn &> /dev/null
+then
+  export PATH="$(yarn global bin):$PATH"
+fi
 
 # mkdir .git/safe in the root of repositories you trust
 PATH=".git/safe/../../bin:$PATH"
