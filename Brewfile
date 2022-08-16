@@ -1,8 +1,9 @@
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "thoughtbot/formulae"
 tap "universal-ctags/universal-ctags"
+
 brew "asdf"
-brew "difftastic"
 brew "exa"
 brew "fzf"
 brew "gh"
