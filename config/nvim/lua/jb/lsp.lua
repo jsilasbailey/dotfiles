@@ -83,25 +83,18 @@ lsp_config.solargraph.setup({
 	root_dir = lsp_config.util.root_pattern(".solargraph.yml"),
 })
 
-local ts_utils = require("nvim-lsp-ts-utils")
-local ts_utils_init_options = ts_utils.init_options
-ts_utils_init_options.formatting = false
-lsp_config.tsserver.setup({
-	init_options = ts_utils_init_options,
-	on_attach = function(client, bufnr)
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+require("typescript").setup({
+	server = {
+		on_attach = function(client, bufnr)
+			vim.api.nvim_buf_create_user_command(bufnr, "LspOrganizeImports", "TypescriptOrganizeImports", {})
+			vim.api.nvim_buf_create_user_command(bufnr, "LspAddMissingImports", "TypescriptAddMissingImports", {})
+			vim.api.nvim_buf_create_user_command(bufnr, "LspFixAll", "TypescriptFixAll", {})
+			vim.api.nvim_buf_create_user_command(bufnr, "LspRemoveUnused", "TypescriptRemoveUnused", {})
+			vim.api.nvim_buf_create_user_command(bufnr, "LspRenameFile", "TypescriptRenameFile", {})
 
-		ts_utils.setup({})
-		-- required to fix code action ranges and filter diagnostics
-		ts_utils.setup_client(client)
-
-		vim.cmd("command! LspTSOrganize TSLspOrganize")
-		vim.cmd("command! LspTSRenameFile TSLspRenameFile")
-		vim.cmd("command! LspTSImportAll TSLspImportAll")
-
-		on_attach(client, bufnr)
-	end,
+			on_attach(client, bufnr)
+		end,
+	},
 })
 
 lsp_config.tailwindcss.setup({
