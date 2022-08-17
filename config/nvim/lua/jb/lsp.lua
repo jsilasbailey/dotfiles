@@ -22,6 +22,7 @@ mason_lspconfig.setup({
 		"tailwindcss-language-server",
 		"proselint",
 		"shellcheck",
+		"stylua",
 		"write-good",
 		"gitlint",
 	},
@@ -68,9 +69,15 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local luadev = require("lua-dev").setup({
 	lspconfig = {
-		on_attach = on_attach,
-		capabilities = capabilities
-	}
+		on_attach = function(client, bufnr)
+			-- Let stylua format
+			client.resolved_capabilities.document_formatting = false
+			client.resolved_capabilities.document_range_formatting = false
+
+			on_attach(client, bufnr)
+		end,
+		capabilities = capabilities,
+	},
 })
 lsp_config.sumneko_lua.setup(luadev)
 
@@ -98,11 +105,11 @@ require("typescript").setup({
 })
 
 lsp_config.tailwindcss.setup({
-	on_attach = on_attach
+	on_attach = on_attach,
 })
 
 lsp_config.rust_analyzer.setup({
-	on_attach = on_attach
+	on_attach = on_attach,
 })
 
 local status_ok, null_ls = pcall(require, "null-ls")
@@ -162,7 +169,7 @@ local erb_lint_options = {
 		return utils.root_has_file({
 			".erb-lint.yml",
 		})
-	end
+	end,
 }
 
 local code_actions = null_ls.builtins.code_actions
@@ -197,5 +204,6 @@ null_ls.setup({
 		formatting.prettierd.with(prettierd_opts),
 		formatting.rubocop.with(rubocop_options),
 		formatting.standardrb.with(standardrb_options),
+		formatting.stylua,
 	},
 })
