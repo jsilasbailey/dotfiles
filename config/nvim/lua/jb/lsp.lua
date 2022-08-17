@@ -28,48 +28,50 @@ mason_lspconfig.setup({
 })
 
 local on_attach = function(client, bufnr)
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
+	vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticLine", vim.diagnostic.open_float, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticNext", vim.diagnostic.goto_next, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticPrev", vim.diagnostic.goto_prev, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticSetLoclist", vim.diagnostic.setloclist, {})
 
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
+	vim.api.nvim_buf_create_user_command(bufnr, "LspDefintion", vim.lsp.buf.definition, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspCodeAction", vim.lsp.buf.code_action, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspFormat", vim.lsp.buf.formatting, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspHover", vim.lsp.buf.hover, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspImplementation", vim.lsp.buf.implementation, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspReferences", vim.lsp.buf.references, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspRename", vim.lsp.buf.rename, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspSignatureHelp", vim.lsp.buf.signature_help, {})
+	vim.api.nvim_buf_create_user_command(bufnr, "LspTypeDefinition", vim.lsp.buf.type_definition, {})
 
-	vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
-	vim.cmd("command! LspDefintion lua vim.lsp.buf.definition()")
-	vim.cmd("command! LspDiagnosticLine lua vim.diagnostic.open_float({float = { border = 'rounded' }})")
-	vim.cmd("command! LspDiagnosticNext lua vim.diagnostic.goto_next({float = { border = 'rounded' }})")
-	vim.cmd("command! LspDiagnosticPrev lua vim.diagnostic.goto_prev({float = { border = 'rounded' }})")
-	vim.cmd(
-		"command! LspDiagnosticCurrent lua vim.diagnostic.open_float({scope = 'cursor', float = { border = 'rounded' }})"
-	)
-	vim.cmd("command! LspDiagnosticSetLoclist lua vim.diagnostic.set_loclist()")
-	vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
-	vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
-	vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
-	vim.cmd("command! LspReferences lua vim.lsp.buf.references()")
-	vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
-	vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
-	vim.cmd("command! LspTypeDefinition lua vim.lsp.buf.type_definition()")
+	local opts = {
+		buffer = bufnr,
+		noremap = true,
+		silent = true,
+	}
 
-	local opts = { noremap = true, silent = true }
-	buf_set_keymap("n", "K", ":LspHover<cr>", opts)
-	buf_set_keymap("n", "[d", ":LspDiagnosticPrev<cr>", opts)
-	buf_set_keymap("n", "]d", ":LspDiagnosticNext<cr>", opts)
-	buf_set_keymap("n", "<leader>d", ":LspDiagnosticCurrent<cr>", opts)
-	buf_set_keymap("n", "<leader>a", ":LspCodeAction<cr>", opts)
-	buf_set_keymap("n", "gd", ":LspDefintion<cr>", opts)
-	buf_set_keymap("n", "gy", ":LspTypeDefinition<cr>", opts)
+	vim.keymap.set("n", "K", ":LspHover<cr>", opts)
 
-	-- Format on <leader>f
-	buf_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.formatting()<cr>", opts)
+	vim.keymap.set("n", "<leader>d", ":LspDiagnosticLine<cr>", opts)
+	vim.keymap.set("n", "[d", ":LspDiagnosticPrev<cr>", opts)
+	vim.keymap.set("n", "]d", ":LspDiagnosticNext<cr>", opts)
+
+	vim.keymap.set("n", "<leader>a", ":LspCodeAction<cr>", opts)
+
+	vim.keymap.set("n", "gd", ":LspDefintion<cr>", opts)
+	vim.keymap.set("n", "gy", ":LspTypeDefinition<cr>", opts)
+
+	vim.keymap.set("n", "<leader>f", ":LspFormat<cr>", opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local luadev = require("lua-dev").setup({})
+local luadev = require("lua-dev").setup({
+	lspconfig = {
+		on_attach = on_attach,
+		capabilities = capabilities
+	}
+})
 lsp_config.sumneko_lua.setup(luadev)
 
 lsp_config.solargraph.setup({
