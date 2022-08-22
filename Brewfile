@@ -22,5 +22,6 @@ brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "wget"
 brew "zsh-completions"
 
+cask "font-fira-code"
 cask "gpg-suite-no-mail"
 cask "iterm2"
