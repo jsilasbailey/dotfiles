@@ -15,16 +15,17 @@ end
 mason.setup({})
 mason_lspconfig.setup({
 	ensure_installed = {
-		"rust-analyzer",
-		"sumneko_lua",
-		"solargraph",
-		"typescript-language-server",
-		"tailwindcss-language-server",
-		"proselint",
-		"shellcheck",
-		"stylua",
-		"write-good",
+		"emmet-ls",
 		"gitlint",
+		"proselint",
+		"rust-analyzer",
+		"shellcheck",
+		"solargraph",
+		"stylua",
+		"sumneko_lua",
+		"tailwindcss-language-server",
+		"typescript-language-server",
+		"write-good",
 	},
 })
 
@@ -110,6 +111,23 @@ lsp_config.tailwindcss.setup({
 
 lsp_config.rust_analyzer.setup({
 	on_attach = on_attach,
+})
+
+lsp_config.emmet_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = {
+		"erb",
+		"eruby",
+		"html",
+		"javascript",
+		"javascriptreact",
+		"javascript.jsx",
+		"typescript",
+		"typescriptreact",
+		"typescript.tsx",
+		"vue",
+	},
 })
 
 local status_ok, null_ls = pcall(require, "null-ls")
