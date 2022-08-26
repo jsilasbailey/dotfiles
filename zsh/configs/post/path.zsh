@@ -5,7 +5,7 @@ PATH="$HOME/.bin:/usr/local/sbin:$PATH"
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
   . "$HOME/.asdf/asdf.sh"
 # Othwerwise we might have it via brew
-elif type brew &>/dev/null &&
+elif command -v brew &> /dev/null &&
   BREW_ASDF_DIR="$(brew --prefix asdf)" &&
   [ -f "$BREW_ASDF_DIR/libexec/asdf.sh" ]; then
   . "$BREW_ASDF_DIR/libexec/asdf.sh"
