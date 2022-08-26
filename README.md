@@ -8,16 +8,26 @@ Initial configuration based on [thoughtbot/dotfiles].
 
 ## Installation
 
-1. Clone the repository into `.dotfiles`
 1. [Install homebrew]
-1. `brew install rcm`
-1. `rcup rcrc Brewfile`
-1. `brew bundle`
 1. [Install Rust]
+1. Install [rcm]
+    - `brew install rcm`
+1. Clone the repository into `.dotfiles`
+1. `rcup rcrc`
 1. Install latest `python3` and `nodejs` LTS using asdf
-1. Install `neovim` module in python3 and nodejs
-  - See `:checkhealth` in `neovim`
-1. `rcup -v`
+    - `asdf plugin add python`
+    - `asdf plugin add nodejs`
+    - `rcup tool-versions`
+    - `asdf install`
+1. Install python3 and nodejs providers for neovim
+    - See `:checkhealth provider` in `neovim`
+    - `pip3 install --user --upgrade pynvim`
+    - `npm install -g neovim`
+1. Install brew bundle
+    - `rcup Brewfile`
+    - `brew bundle`
+1. Symlink the rest of the dotfiles
+    - `rcup -v`
 
 [rcm]: https://github.com/thoughtbot/rcm
 [Install Rust]: https://www.rust-lang.org/tools/install
