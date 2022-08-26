@@ -15,17 +15,11 @@ end
 mason.setup({})
 mason_lspconfig.setup({
 	ensure_installed = {
-		"emmet-ls",
-		"gitlint",
-		"proselint",
-		"rust-analyzer",
-		"shellcheck",
-		"solargraph",
-		"stylua",
+		"emmet_ls",
+		"rust_analyzer",
 		"sumneko_lua",
-		"tailwindcss-language-server",
-		"typescript-language-server",
-		"write-good",
+		"tailwindcss",
+		"tsserver",
 	},
 })
 
@@ -88,7 +82,6 @@ lsp_config.solargraph.setup({
 	init_options = {
 		formatting = false,
 	},
-	root_dir = lsp_config.util.root_pattern(".solargraph.yml"),
 })
 
 require("typescript").setup({
