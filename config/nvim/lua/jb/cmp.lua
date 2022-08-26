@@ -4,13 +4,20 @@ if not cmp_status_ok then
 	return
 end
 
+		-- Provide text completion from all open buffers
+local all_open_buffers_source = {
+	name = "buffer",
+	option = {
+		get_bufnrs = function()
+			return vim.api.nvim_list_bufs()
+		end,
+	},
+}
+
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-			-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
 			vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 		end,
 	},
@@ -28,15 +35,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" }, -- LSP completion.
 		{ name = "ultisnips" }, -- Ultisnip completion.
-		{
-			name = "buffer",
-			option = {
-				-- Provide text completion from all open buffers
-				get_bufnrs = function()
-					return vim.api.nvim_list_bufs()
-				end,
-			},
-		},
+		all_open_buffers_source,
 	}),
 })
 
@@ -49,7 +48,7 @@ cmp.setup.filetype("gitcommit", {
 	}),
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+-- Use current buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline("/", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
