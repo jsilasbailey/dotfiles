@@ -26,11 +26,17 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 	}),
 	sources = cmp.config.sources({
-		-- { name = "vsnip" }, -- For vsnip users.
 		{ name = "nvim_lsp" }, -- LSP completion.
-		{ name = "ultisnips" }, -- For vsnip users.
-	}, {
-		{ name = "buffer" },
+		{ name = "ultisnips" }, -- Ultisnip completion.
+		{
+			name = "buffer",
+			option = {
+				-- Provide text completion from all open buffers
+				get_bufnrs = function()
+					return vim.api.nvim_list_bufs()
+				end,
+			},
+		},
 	}),
 })
 
