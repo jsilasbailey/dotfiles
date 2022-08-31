@@ -98,9 +98,10 @@ return packer.startup(function(use)
 
 	-- Rake/Rails navigation and help
 	-- https://github.com/tpope/vim-rails
-	-- https://github.com/tpope/vim-rake
 	use({ "tpope/vim-rails" })
 	use({ "tpope/vim-bundler" })
+	-- Generate ctags for bundled gems
+	use({ "tpope/gem-ctags" })
 	use({
 		"tpope/vim-rake",
 		requires = "tpope/vim-projectionist",
