@@ -46,7 +46,7 @@ vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files<cr>", {
 	silent = true,
 })
 
-vim.api.nvim_set_keymap("n", "<leader>fg", ":Telescope live_grep<cr>", {
+vim.api.nvim_set_keymap("n", "<leader>rg", ":Telescope live_grep<cr>", {
 	noremap = true,
 	silent = true,
 })
