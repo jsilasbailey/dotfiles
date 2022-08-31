@@ -50,3 +50,8 @@ vim.api.nvim_set_keymap("n", "<leader>rg", ":Telescope live_grep<cr>", {
 	noremap = true,
 	silent = true,
 })
+
+vim.api.nvim_set_keymap("n", "<leader>k", ":Telescope grep_string<cr>", {
+	noremap = true,
+	silent = true,
+})
