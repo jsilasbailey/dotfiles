@@ -52,10 +52,6 @@ return packer.startup(function(use)
 	-- https://github.com/tpope/vim-commentary
 	use("tpope/vim-commentary")
 
-	-- Add "end" when needed
-	-- https://github.com/tpope/endwise
-	use("tpope/vim-endwise")
-
 	-- Dispatch testing from vim
 	-- https://github.com/vim-test/vim-test
 	use({ "vim-test/vim-test", requires = "tpope/vim-dispatch" })
@@ -109,10 +105,8 @@ return packer.startup(function(use)
 
 	-- Treesitter, for syntax
 	-- https://github.com/nvim-treesitter/nvim-treesitter#quickstart
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	})
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use({ "RRethy/nvim-treesitter-endwise", requires = "nvim-treesitter/nvim-treesitter" })
 
 	-- File finder
 	-- https://github.com/nvim-telescope/telescope.nvim
