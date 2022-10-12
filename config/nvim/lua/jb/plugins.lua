@@ -117,7 +117,7 @@ return packer.startup(function(use)
 
 	-- Native sorter for better performance
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-
+	use({ "mrjones2014/dash.nvim", run = "make install" })
 	-- cmp completion plugins
 	-- https://github.com/hrsh7th/nvim-cmp
 	use("hrsh7th/nvim-cmp") -- The completion plugin

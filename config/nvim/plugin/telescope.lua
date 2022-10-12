@@ -33,8 +33,14 @@ telescope.setup({
 			fuzzy = true,
 			override_generic_sorter = true,
 			override_file_sorter = true,
-			case_mode = "smart_case"
-		}
+			case_mode = "smart_case",
+		},
+		dash = {
+			debounce = 100,
+			file_type_keywords = {
+				ruby = { "ruby", "rails", "rubygems" },
+			},
+		},
 	},
 })
 
