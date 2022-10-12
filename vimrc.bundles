@@ -21,6 +21,7 @@ Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
+Plug 'https://github.com/tpope/vim-dispatch'
 
 Plug 'tpope/vim-fugitive'
 
