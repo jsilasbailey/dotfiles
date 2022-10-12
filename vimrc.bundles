@@ -51,17 +51,6 @@ let g:rustfmt_autosave = 1
 Plug 'justinmk/vim-sneak'
 
 " Themes
-Plug 'rakr/vim-one'
-Plug 'rakr/vim-two-firewatch'
-Plug 'ayu-theme/ayu-vim'
-Plug 'axvr/photon.vim'
-Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
-Plug 'mhartington/oceanic-next'
-Plug 'kyoz/purify', { 'rtp': 'vim' }
-Plug 'jacoborus/tender.vim'
-Plug 'jaredgorski/spacecamp'
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
 Plug 'catppuccin/vim', { 'as': 'catppuccin', 'branch': 'main' }
 
 " Use the golden ratio for auto sizing windows when jumping between them
