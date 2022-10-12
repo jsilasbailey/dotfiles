@@ -1,4 +1,3 @@
-" Use ripgrep
 if executable('rg')
   " Use Rg in fzf for listing files. Lightning fast and respects .gitignore
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
@@ -19,13 +18,16 @@ endif
 Plug 'junegunn/fzf.vim'
 
 " Empty value to disable preview window altogether
-let g:fzf_preview_window = []
+let g:fzf_preview_window = ['right,35%', 'ctrl-/']
 
+" Map Leader ff to open fuzzy find (FZF)
+nnoremap <Leader>ff :Files<cr>
 " Fzf hotkeys
 nnoremap <Leader>w :Windows<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>c :BCommits<CR>
 nnoremap <Leader>gl :Commits<CR>
-
-" Map Ctrl + p to open fuzzy find (FZF)
-nnoremap <c-p> :Files<cr>
+if executable('rg')
+  nnoremap \ :Rg<SPACE>
+  nnoremap <Leader>rg :Rg <C-r><C-w><cr>
+endif

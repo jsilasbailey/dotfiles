@@ -68,14 +68,6 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
-" Use ripgrep
-if executable('rg')
-  " Use Rg over Grep
-  set grepprg=rg
-  nnoremap \ :Rg<SPACE>
-  nnoremap K :Rg <C-r><C-w><cr>
-endif
-
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+1
