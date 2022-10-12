@@ -156,6 +156,13 @@ return packer.startup(function(use)
 		requires = "nvim-lua/plenary.nvim",
 	})
 
+	-- Diagnostics reporting
+	-- Lua
+	use({
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+	})
+
 	-- Sync packer
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()

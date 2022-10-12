@@ -55,6 +55,7 @@ local on_attach = function(client, bufnr)
 
 	vim.keymap.set("n", "gd", ":LspDefintion<cr>", opts)
 	vim.keymap.set("n", "gy", ":LspTypeDefinition<cr>", opts)
+	vim.keymap.set("n", "gR", ":TroubleToggle lsp_references<cr>", opts)
 
 	vim.keymap.set("n", "<leader>f", ":LspFormat<cr>", opts)
 end
