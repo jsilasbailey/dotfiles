@@ -4,7 +4,7 @@ if not cmp_status_ok then
 	return
 end
 
-		-- Provide text completion from all open buffers
+-- Provide text completion from all open buffers
 local all_open_buffers_source = {
 	name = "buffer",
 	option = {
