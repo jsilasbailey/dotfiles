@@ -148,7 +148,7 @@ return packer.startup(function(use)
 	use({ "williamboman/mason.nvim" })
 	use({ "williamboman/mason-lspconfig.nvim" })
 	use({ "jose-elias-alvarez/typescript.nvim" })
-	use({ "folke/lua-dev.nvim" })
+	use({ "folke/neodev.nvim" })
 
 	-- Null.ls
 	use({
