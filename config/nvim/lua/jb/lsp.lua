@@ -215,7 +215,6 @@ null_ls.setup({
 		diagnostics.proselint.with({ extra_filetypes = { "gitcommit" } }),
 		diagnostics.rubocop.with(rubocop_options),
 		diagnostics.shellcheck,
-		diagnostics.shellcheck,
 		diagnostics.standardrb.with(standardrb_options),
 		diagnostics.write_good.with({ extra_filetypes = { "gitcommit" } }),
 		diagnostics.zsh,
