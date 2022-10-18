@@ -96,6 +96,10 @@ inoremap <S-Tab> <C-n>
 " Switch between the last two files
 nnoremap <Leader><Leader> <C-^>
 
+" Leader based file saving/quitting
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+
 " Get off my lawn
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
