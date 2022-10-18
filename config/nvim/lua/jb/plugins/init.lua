@@ -1,170 +1,194 @@
-local fn = vim.fn
+local utils = require("jb.utils")
 
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-	print("Installing packer close and reopen Neovim...")
-	vim.cmd([[packadd packer.nvim]])
-end
+return require("packer").startup({
+	function(use)
+		-- Required
+		use("https://github.com/wbthomason/packer.nvim")
+		use("https://github.com/nvim-lua/popup.nvim")
+		use("https://github.com/nvim-lua/plenary.nvim")
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+		-- Split and join lines more intelligently
+		use({
+			"https://github.com/AndrewRadev/splitjoin.vim",
+			config = utils.config("splitjoin"),
+			keys = { "gS", "gJ" },
+		})
 
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-	return
-end
+		-- Easy commenting of lines
+		use({
+			"https://github.com/tpope/vim-commentary",
+		})
 
--- Have packer use a popup window
-packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
+		-- Dispatch testing from vim
+		use({
+			"https://github.com/vim-test/vim-test",
+			requires = "https://github.com/tpope/vim-dispatch",
+			config = utils.config("vim-test"),
+		})
+
+		-- Simply designed fast navigation
+		use({
+			"https://github.com/ggandor/lightspeed.nvim",
+		})
+
+		-- Catppuccin colorschemes
+		use({
+			"https://github.com/catppuccin/nvim",
+			as = "catppuccin",
+		})
+
+		-- Distraction free editing
+		use({
+			"https://github.com/junegunn/goyo.vim",
+		})
+
+		-- Auto instert bracket pairs
+		use({
+			"https://github.com/jiangmiao/auto-pairs",
+		})
+
+		-- Work with surrounding brackets/characters
+		use({
+			"https://github.com/tpope/vim-surround",
+		})
+
+		-- Repeat plugin commands with `.`
+		use({
+			"https://github.com/tpope/vim-repeat",
+		})
+
+		-- Doing the git
+		use({
+			"https://github.com/tpope/vim-fugitive",
+		})
+
+		-- Unix helpers
+		use({
+			"https://github.com/tpope/vim-eunuch",
+		})
+
+		-- Navigate tmux panes like vim
+		use({
+			"https://github.com/christoomey/vim-tmux-navigator",
+		})
+
+		-- Git gutter signs
+		use({
+			"https://github.com/airblade/vim-gitgutter",
+		})
+
+		-- Rake/Rails navigation and help
+		use({
+			"https://github.com/tpope/vim-rails",
+		})
+		use({
+			"https://github.com/tpope/vim-bundler",
+		})
+		-- Generate ctags for bundled gems
+		use({
+			"https://github.com/tpope/gem-ctags",
+		})
+		use({
+			"https://github.com/tpope/vim-rake",
+			requires = "https://github.com/tpope/vim-projectionist",
+		})
+
+		-- Treesitter, for syntax
+		use({
+			"https://github.com/nvim-treesitter/nvim-treesitter",
+			run = ":TSUpdate",
+		})
+		use({
+			"https://github.com/RRethy/nvim-treesitter-endwise",
+			requires = "https://github.com/nvim-treesitter/nvim-treesitter",
+		})
+
+		-- Diagnostics reporting
+		use({
+			"https://github.com/folke/trouble.nvim",
+			requires = "https://github.com/kyazdani42/nvim-web-devicons",
+		})
+
+		-- File finder
+		use({
+			"https://github.com/nvim-telescope/telescope.nvim",
+			tag = "0.1.0",
+			config = utils.config("telescope"),
+			requires = {
+				{ "https://github.com/nvim-lua/plenary.nvim" },
+				{
+					"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
+					run = "make",
+				},
+			},
+			after = "trouble",
+		})
+
+		-- Native sorter for better performance
+		use({
+			"https://github.com/mrjones2014/dash.nvim",
+			run = "make install",
+		})
+
+		-- cmp completion plugins
+		use({
+			"https://github.com/hrsh7th/nvim-cmp",
+		})
+		use({
+			"https://github.com/hrsh7th/cmp-buffer",
+		})
+		use({
+			"https://github.com/hrsh7th/cmp-path",
+		})
+		use({
+			"https://github.com/hrsh7th/cmp-cmdline",
+		})
+		-- LSP completion
+		use({
+			"https://github.com/hrsh7th/cmp-nvim-lsp",
+		})
+		-- Git completion
+		use({
+			"https://github.com/petertriho/cmp-git",
+			requires = "https://github.com/nvim-lua/plenary.nvim",
+		})
+
+		-- Ultisnips
+		use({
+			"https://github.com/SirVer/ultisnips",
+		})
+		use({
+			"https://github.com/quangnguyen30192/cmp-nvim-ultisnips",
+		})
+		use({
+			"https://github.com/honza/vim-snippets",
+		})
+
+
+		-- LSP plugins
+		use({
+			"https://github.com/neovim/nvim-lspconfig",
+		}) -- enable LSP
+		use({
+			"https://github.com/williamboman/mason.nvim",
+		})
+		use({
+			"https://github.com/williamboman/mason-lspconfig.nvim",
+		})
+		use({
+			"https://github.com/jose-elias-alvarez/typescript.nvim",
+		})
+		use({
+			"https://github.com/folke/neodev.nvim",
+		})
+
+		-- Null.ls
+		use({
+			"https://github.com/jose-elias-alvarez/null-ls.nvim",
+			requires = "https://github.com/nvim-lua/plenary.nvim",
+		})
+	end,
+	config = {
+		max_jobs = 50,
 	},
 })
-
-return packer.startup(function(use)
-	-- Required
-	use("wbthomason/packer.nvim")
-	use("nvim-lua/popup.nvim")
-	use("nvim-lua/plenary.nvim")
-
-	-- Split and join lines more intelligently
-	-- https://github.com/AndrewRadev/splitjoin.vim
-	use("AndrewRadev/splitjoin.vim")
-
-	-- Easy commenting of lines
-	-- https://github.com/tpope/vim-commentary
-	use("tpope/vim-commentary")
-
-	-- Dispatch testing from vim
-	-- https://github.com/vim-test/vim-test
-	use({ "vim-test/vim-test", requires = "tpope/vim-dispatch" })
-
-	-- Simply designed fast navigation
-	-- https://github.com/ggandor/lightspeed.nvim
-	use("ggandor/lightspeed.nvim")
-
-	-- Catppuccin colorschemes
-	use({ "catppuccin/nvim", as = "catppuccin" })
-
-	-- Distraction free editing
-	use("junegunn/goyo.vim")
-
-	-- Auto instert bracket pairs
-	-- https://github.com/jiangmiao/auto-pairs
-	use("jiangmiao/auto-pairs")
-
-	-- Work with surrounding brackets/characters
-	-- https://github.com/tpope/vim-surround
-	use("tpope/vim-surround")
-
-	-- Repeat plugin commands with `.`
-	-- https://github.com/tpope/vim-repeat
-	use("tpope/vim-repeat")
-
-	-- Doing the git
-	-- https://github.com/tpope/vim-fugitive
-	use("tpope/vim-fugitive")
-
-	-- Unix helpers
-	use("tpope/vim-eunuch")
-
-	-- Navigate tmux panes like vim
-	use({ "christoomey/vim-tmux-navigator" })
-
-	-- Git gutter signs
-	-- https://github.com/airblade/vim-gitgutter
-	use("airblade/vim-gitgutter")
-
-	-- Rake/Rails navigation and help
-	-- https://github.com/tpope/vim-rails
-	use({ "tpope/vim-rails" })
-	use({ "tpope/vim-bundler" })
-	-- Generate ctags for bundled gems
-	use({ "tpope/gem-ctags" })
-	use({
-		"tpope/vim-rake",
-		requires = "tpope/vim-projectionist",
-	})
-
-	-- Treesitter, for syntax
-	-- https://github.com/nvim-treesitter/nvim-treesitter#quickstart
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use({ "RRethy/nvim-treesitter-endwise", requires = "nvim-treesitter/nvim-treesitter" })
-
-	-- File finder
-	-- https://github.com/nvim-telescope/telescope.nvim
-	use({
-		"nvim-telescope/telescope.nvim",
-		requires = "nvim-lua/plenary.nvim",
-	})
-
-	-- Native sorter for better performance
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use({ "mrjones2014/dash.nvim", run = "make install" })
-	-- cmp completion plugins
-	-- https://github.com/hrsh7th/nvim-cmp
-	use("hrsh7th/nvim-cmp") -- The completion plugin
-	use("hrsh7th/cmp-buffer") -- buffer completions
-	use("hrsh7th/cmp-path") -- path completions
-	use("hrsh7th/cmp-cmdline") -- cmdline completions
-
-	-- Ultisnips
-	use("SirVer/ultisnips")
-	use("quangnguyen30192/cmp-nvim-ultisnips")
-	use("honza/vim-snippets")
-
-	-- vsnip
-	-- use("hrsh7th/vim-vsnip") -- snippets
-	-- use("hrsh7th/vim-vsnip-integ") -- snippets
-	-- use("rafamadriz/friendly-snippets")
-	-- use("hrsh7th/cmp-vsnip") -- snippet completion
-
-	use({
-		"petertriho/cmp-git",
-		requires = "nvim-lua/plenary.nvim",
-	}) -- git completion
-	use("hrsh7th/cmp-nvim-lsp") -- LSP completion
-
-	-- LSP plugins
-	-- https://github.com/neovim/nvim-lspconfig
-	use("neovim/nvim-lspconfig") -- enable LSP
-	use({ "williamboman/mason.nvim" })
-	use({ "williamboman/mason-lspconfig.nvim" })
-	use({ "jose-elias-alvarez/typescript.nvim" })
-	use({ "folke/neodev.nvim" })
-
-	-- Null.ls
-	use({
-		"jose-elias-alvarez/null-ls.nvim",
-		requires = "nvim-lua/plenary.nvim",
-	})
-
-	-- Diagnostics reporting
-	-- Lua
-	use({
-		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
-	})
-
-	-- Sync packer
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
-end)

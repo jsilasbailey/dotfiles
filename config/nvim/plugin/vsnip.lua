@@ -1,6 +1,0 @@
--- vim.g.vsnip_filetypes = {}
--- vim.g.vsnip_filetypes.ruby = ['ruby', 'rails']
--- vim.g.vsnip_filetypes.eruby = ['erb', 'html']
--- vim.g.vsnip_filetypes.javascript = ['javascript']
--- vim.g.vsnip_filetypes.javascriptreact = ['javascript', 'react']
--- vim.g.vsnip_filetypes.typescriptreact = ['typescript', 'react', 'react-ts']
