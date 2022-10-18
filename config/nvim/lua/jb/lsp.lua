@@ -95,8 +95,15 @@ require("typescript").setup({
 			vim.api.nvim_buf_create_user_command(bufnr, "LspRemoveUnused", "TypescriptRemoveUnused", {})
 			vim.api.nvim_buf_create_user_command(bufnr, "LspRenameFile", "TypescriptRenameFile", {})
 
+			-- Delegate to prettier
+			client.resolved_capabilities.document_formatting = false
+			client.resolved_capabilities.document_range_formatting = false
+
 			on_attach(client, bufnr)
 		end,
+		init_options = {
+			formatting = false,
+		},
 	},
 })
 
