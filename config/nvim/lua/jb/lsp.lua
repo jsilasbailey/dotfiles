@@ -87,6 +87,7 @@ lsp_config.solargraph.setup({
 
 require("typescript").setup({
 	server = {
+		capabilities = capabilities,
 		on_attach = function(client, bufnr)
 			vim.api.nvim_buf_create_user_command(bufnr, "LspOrganizeImports", "TypescriptOrganizeImports", {})
 			vim.api.nvim_buf_create_user_command(bufnr, "LspAddMissingImports", "TypescriptAddMissingImports", {})
@@ -100,10 +101,12 @@ require("typescript").setup({
 })
 
 lsp_config.tailwindcss.setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
 })
 
 lsp_config.rust_analyzer.setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
 })
 
