@@ -119,7 +119,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-setlocal spell spelllang=en_us
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
 set spellfile=$HOME/.vim-spell-en.utf-8.add
@@ -131,11 +130,13 @@ set complete+=kspell
 set diffopt+=vertical
 
 " TRUEEEEE COLORS!!!!
-set termguicolors
+if (has("termguicolors"))
+  set termguicolors
+endif
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-colorscheme catppuccin_mocha
+colorscheme onedark
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
