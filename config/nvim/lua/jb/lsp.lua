@@ -23,7 +23,7 @@ mason_lspconfig.setup({
 	},
 })
 
-local on_attach = function(client, bufnr)
+local create_lsp_user_commands = function(bufnr)
 	vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticLine", vim.diagnostic.open_float, {})
 	vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticNext", vim.diagnostic.goto_next, {})
 	vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticPrev", vim.diagnostic.goto_prev, {})
@@ -38,25 +38,21 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_create_user_command(bufnr, "LspRename", vim.lsp.buf.rename, {})
 	vim.api.nvim_buf_create_user_command(bufnr, "LspSignatureHelp", vim.lsp.buf.signature_help, {})
 	vim.api.nvim_buf_create_user_command(bufnr, "LspTypeDefinition", vim.lsp.buf.type_definition, {})
+end
 
-	local opts = {
-		buffer = bufnr,
-		noremap = true,
-		silent = true,
-	}
+local on_lsp_attach = function(client, bufnr)
+	create_lsp_user_commands(bufnr)
+
+	local opts = { buffer = bufnr, noremap = true, silent = true }
 
 	vim.keymap.set("n", "K", ":LspHover<cr>", opts)
-
 	vim.keymap.set("n", "<leader>d", ":LspDiagnosticLine<cr>", opts)
 	vim.keymap.set("n", "[d", ":LspDiagnosticPrev<cr>", opts)
 	vim.keymap.set("n", "]d", ":LspDiagnosticNext<cr>", opts)
-
 	vim.keymap.set("n", "<leader>a", ":LspCodeAction<cr>", opts)
-
 	vim.keymap.set("n", "gd", ":LspDefintion<cr>", opts)
 	vim.keymap.set("n", "gy", ":LspTypeDefinition<cr>", opts)
 	vim.keymap.set("n", "gR", ":TroubleToggle lsp_references<cr>", opts)
-
 	vim.keymap.set("n", "<leader>f", ":LspFormat<cr>", opts)
 end
 
@@ -77,7 +73,7 @@ lsp_config.sumneko_lua.setup({
 
 lsp_config.solargraph.setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
+	on_attach = on_lsp_attach,
 	init_options = {
 		formatting = false,
 	},
@@ -97,7 +93,7 @@ require("typescript").setup({
 			client.resolved_capabilities.document_formatting = false
 			client.resolved_capabilities.document_range_formatting = false
 
-			on_attach(client, bufnr)
+			on_lsp_attach(client, bufnr)
 		end,
 		init_options = {
 			formatting = false,
@@ -107,16 +103,16 @@ require("typescript").setup({
 
 lsp_config.tailwindcss.setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
+	on_attach = on_lsp_attach,
 })
 
 lsp_config.rust_analyzer.setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
+	on_attach = on_lsp_attach,
 })
 
 lsp_config.emmet_ls.setup({
-	on_attach = on_attach,
+	on_attach = on_lsp_attach,
 	capabilities = capabilities,
 	filetypes = {
 		"erb",
@@ -194,9 +190,21 @@ local code_actions = null_ls.builtins.code_actions
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
+local on_null_ls_attach = function(client, bufnr)
+	create_lsp_user_commands(bufnr)
+
+	local opts = { buffer = bufnr, noremap = true, silent = true }
+
+	vim.keymap.set("n", "<leader>d", ":LspDiagnosticLine<cr>", opts)
+	vim.keymap.set("n", "[d", ":LspDiagnosticPrev<cr>", opts)
+	vim.keymap.set("n", "]d", ":LspDiagnosticNext<cr>", opts)
+	vim.keymap.set("n", "<leader>a", ":LspCodeAction<cr>", opts)
+	vim.keymap.set("n", "<leader>f", ":LspFormat<cr>", opts)
+end
+
 null_ls.setup({
 	debug = true,
-	on_attach = on_attach,
+	on_attach = on_null_ls_attach,
 	sources = {
 		code_actions.eslint.with(eslint_options),
 		code_actions.proselint.with({ extra_filetypes = { "gitcommit" } }),
