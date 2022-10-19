@@ -97,6 +97,7 @@ return require("packer").startup({
 		use({
 			"https://github.com/nvim-treesitter/nvim-treesitter",
 			run = ":TSUpdate",
+			config = utils.config("nvim-treesitter"),
 		})
 		use({
 			"https://github.com/RRethy/nvim-treesitter-endwise",
@@ -112,7 +113,7 @@ return require("packer").startup({
 		-- File finder
 		use({
 			"https://github.com/nvim-telescope/telescope.nvim",
-			tag = "0.1.0",
+			branch = "0.1.x",
 			config = utils.config("telescope"),
 			requires = {
 				{ "https://github.com/nvim-lua/plenary.nvim" },
@@ -121,16 +122,15 @@ return require("packer").startup({
 					run = "make",
 				},
 			},
-			after = "trouble",
+			after = "trouble.nvim",
 		})
 
-		-- Native sorter for better performance
 		use({
 			"https://github.com/mrjones2014/dash.nvim",
 			run = "make install",
 		})
 
-		-- cmp completion plugins
+		-- Completion
 		use({
 			"https://github.com/hrsh7th/nvim-cmp",
 		})
@@ -143,17 +143,13 @@ return require("packer").startup({
 		use({
 			"https://github.com/hrsh7th/cmp-cmdline",
 		})
-		-- LSP completion
 		use({
 			"https://github.com/hrsh7th/cmp-nvim-lsp",
 		})
-		-- Git completion
 		use({
 			"https://github.com/petertriho/cmp-git",
 			requires = "https://github.com/nvim-lua/plenary.nvim",
 		})
-
-		-- Ultisnips
 		use({
 			"https://github.com/SirVer/ultisnips",
 		})
@@ -164,11 +160,10 @@ return require("packer").startup({
 			"https://github.com/honza/vim-snippets",
 		})
 
-
 		-- LSP plugins
 		use({
 			"https://github.com/neovim/nvim-lspconfig",
-		}) -- enable LSP
+		})
 		use({
 			"https://github.com/williamboman/mason.nvim",
 		})
