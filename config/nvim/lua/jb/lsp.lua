@@ -133,6 +133,10 @@ end
 
 local eslint_options = {
 	prefer_local = "node_modules/.bin",
+	filetypes = {
+		"javascript",
+		"javascriptreact",
+	},
 	condition = function(utils)
 		return utils.root_has_file({
 			".eslintrc",
