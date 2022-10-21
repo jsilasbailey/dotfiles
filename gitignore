@@ -10,6 +10,7 @@
 /node_modules/
 /tmp
 /vendor
+/vale
 db/*.sqlite3
 log/*.log
 rerun.txt
