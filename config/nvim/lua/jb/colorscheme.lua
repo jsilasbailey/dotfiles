@@ -1,10 +1,10 @@
-local status_ok, catppuccin = pcall(require, "catppuccin")
-if not status_ok then
-	vim.notify("Catppuccin not found. Get it here: https://github.com/catppuccin/nvim")
-	return
-end
-
+-- local catppuccin = require("catppuccin")
 -- Options: latte, frappe, macchiato, mocha
-catppuccin.setup()
-vim.g.catppuccin_flavour = "mocha"
-vim.cmd([[colorscheme catppuccin]])
+-- vim.g.catppuccin_flavour = "mocha"
+-- catppuccin.setup()
+
+local material = require("material")
+material.setup({ plugins = { "telescope", "trouble", "nvim-cmp" } })
+vim.g.material_style = "palenight"
+
+vim.cmd "colorscheme material"

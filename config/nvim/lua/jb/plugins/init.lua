@@ -31,10 +31,13 @@ return require("packer").startup({
 			"https://github.com/ggandor/lightspeed.nvim",
 		})
 
-		-- Catppuccin colorschemes
+		-- Colorschemes
 		use({
 			"https://github.com/catppuccin/nvim",
 			as = "catppuccin",
+		})
+		use({
+			"https://github.com/marko-cerovac/material.nvim",
 		})
 
 		-- Distraction free editing
