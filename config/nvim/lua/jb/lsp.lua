@@ -204,6 +204,10 @@ local on_null_ls_attach = function(client, bufnr)
 	vim.keymap.set("n", "]d", ":LspDiagnosticNext<cr>", opts)
 	vim.keymap.set("n", "<leader>a", ":LspCodeAction<cr>", opts)
 	vim.keymap.set("n", "<leader>f", ":LspFormat<cr>", opts)
+
+	-- Keep internal formatting for `gq`
+	-- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1131
+	vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
 end
 
 null_ls.setup({
