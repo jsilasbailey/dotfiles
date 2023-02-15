@@ -182,14 +182,6 @@ local rubocop_options = {
 	end,
 }
 
-local erb_lint_options = {
-	condition = function(utils)
-		return utils.root_has_file({
-			".erb-lint.yml",
-		})
-	end,
-}
-
 local code_actions = null_ls.builtins.code_actions
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -216,7 +208,6 @@ null_ls.setup({
 	sources = {
 		code_actions.eslint.with(eslint_options),
 		code_actions.shellcheck,
-		diagnostics.erb_lint.with(erb_lint_options),
 		diagnostics.eslint.with(eslint_options),
 		diagnostics.gitlint,
 		diagnostics.rubocop.with(rubocop_options),
@@ -229,7 +220,6 @@ null_ls.setup({
 			"asciidoc",
 		} }),
 		diagnostics.zsh,
-		formatting.erb_lint.with(erb_lint_options),
 		formatting.eslint.with(eslint_options),
 		formatting.prettierd.with(prettierd_opts),
 		formatting.rubocop.with(rubocop_options),
