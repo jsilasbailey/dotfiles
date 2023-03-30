@@ -114,6 +114,14 @@ return require("packer").startup({
 			requires = "https://github.com/kyazdani42/nvim-web-devicons",
 		})
 
+		use({
+			"https://github.com/folke/todo-comments.nvim",
+			requires = "https://github.com/nvim-lua/plenary.nvim",
+			config = function()
+				require("todo-comments").setup({})
+			end,
+		})
+
 		-- File finder
 		use({
 			"https://github.com/nvim-telescope/telescope.nvim",
