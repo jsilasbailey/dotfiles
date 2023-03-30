@@ -17,7 +17,6 @@ mason_lspconfig.setup({
 	ensure_installed = {
 		"emmet_ls",
 		"rust_analyzer",
-		"sumneko_lua",
 		"tailwindcss",
 		"tsserver",
 	},
@@ -60,14 +59,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 require("neodev").setup({})
-lsp_config.sumneko_lua.setup({
-	on_attach = function(client, bufnr)
-		-- Let stylua format
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
-
-		on_lsp_attach(client, bufnr)
-	end,
+lsp_config.lua_ls.setup({
+	on_attach = on_lsp_attach,
 	capabilities = capabilities,
 })
 
