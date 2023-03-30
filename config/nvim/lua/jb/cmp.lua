@@ -47,7 +47,7 @@ cmp.setup.filetype("gitcommit", {
 		{ name = "git" },
 		{ name = "github" },
 	}, {
-		{ name = "buffer" },
+		all_open_buffers_source,
 	}),
 })
 
