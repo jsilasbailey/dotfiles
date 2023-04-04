@@ -29,7 +29,7 @@ return require("packer").startup({
 		-- Simply designed fast navigation
 		use({
 			"https://github.com/ggandor/leap.nvim",
-			config = utils.config("leap")
+			config = utils.config("leap"),
 		})
 
 		-- Colorschemes
