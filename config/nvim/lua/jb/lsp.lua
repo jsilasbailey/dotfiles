@@ -75,6 +75,8 @@ local create_lsp_user_commands = function(client, bufnr)
 
 	if client.supports_method("textDocument/references") then
 		vim.api.nvim_buf_create_user_command(bufnr, "LspReferences", vim.lsp.buf.references, {})
+		-- TODO: Move to trouble config
+		vim.keymap.set("n", "gR", ":TroubleToggle lsp_references<cr>", { buffer = bufnr })
 	end
 
 	if client.supports_method("textDocument/rename") then
@@ -84,9 +86,6 @@ end
 
 local on_lsp_attach = function(client, bufnr)
 	create_lsp_user_commands(client, bufnr)
-
-	-- TODO: Move to trouble config
-	vim.keymap.set("n", "gR", ":TroubleToggle lsp_references<cr>", { buffer = bufnr })
 end
 
 require("neodev").setup({})
