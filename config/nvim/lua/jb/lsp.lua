@@ -27,8 +27,8 @@ local create_lsp_user_commands = function(client, bufnr)
 	vim.keymap.set("n", "]d", ":LspDiagnosticNext<cr>", opts)
 
 	if client.supports_method("textDocument/codeAction") then
-		vim.api.nvim_buf_create_user_command(bufnr, "LspCodeAction", vim.lsp.buf.code_action, { range = nil })
-		vim.keymap.set("n", "<leader>a", ":LspCodeAction<cr>", opts)
+		vim.api.nvim_buf_create_user_command(bufnr, "LspCodeAction", vim.lsp.buf.code_action, {})
+		vim.keymap.set({"n", "v"}, "<space>ca", vim.lsp.buf.code_action, opts)
 	end
 
 	if client.supports_method("textDocument/definition") then
