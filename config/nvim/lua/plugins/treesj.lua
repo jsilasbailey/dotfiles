@@ -7,6 +7,6 @@ return {
   },
   dependencies = { "treesitter" },
   config = function()
-    require("treesj").setup({ })
+    require("treesj").setup()
   end,
 }

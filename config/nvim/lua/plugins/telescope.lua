@@ -1,5 +1,6 @@
 return {
   "https://github.com/nvim-telescope/telescope.nvim",
+  name = "telescope",
   branch = "0.1.x",
   config = function()
     local telescope = require("telescope")
