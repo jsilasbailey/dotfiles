@@ -16,6 +16,8 @@ local all_open_buffers_source = {
 	},
 }
 
+local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
@@ -33,6 +35,12 @@ cmp.setup({
 			c = cmp.mapping.close(),
 		}),
 		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		["<Tab>"] = cmp.mapping(function(fallback)
+			cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			cmp_ultisnips_mappings.jump_backwards(fallback)
+		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" }, -- LSP completion.
