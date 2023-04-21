@@ -9,6 +9,8 @@ fi
 
 vim -u "$HOME"/.vimrc.bundles +PlugUpdate +PlugClean! +qa
 
+nvim --headless +Lazy!install +Lazy!clean +qa
+
 reset -Q
 
 if [ -f "$HOME/.git_template/HEAD" ] && \

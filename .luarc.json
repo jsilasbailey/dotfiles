@@ -4,7 +4,7 @@
         "vim"
     ],
     "workspace.library": [
-        "~/.local/share/nvim/site/pack/packer/start/neodev.nvim/types/stable",
+        "~/.local/share/nvim/lazy/",
         "/opt/homebrew/Cellar/neovim/0.8.3/share/nvim/runtime/lua",
         "~/.dotfiles/config/nvim/lua",
         "${3rd}/luv/library"
