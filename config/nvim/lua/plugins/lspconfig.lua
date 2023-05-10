@@ -114,6 +114,9 @@ return {
     lsp_config.ruby_ls.setup({
       on_attach = on_lsp_attach,
       capabilities = capabilities,
+      init_options = {
+        formatter = "auto",
+      },
     })
 
     require("typescript").setup({
