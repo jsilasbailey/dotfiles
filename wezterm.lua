@@ -80,5 +80,19 @@ config.keys = {
   split_nav("resize", "l"),
 }
 
+config.colors = {
+  visual_bell = "#202020",
+}
+
+config.visual_bell = {
+  fade_in_function = "EaseIn",
+  fade_in_duration_ms = 150,
+  fade_out_function = "EaseOut",
+  fade_out_duration_ms = 150,
+  target = "CursorColor",
+}
+
+config.audible_bell = "Disabled"
+
 -- and finally, return the configuration to wezterm
 return config
