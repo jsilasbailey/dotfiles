@@ -13,7 +13,6 @@ return {
   "https://github.com/tpope/vim-fugitive",
   -- Unix helpers
   "https://github.com/tpope/vim-eunuch",
-  "https://github.com/airblade/vim-gitgutter",
   "https://github.com/tpope/vim-dispatch",
   -- Rake/Rails navigation and help
   "https://github.com/tpope/vim-rails",
