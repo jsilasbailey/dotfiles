@@ -19,16 +19,9 @@ config.inactive_pane_hsb = {
   brightness = 0.5,
 }
 
--- Equivalent to POSIX basename(3)
--- Given "/foo/bar" returns "bar"
--- Given "c:\\foo\\bar" returns "bar"
-local function basename(s)
-  return string.gsub(s, "(.*[/\\])(.*)", "%2")
-end
-
-local function pass_cmd_to_pane(pane)
-  local process_name = basename(pane:get_foreground_process_name())
-  return process_name == "nvim" or process_name == "vim" or process_name == "tmux"
+local function is_nvim(pane)
+  -- this is set by the plugin, and unset on ExitPre in Neovim
+  return pane:get_user_vars().IS_NVIM == "true"
 end
 
 local direction_keys = {
@@ -48,7 +41,7 @@ local function split_nav(resize_or_move, key)
     key = key,
     mods = resize_or_move == "resize" and "META" or "CTRL",
     action = wezterm.action_callback(function(win, pane)
-      if pass_cmd_to_pane(pane) then
+      if is_nvim(pane) then
         -- pass the keys through to vim/nvim
         win:perform_action({
           SendKey = {
