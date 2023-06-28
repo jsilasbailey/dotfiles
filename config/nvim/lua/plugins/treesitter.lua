@@ -18,6 +18,7 @@ return {
         "json",
         "make",
         "markdown",
+        "markdown_inline",
         "python",
         "regex",
         "ruby",
