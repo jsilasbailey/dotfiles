@@ -51,16 +51,19 @@ return {
     vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files<cr>", {
       noremap = true,
       silent = true,
+      desc = "Find files",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>rg", ":Telescope live_grep<cr>", {
+    vim.api.nvim_set_keymap("n", "<leader>fg", ":Telescope live_grep<cr>", {
       noremap = true,
       silent = true,
+      desc = "Grep in project",
     })
 
     vim.api.nvim_set_keymap("n", "<leader>k", ":Telescope grep_string<cr>", {
       noremap = true,
       silent = true,
+      desc = "Grep word under cursor",
     })
   end,
   dependencies = {
