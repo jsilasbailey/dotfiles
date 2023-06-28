@@ -17,8 +17,10 @@ return {
       pickers = {
         -- Default configuration for builtin pickers goes here:
         find_files = {
-          theme = "ivy",
+          theme = "dropdown",
           hidden = true,
+          layout_strategy = "center",
+          layout_config = { width = 0.5 }
         },
         -- Now the picker_config_key will be applied every time you call this
         -- builtin picker
