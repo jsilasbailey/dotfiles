@@ -15,9 +15,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
-
-local status, _ = pcall(require, "catppuccin")
-
-if status then
-  vim.api.nvim_command("colorscheme catppuccin")
-end
+require("kanagawa").load("wave")

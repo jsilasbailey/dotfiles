@@ -86,4 +86,10 @@ return {
     name = "null_ls",
     dependencies = "plenary",
   },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {}
+  }
 }
