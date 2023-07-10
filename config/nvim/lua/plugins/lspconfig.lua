@@ -1,6 +1,5 @@
 return {
-  "https://github.com/neovim/nvim-lspconfig",
-  name = "nvim-lspconfig",
+  "neovim/nvim-lspconfig",
   dependencies = {
     "null_ls",
     "https://github.com/jose-elias-alvarez/typescript.nvim",

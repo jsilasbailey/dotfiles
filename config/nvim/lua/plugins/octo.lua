@@ -4,7 +4,7 @@ return {
   dependencies = {
     "plenary",
     "telescope",
-    "devicons",
+    "nvim-tree/nvim-web-devicons",
   },
   config = function()
     require("octo").setup()

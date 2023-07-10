@@ -1,6 +1,5 @@
 return {
-  "https://github.com/nvim-treesitter/nvim-treesitter",
-  name = "treesitter",
+  "nvim-treesitter/nvim-treesitter",
   build = function()
     require("nvim-treesitter.install").update({ with_sync = true })
   end,

@@ -44,18 +44,15 @@ return {
       vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
     end,
   },
+  "nvim-tree/nvim-web-devicons",
   {
-    "https://github.com/kyazdani42/nvim-web-devicons",
-    name = "devicons",
-  },
-  {
-    "https://github.com/RRethy/nvim-treesitter-endwise",
-    dependencies = "treesitter",
+    "RRethy/nvim-treesitter-endwise",
+    dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
     "https://github.com/folke/trouble.nvim",
     name = "trouble",
-    dependencies = "devicons",
+    dependencies = "nvim-tree/nvim-web-devicons",
   },
   {
     "https://github.com/folke/todo-comments.nvim",
@@ -78,6 +75,17 @@ return {
   "https://github.com/honza/vim-snippets",
   "https://github.com/williamboman/mason.nvim",
   "https://github.com/williamboman/mason-lspconfig.nvim",
+  {
+    "glepnir/lspsaga.nvim",
+    event = "LspAttach",
+    config = function()
+      require("lspsaga").setup({})
+    end,
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+  },
   "https://github.com/jose-elias-alvarez/typescript.nvim",
   "https://github.com/folke/neodev.nvim",
   {
@@ -89,6 +97,6 @@ return {
     "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
-    opts = {}
-  }
+    opts = {},
+  },
 }
