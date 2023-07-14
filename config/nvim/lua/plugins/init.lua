@@ -44,6 +44,7 @@ return {
       vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
     end,
   },
+  "AndrewRadev/splitjoin.vim", -- Still need for erb files while not using treesitter on them
   "nvim-tree/nvim-web-devicons",
   {
     "RRethy/nvim-treesitter-endwise",
