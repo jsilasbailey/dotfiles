@@ -61,7 +61,7 @@ let g:golden_ratio_autocommand = 0
 nnoremap <C-w><C-r> :GoldenRatioResize<CR>
 
 " Git gutter
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', { 'branch': 'main' }
 
 " Markdown
 Plug 'godlygeek/tabular'
