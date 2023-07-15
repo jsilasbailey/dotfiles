@@ -118,5 +118,9 @@ return {
         on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
       }
     end
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
   }
 }

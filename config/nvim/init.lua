@@ -15,4 +15,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
-require("kanagawa").load("wave")
+vim.cmd('colorscheme rose-pine')

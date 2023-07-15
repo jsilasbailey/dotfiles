@@ -10,7 +10,7 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.color_scheme = "Kanagawa (Gogh)"
+config.color_scheme = "Rosé Pine (Gogh)"
 
 config.font_size = 10
 
