@@ -4,6 +4,7 @@ return {
     require("nvim-treesitter.install").update({ with_sync = true })
   end,
   config = function()
+    -- FIXME: Make it work
     local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
     parser_config.embedded_template = {
       install_info = {
