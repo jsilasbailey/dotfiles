@@ -53,6 +53,7 @@ return {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = {},
       },
+      indent = { enable = true },
       endwise = {
         enable = true,
       },
