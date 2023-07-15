@@ -8,6 +8,8 @@ return {
   "tpope/vim-commentary",
   -- Repeat plugin commands with `.`
   "tpope/vim-repeat",
+  -- The "hub" stuffz,
+  "tpope/vim-rhubarb",
   -- Doing the git
   "tpope/vim-fugitive",
   -- Unix helpers
