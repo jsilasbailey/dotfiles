@@ -1,5 +1,8 @@
-require("options")
-require("keymaps")
+-- Set <space> as the leader key
+-- See `:help mapleader`
+--  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -15,4 +18,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
-vim.cmd('colorscheme rose-pine')
+require("options")
+require("keymaps")
+
+vim.cmd("colorscheme rose-pine")
