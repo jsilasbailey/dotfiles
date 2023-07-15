@@ -87,10 +87,6 @@ return {
   "jose-elias-alvarez/typescript.nvim",
   "folke/neodev.nvim",
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
-  },
-  {
     "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,

@@ -1,7 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "jose-elias-alvarez/null-ls.nvim",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
     "jose-elias-alvarez/typescript.nvim",
   },
   config = function()
@@ -22,7 +23,6 @@ return {
     })
 
     local lsp_config = require("lspconfig")
-    local null_ls = require("null-ls")
 
     local client_capabilities = vim.lsp.protocol.make_client_capabilities()
     local capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilities)
@@ -168,62 +168,5 @@ return {
         "typescript"
       }
     })
-
-    local prettierd_opts = {
-      condition = function(utils)
-        return utils.root_has_file({
-          ".prettierrc",
-          ".prettierrc.json",
-          ".prettierrc.yml",
-          ".prettierrc.yaml",
-          ".prettierrc.json5",
-          ".prettierrc.js",
-          ".prettierrc.cjs",
-          ".prettierrc.toml",
-          "prettier.config.js",
-          "prettier.config.cjs",
-        })
-      end,
-    }
-
-    local standardrb_options = {
-      condition = function(utils)
-        return utils.root_has_file({
-          ".standard.yml",
-        })
-      end,
-    }
-
-    local rubocop_options = {
-      condition = function(utils)
-        return utils.root_has_file({
-          ".rubocop.yml",
-        })
-      end,
-    }
-
-    local code_actions = null_ls.builtins.code_actions
-    local formatting = null_ls.builtins.formatting
-    local diagnostics = null_ls.builtins.diagnostics
-
-    local on_null_ls_attach = function(client, bufnr)
-      create_lsp_user_commands(client, bufnr)
-
-      -- Keep internal formatting for `gq`
-      -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1131
-      vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
-    end
-
-    -- null_ls.setup({
-    --   debug = true,
-    --   on_attach = on_null_ls_attach,
-    --   sources = {
-    --     diagnostics.gitlint,
-    --     diagnostics.rubocop.with(rubocop_options),
-    --     diagnostics.standardrb.with(standardrb_options),
-    --     formatting.prettierd.with(prettierd_opts),
-    --     formatting.stylua,
-    --   },
-    -- })
   end,
 }
