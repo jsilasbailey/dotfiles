@@ -1,9 +1,8 @@
 return {
-  "https://github.com/pwntester/octo.nvim",
-  name = "octo",
+  "pwntester/octo.nvim",
   dependencies = {
-    "plenary",
-    "telescope",
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope",
     "nvim-tree/nvim-web-devicons",
   },
   config = function()

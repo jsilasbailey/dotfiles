@@ -1,15 +1,14 @@
 return {
-  "https://github.com/hrsh7th/nvim-cmp",
-  name = "nvim_cmp",
+  "hrsh7th/nvim-cmp",
   dependencies = {
-    "https://github.com/hrsh7th/cmp-buffer",
-    "https://github.com/hrsh7th/cmp-path",
-    "https://github.com/hrsh7th/cmp-cmdline",
-    "https://github.com/hrsh7th/cmp-nvim-lsp",
-    "https://github.com/petertriho/cmp-git",
-    "https://github.com/SirVer/ultisnips",
-    "https://github.com/quangnguyen30192/cmp-nvim-ultisnips",
-    "https://github.com/honza/vim-snippets",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-nvim-lsp",
+    "petertriho/cmp-git",
+    "SirVer/ultisnips",
+    "quangnguyen30192/cmp-nvim-ultisnips",
+    "honza/vim-snippets",
   },
   config = function()
     -- Setup nvim-cmp.

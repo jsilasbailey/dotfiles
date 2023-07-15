@@ -1,26 +1,25 @@
 return {
-  {
-    "https://github.com/nvim-lua/plenary.nvim",
-    name = "plenary",
-  },
+   "nvim-lua/plenary.nvim" ,
   -- Auto instert bracket pairs
-  "https://github.com/jiangmiao/auto-pairs",
+  "jiangmiao/auto-pairs",
   -- Work with surrounding brackets/characters
-  "https://github.com/tpope/vim-surround",
+  "tpope/vim-surround",
+  -- Comment/Uncomment lines
+  "tpope/vim-commentary",
   -- Repeat plugin commands with `.`
-  "https://github.com/tpope/vim-repeat",
+  "tpope/vim-repeat",
   -- Doing the git
-  "https://github.com/tpope/vim-fugitive",
+  "tpope/vim-fugitive",
   -- Unix helpers
-  "https://github.com/tpope/vim-eunuch",
-  "https://github.com/tpope/vim-dispatch",
+  "tpope/vim-eunuch",
+  "tpope/vim-dispatch",
   -- Rake/Rails navigation and help
-  "https://github.com/tpope/vim-rails",
-  "https://github.com/tpope/vim-bundler",
+  "tpope/vim-rails",
+  "tpope/vim-bundler",
   -- Generate ctags for bundled gems
-  "https://github.com/tpope/gem-ctags",
-  "https://github.com/tpope/vim-projectionist",
-  "https://github.com/tpope/vim-rake",
+  "tpope/gem-ctags",
+  "tpope/vim-projectionist",
+  "tpope/vim-rake",
   {
     "mrjones2014/smart-splits.nvim",
     config = function()
@@ -51,48 +50,45 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
-    "https://github.com/folke/trouble.nvim",
-    name = "trouble",
+    "folke/trouble.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
   },
   {
-    "https://github.com/folke/todo-comments.nvim",
-    dependencies = "plenary",
+    "folke/todo-comments.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup({})
     end,
   },
-  "https://github.com/hrsh7th/cmp-buffer",
-  "https://github.com/hrsh7th/cmp-path",
-  "https://github.com/hrsh7th/cmp-cmdline",
-  "https://github.com/hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-cmdline",
+  "hrsh7th/cmp-nvim-lsp",
   {
-    "https://github.com/petertriho/cmp-git",
-    name = "cmp_git",
-    dependencies = "plenary",
+    "petertriho/cmp-git",
+    dependencies = "nvim-lua/plenary.nvim",
   },
-  "https://github.com/SirVer/ultisnips",
-  "https://github.com/quangnguyen30192/cmp-nvim-ultisnips",
-  "https://github.com/honza/vim-snippets",
-  "https://github.com/williamboman/mason.nvim",
-  "https://github.com/williamboman/mason-lspconfig.nvim",
+  "SirVer/ultisnips",
+  "quangnguyen30192/cmp-nvim-ultisnips",
+  "honza/vim-snippets",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
   {
     "glepnir/lspsaga.nvim",
-    event = "LspAttach",
-    config = function()
-      require("lspsaga").setup({})
-    end,
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
       { "nvim-treesitter/nvim-treesitter" },
     },
+    event = "LspAttach",
+    config = function()
+      require("lspsaga").setup({})
+    end,
   },
-  "https://github.com/jose-elias-alvarez/typescript.nvim",
-  "https://github.com/folke/neodev.nvim",
+  "jose-elias-alvarez/typescript.nvim",
+  "folke/neodev.nvim",
   {
-    "https://github.com/jose-elias-alvarez/null-ls.nvim",
-    name = "null_ls",
-    dependencies = "plenary",
+    "jose-elias-alvarez/null-ls.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
   },
   {
     "rebelot/kanagawa.nvim",
@@ -121,6 +117,5 @@ return {
   },
   {
     "rose-pine/neovim",
-    name = "rose-pine",
   }
 }

@@ -1,6 +1,5 @@
 return {
-  "https://github.com/folke/which-key.nvim",
-  name = "which-key",
+  "folke/which-key.nvim",
   config = function()
     vim.o.timeout = true
     vim.o.timeoutlen = 300

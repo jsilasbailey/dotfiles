@@ -1,12 +1,12 @@
 return {
-  "https://github.com/vim-test/vim-test",
-  requires = "https://github.com/tpope/vim-dispatch",
+  "vim-test/vim-test",
+  requires = "tpope/vim-dispatch",
   config = function()
     -- Async test execution
     --
     -- CustomStrategy to return focus to current window
     --
-    -- https://github.com/vim-test/vim-test/issues/448
+    -- vim-test/vim-test/issues/448
     -- function! CustomStrategy(cmd)
     --   execute 'bel 10 new'
     --   call termopen(a:cmd)
@@ -17,7 +17,7 @@ return {
     -- let test#strategy = "custom"
     --
     -- OR use neotest for lua async strategies
-    -- https://github.com/nvim-neotest/neotest
+    -- nvim-neotest/neotest
     vim.g["test#strategy"] = "neovim"
   end,
   keys = {

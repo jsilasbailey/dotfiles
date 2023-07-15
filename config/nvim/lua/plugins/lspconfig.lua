@@ -1,8 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "null_ls",
-    "https://github.com/jose-elias-alvarez/typescript.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
+    "jose-elias-alvarez/typescript.nvim",
   },
   config = function()
     -- TODO: Extract concerns to different plugin configs
@@ -11,11 +11,13 @@ return {
     require("mason").setup()
     require("mason-lspconfig").setup({
       ensure_installed = {
+        "emmet_ls",
+        "eslint",
         "lua_ls",
         "ruby_ls",
         "rust_analyzer",
         "tailwindcss",
-        "tsserver",
+        "tsserver"
       },
     })
 
@@ -158,23 +160,14 @@ return {
       },
     })
 
-    local eslint_options = {
-      prefer_local = "node_modules/.bin",
+    lsp_config.eslint.setup({
+      on_attach = on_lsp_attach,
+      capabilities = capabilities,
       filetypes = {
         "javascript",
-        "javascriptreact",
-      },
-      condition = function(utils)
-        return utils.root_has_file({
-          ".eslintrc",
-          ".eslintrc.js",
-          ".eslintrc.cjs",
-          ".eslintrc.yaml",
-          ".eslintrc.yml",
-          ".eslintrc.json",
-        })
-      end,
-    }
+        "typescript"
+      }
+    })
 
     local prettierd_opts = {
       condition = function(utils)
@@ -221,31 +214,16 @@ return {
       vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
     end
 
-    null_ls.setup({
-      debug = true,
-      on_attach = on_null_ls_attach,
-      sources = {
-        code_actions.eslint.with(eslint_options),
-        code_actions.shellcheck,
-        diagnostics.eslint.with(eslint_options),
-        diagnostics.gitlint,
-        diagnostics.rubocop.with(rubocop_options),
-        diagnostics.shellcheck,
-        diagnostics.standardrb.with(standardrb_options),
-        diagnostics.vale.with({
-          filetypes = {
-            "gitcommit",
-            "markdown",
-            "tex",
-            "asciidoc",
-          },
-        }),
-        diagnostics.zsh,
-        formatting.eslint.with(eslint_options),
-        formatting.prettierd.with(prettierd_opts),
-        formatting.standardrb.with(standardrb_options),
-        formatting.stylua,
-      },
-    })
+    -- null_ls.setup({
+    --   debug = true,
+    --   on_attach = on_null_ls_attach,
+    --   sources = {
+    --     diagnostics.gitlint,
+    --     diagnostics.rubocop.with(rubocop_options),
+    --     diagnostics.standardrb.with(standardrb_options),
+    --     formatting.prettierd.with(prettierd_opts),
+    --     formatting.stylua,
+    --   },
+    -- })
   end,
 }

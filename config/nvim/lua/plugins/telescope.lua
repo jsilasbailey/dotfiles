@@ -1,6 +1,10 @@
 return {
-  "https://github.com/nvim-telescope/telescope.nvim",
-  name = "telescope",
+  "nvim-telescope/telescope.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "folke/trouble.nvim",
+    "nvim-telescope/telescope-fzf-native.nvim",
+  },
   branch = "0.1.x",
   config = function()
     local telescope = require("telescope")
@@ -66,9 +70,4 @@ return {
       desc = "Grep word under cursor",
     })
   end,
-  dependencies = {
-    "trouble",
-    "plenary",
-    "telescope-fzf-native",
-  },
 }
