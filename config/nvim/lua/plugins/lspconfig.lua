@@ -15,7 +15,6 @@ return {
         "emmet_ls",
         "eslint",
         "lua_ls",
-        "ruby_ls",
         "rust_analyzer",
         "tailwindcss",
         "tsserver"
@@ -112,12 +111,12 @@ return {
       capabilities = capabilities,
     })
 
-    lsp_config.ruby_ls.setup({
+    -- ruby_ls
+    -- textDocument/diagnostic support not until nvim 0.10.0 is released
+    -- Until then we are using solargraph again which is working better than ruby_ls anyway
+    lsp_config.solargraph.setup({
       on_attach = on_lsp_attach,
-      capabilities = capabilities,
-      init_options = {
-        formatter = "auto",
-      },
+      capabilities = capabilities
     })
 
     require("typescript").setup({
