@@ -14,7 +14,25 @@ return {
   "tpope/vim-fugitive",
   -- Unix helpers
   "tpope/vim-eunuch",
-  "tpope/vim-dispatch",
+  {
+    "tpope/vim-dispatch",
+    config = function()
+      -- Formatting --
+      -- Temporary
+      -- rubocop for ruby files
+      vim.api.nvim_create_user_command(
+        "RuboAll",
+        "Dispatch! bundle exec rubocop -A",
+        { desc = "Run rubocop on the project" }
+      )
+
+      vim.api.nvim_create_user_command(
+        "Prettier",
+        "Dispatch! prettier -w %",
+        { desc = "Run prettier on the current file" }
+      )
+    end
+  },
   -- Rake/Rails navigation and help
   "tpope/vim-rails",
   "tpope/vim-bundler",
