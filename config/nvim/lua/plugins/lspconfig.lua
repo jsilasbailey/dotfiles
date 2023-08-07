@@ -12,7 +12,6 @@ return {
     require("mason").setup()
     require("mason-lspconfig").setup({
       ensure_installed = {
-        "emmet_ls",
         "eslint",
         "lua_ls",
         "rust_analyzer",
@@ -142,21 +141,6 @@ return {
     lsp_config.rust_analyzer.setup({
       capabilities = capabilities,
       on_attach = on_lsp_attach,
-    })
-
-    lsp_config.emmet_ls.setup({
-      on_attach = on_lsp_attach,
-      capabilities = capabilities,
-      filetypes = {
-        "erb",
-        "eruby",
-        "html",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescriptreact",
-        "typescript.tsx",
-        "vue",
-      },
     })
 
     lsp_config.eslint.setup({
