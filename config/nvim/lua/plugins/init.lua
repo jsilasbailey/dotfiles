@@ -1,5 +1,5 @@
 return {
-   "nvim-lua/plenary.nvim" ,
+  "nvim-lua/plenary.nvim",
   -- Auto instert bracket pairs
   "jiangmiao/auto-pairs",
   -- Work with surrounding brackets/characters
@@ -56,17 +56,6 @@ return {
   "honza/vim-snippets",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
-  {
-    "glepnir/lspsaga.nvim",
-    dependencies = {
-      { "nvim-tree/nvim-web-devicons" },
-      { "nvim-treesitter/nvim-treesitter" },
-    },
-    event = "LspAttach",
-    config = function()
-      require("lspsaga").setup({})
-    end,
-  },
   "jose-elias-alvarez/typescript.nvim",
   "folke/neodev.nvim",
   {
