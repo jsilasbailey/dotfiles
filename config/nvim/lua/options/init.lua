@@ -12,9 +12,6 @@ vim.o.hlsearch = false
 -- Enable break indent
 vim.o.breakindent = true
 
--- Set highlight on search
-vim.o.hlsearch = false
-
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
