@@ -14,6 +14,7 @@ return {
       ensure_installed = {
         "eslint",
         "lua_ls",
+        "marksman",
         "rust_analyzer",
         "tailwindcss",
         "tsserver"
@@ -139,6 +140,12 @@ return {
     })
 
     lsp_config.rust_analyzer.setup({
+      capabilities = capabilities,
+      on_attach = on_lsp_attach,
+    })
+
+
+    lsp_config.marksman.setup({
       capabilities = capabilities,
       on_attach = on_lsp_attach,
     })
