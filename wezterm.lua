@@ -12,7 +12,7 @@ end
 
 config.color_scheme = "Rosé Pine (Gogh)"
 
-config.font_size = 10
+config.font_size = 16
 
 config.inactive_pane_hsb = {
   saturation = 0.7,
