@@ -42,7 +42,7 @@
 [delta]
   light = false # dark terminal background
   navigate = true
-  features = line-numbers side-by-side decorations
+  features = line-numbers decorations
 [pager]
   diff = delta
   log = delta
