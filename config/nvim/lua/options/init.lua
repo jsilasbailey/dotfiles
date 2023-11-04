@@ -1,6 +1,7 @@
 vim.o.backup = false
 vim.o.clipboard = 'unnamedplus'
 vim.o.cursorline = true
+vim.o.colorcolumn='80'
 vim.o.mouse = 'a'
 
 vim.o.number = true
