@@ -21,15 +21,21 @@ return {
       -- Temporary
       -- rubocop for ruby files
       vim.api.nvim_create_user_command(
-        "RuboAll",
+        "RubocopFixProject",
         "Dispatch! bundle exec rubocop -A",
         { desc = "Run rubocop on the project" }
       )
 
       vim.api.nvim_create_user_command(
-        "Prettier",
+        "PrettierFile",
         "Dispatch! prettier -w %",
         { desc = "Run prettier on the current file" }
+      )
+
+      vim.api.nvim_create_user_command(
+        "DashWord",
+        "Dispatch! open dash://<cword>",
+        { desc = "Open the word under the cursor in Dash" }
       )
     end
   },
