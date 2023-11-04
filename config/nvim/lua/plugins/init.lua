@@ -24,7 +24,9 @@ return {
   "tpope/vim-fugitive",
   {
     "lewis6991/gitsigns.nvim",
-    config = require("plugins.config.gitsigns").setup,
+    config = function()
+      require("gitsigns").setup()
+    end,
   },
   -- Unix helpers
   "tpope/vim-eunuch",
