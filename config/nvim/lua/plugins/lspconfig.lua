@@ -7,7 +7,6 @@ return {
   },
   config = function()
     -- TODO: Extract concerns to different plugin configs
-    vim.lsp.set_log_level("debug")
 
     require("mason").setup()
     require("mason-lspconfig").setup({
