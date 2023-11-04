@@ -16,7 +16,7 @@ return {
         "marksman",
         "rust_analyzer",
         "tailwindcss",
-        "tsserver"
+        "tsserver",
       },
     })
 
@@ -143,10 +143,18 @@ return {
       on_attach = on_lsp_attach,
     })
 
+    lsp_config.gopls.setup({
+      capabilities = capabilities,
+      on_attach = on_lsp_attach,
+    })
 
     lsp_config.marksman.setup({
       capabilities = capabilities,
       on_attach = on_lsp_attach,
+      filetypes = {
+        "markdown",
+        "gitcommit",
+      }
     })
 
     lsp_config.eslint.setup({
