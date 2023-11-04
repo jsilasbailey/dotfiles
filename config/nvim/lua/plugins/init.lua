@@ -161,7 +161,6 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "folke/trouble.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
     },
     branch = "0.1.x",
