@@ -15,6 +15,7 @@
   excludesfile = ~/.gitignore
   autocrlf = input
   pager = delta
+  commentChar = ";"
 [merge]
   ff = only
   conflictstyle = diff3
@@ -25,7 +26,6 @@
   driver = bundle install
 [commit]
   gpgsign = true
-  template = ~/.gitmessage
 [user]
   name = Jesse Bailey
   email = jesse@jsilasbailey.com
