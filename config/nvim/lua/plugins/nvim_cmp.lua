@@ -11,13 +11,12 @@ return {
     "honza/vim-snippets",
   },
   config = function()
-    -- Setup nvim-cmp.
-    local cmp_status_ok, cmp = pcall(require, "cmp")
-    if not cmp_status_ok then
-      return
-    end
+    local cmp = require("cmp")
+    local cmp_buffer = require("cmp_buffer")
+    local cmp_git = require("cmp_git")
+    local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
-    require("cmp_git").setup()
+    cmp_git.setup()
 
     -- Provide text completion from all open buffers
     local all_open_buffers_source = {
@@ -28,8 +27,6 @@ return {
         end,
       },
     }
-
-    local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
     cmp.setup({
       snippet = {
@@ -55,11 +52,21 @@ return {
           cmp_ultisnips_mappings.jump_backwards(fallback)
         end, { "i", "s" }),
       }),
-      sources = cmp.config.sources({
-        { name = "nvim_lsp" }, -- LSP completion.
-        { name = "ultisnips" }, -- Ultisnip completion.
-        all_open_buffers_source,
-      }),
+      sources = cmp.config.sources(
+        {
+          { name = "nvim_lsp" },
+          { name = "ultisnips" },
+        },
+        {
+          all_open_buffers_source
+        }
+      ),
+      sorting = {
+        comparators = {
+          function(...) return cmp_buffer:compare_locality(...) end,
+          -- The rest of your comparators...
+        }
+      }
     })
 
     -- Set configuration for specific filetype.
