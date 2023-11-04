@@ -1,7 +1,17 @@
 return {
   "nvim-lua/plenary.nvim",
-  -- Auto instert bracket pairs
-  "jiangmiao/auto-pairs",
+  { "rose-pine/neovim", lazy = true },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = function()
+      require("nvim-treesitter.install").update({ with_sync = true })
+    end,
+    config = require("plugins.config.treesitter").setup
+  },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+  },
   -- Work with surrounding brackets/characters
   "tpope/vim-surround",
   -- Comment/Uncomment lines
@@ -12,8 +22,42 @@ return {
   "tpope/vim-rhubarb",
   -- Doing the git
   "tpope/vim-fugitive",
+  {
+    "lewis6991/gitsigns.nvim",
+    config = require("plugins.config.gitsigns").setup,
+  },
   -- Unix helpers
   "tpope/vim-eunuch",
+  {
+    "vim-test/vim-test",
+    requires = "tpope/vim-dispatch",
+    config = function()
+      -- Async test execution
+      --
+      -- CustomStrategy to return focus to current window
+      --
+      -- vim-test/vim-test/issues/448
+      -- function! CustomStrategy(cmd)
+      --   execute 'bel 10 new'
+      --   call termopen(a:cmd)
+      --   wincmd p " switch back to last window
+      -- endfunction
+      --
+      -- let test#custom_strategies = {'custom': function('CustomStrategy')}
+      -- let test#strategy = "custom"
+      --
+      -- OR use neotest for lua async strategies
+      -- nvim-neotest/neotest
+      vim.g["test#strategy"] = "neovim"
+    end,
+    keys = {
+      { "<leader>tn", ":TestNearest<cr>", desc = "Test nearest to line" },
+      { "<leader>tf", ":TestFile<cr>",    desc = "Test file" },
+      { "<leader>ta", ":TestSuite<cr>",   desc = "Test all tests" },
+      { "<leader>tl", ":TestLast<cr>",    desc = "Test last test" },
+      { "<leader>gt", ":TestVisit<cr>",   desc = "Go to test" },
+    },
+  },
   {
     "tpope/vim-dispatch",
     config = function()
@@ -47,25 +91,45 @@ return {
   "tpope/vim-projectionist",
   "tpope/vim-rake",
   {
+    "ggandor/leap.nvim",
+    config = function() require("leap").add_default_mappings() end,
+  },
+  {
     "mrjones2014/smart-splits.nvim",
     config = require("plugins.config.smartsplits").config,
   },
-  "AndrewRadev/splitjoin.vim", -- Still need for erb files while not using treesitter on them
   "nvim-tree/nvim-web-devicons",
   {
     "RRethy/nvim-treesitter-endwise",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
-    "folke/trouble.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
+    "nvim-treesitter/nvim-treesitter-context",
+    config = require("plugins.config.nvim_treesitter_context").config
   },
   {
-    "folke/todo-comments.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup({})
-    end,
+    "Wansmer/treesj",
+    keys = {
+      "<space>m",
+      "<space>j",
+      "<space>s",
+    },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function() require("treesj").setup() end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-nvim-lsp",
+      "petertriho/cmp-git",
+      "SirVer/ultisnips",
+      "quangnguyen30192/cmp-nvim-ultisnips",
+      "honza/vim-snippets",
+    },
+    config = require("plugins.config.nvim_cmp").setup
   },
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
@@ -80,19 +144,25 @@ return {
   "honza/vim-snippets",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "jose-elias-alvarez/typescript.nvim",
+    },
+    config = require("plugins.config.lspconfig").setup
+  },
   "jose-elias-alvarez/typescript.nvim",
   "folke/neodev.nvim",
   {
-    "rebelot/kanagawa.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    config = require("plugins.config.nvim_treesitter_context").config
-  },
-  {
-    "rose-pine/neovim",
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope-fzf-native.nvim",
+    },
+    branch = "0.1.x",
+    config = require("plugins.config.telescope").setup
   }
 }
