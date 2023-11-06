@@ -20,12 +20,6 @@ keymap("n", "<leader>q", ":q<cr>", { silent = true })
 -- Save and kill windows with leader
 keymap("n", "<leader>wq", ":wq<cr>", { silent = true })
 
--- Less keystrokes for window navigation
-keymap("n", "<C-h>", "<C-w>h", { silent = true })
-keymap("n", "<C-j>", "<C-w>j", { silent = true })
-keymap("n", "<C-k>", "<C-w>k", { silent = true })
-keymap("n", "<C-l>", "<C-w>l", { silent = true })
-
 -- Cursor reamins in center of the screen when page jumping
 keymap("n", "<C-d>", "<C-d>zz", { silent = true })
 keymap("n", "<C-u>", "<C-u>zz", { silent = true })
