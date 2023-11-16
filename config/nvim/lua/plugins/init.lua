@@ -14,6 +14,7 @@ return {
   },
   -- Work with surrounding brackets/characters
   "tpope/vim-surround",
+  "tpope/vim-abolish",
   -- Comment/Uncomment lines
   "tpope/vim-commentary",
   -- Repeat plugin commands with `.`
