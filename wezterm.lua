@@ -88,6 +88,11 @@ config.visual_bell = {
 config.audible_bell = "Disabled"
 
 config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
+config.hide_tab_bar_if_only_one_tab = true
+config.show_new_tab_button_in_tab_bar = false
+config.window_decorations = "RESIZE"
+
 
 -- and finally, return the configuration to wezterm
 return config
