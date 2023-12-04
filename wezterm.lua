@@ -60,7 +60,33 @@ local function split_nav(resize_or_move, key)
   }
 end
 
+config.leader = {
+  key = 's',
+  mods = 'CTRL',
+}
 config.keys = {
+  {
+    key = 'l',
+    mods = 'LEADER',
+    action = wezterm.action.SplitHorizontal {
+      domain = 'CurrentPaneDomain',
+    },
+  },
+  {
+    key = 'j',
+    mods = 'LEADER',
+    action = wezterm.action.SplitVertical {
+      domain = 'CurrentPaneDomain',
+    },
+  },
+  {
+    key = 's',
+    mods = 'LEADER|CTRL',
+    action = wezterm.action.SendKey {
+      key = 's',
+      mods = 'CTRL',
+    },
+  },
   -- move between split panes
   split_nav("move", "h"),
   split_nav("move", "j"),
