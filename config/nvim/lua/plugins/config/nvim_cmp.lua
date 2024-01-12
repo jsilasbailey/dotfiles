@@ -22,19 +22,19 @@ M.setup = function()
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        vim.fn["UltiSnips#Anon"](args.body)   -- For `ultisnips` users.
+        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
     mapping = cmp.mapping.preset.insert({
       ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-      ["<C-y>"] = cmp.config.disable,   -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ["<C-e>"] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),   -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ["<Tab>"] = cmp.mapping(function(fallback)
         cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
       end, { "i", "s" }),
@@ -47,16 +47,8 @@ M.setup = function()
         { name = "nvim_lsp" },
         { name = "ultisnips" },
       },
-      {
-        all_open_buffers_source
-      }
-    ),
-    sorting = {
-      comparators = {
-        function(...) return cmp_buffer:compare_locality(...) end,
-        -- The rest of your comparators...
-      }
-    }
+      { { name = "buffer" } }
+    )
   })
 
   -- Set configuration for specific filetype.
