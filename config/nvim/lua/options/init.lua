@@ -1,35 +1,33 @@
-vim.o.backup = false
-vim.o.clipboard = 'unnamedplus'
-vim.o.cursorline = true
-vim.o.colorcolumn='80'
-vim.o.mouse = 'a'
+vim.opt.swapfile = false
+vim.opt.backup = false
 
-vim.o.number = true
-vim.o.relativenumber = true
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
 
--- Set highlight on search
-vim.o.hlsearch = false
+vim.opt.clipboard = "unnamedplus"
 
--- Enable break indent
-vim.o.breakindent = true
+vim.opt.wrap = false
+vim.opt.cursorline = true
+vim.opt.colorcolumn="80"
 
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+vim.opt.mouse = "a"
 
--- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeout = true
-vim.o.timeoutlen = 300
+vim.opt.number = true
+vim.opt.relativenumber = true
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.hlsearch = false
 
-vim.o.expandtab = true
-vim.o.shiftround = true
+vim.opt.timeout = true
+vim.opt.timeoutlen = 300
 
--- Window split directions
-vim.o.splitbelow = true
-vim.o.splitright = true
+vim.opt.completeopt = "menuone,noselect"
 
--- COLORS!!!
-vim.o.termguicolors = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.shiftround = true
+
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+vim.opt.termguicolors = true
