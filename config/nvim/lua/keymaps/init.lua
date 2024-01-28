@@ -1,15 +1,6 @@
--- Shorten function name
 local keymap = vim.keymap.set
 
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
-
--- Normal --- Remap for dealing with word wrap
+-- Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
@@ -24,23 +15,17 @@ keymap("n", "<leader>wq", ":wq<cr>", { silent = true })
 keymap("n", "<C-d>", "<C-d>zz", { silent = true })
 keymap("n", "<C-u>", "<C-u>zz", { silent = true })
 
--- Visual --
-
 -- Stay in indent mode
 keymap("v", "<", "<gv", { silent = true })
 keymap("v", ">", ">gv", { silent = true })
 
--- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", { silent = true })
-keymap("v", "<A-k>", ":m .-2<CR>==", { silent = true })
 keymap("v", "p", '"_dP', { silent = true })
 
--- Visual Block --
 -- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", { silent = true })
-keymap("x", "K", ":move '<-2<CR>gv-gv", { silent = true })
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", { silent = true })
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", { silent = true })
+keymap("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
+keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true })
+keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Terminal --
 -- Better terminal navigation
