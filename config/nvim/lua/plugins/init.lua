@@ -1,6 +1,5 @@
 return {
   "nvim-lua/plenary.nvim",
-  { "rose-pine/neovim", lazy = true },
   {
     "nvim-treesitter/nvim-treesitter",
     build = function()
