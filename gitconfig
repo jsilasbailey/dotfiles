@@ -28,7 +28,7 @@
   gpgsign = true
 [user]
   name = Jesse Bailey
-  email = jesse@jsilasbailey.com
+  email = dev@jsilasbailey.com
   signingkey = FD8F583FD8970F92
 [fetch]
   prune = true
