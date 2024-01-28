@@ -108,6 +108,7 @@ M.setup = function()
   -- textDocument/diagnostic support not until nvim 0.10.0 is released
   -- Until then we are using solargraph again which is working better than ruby_ls anyway
   lsp_config.solargraph.setup({
+    cmd = { "bin/solargraph", "stdio" },
     on_attach = on_lsp_attach,
     capabilities = capabilities
   })
