@@ -1,17 +1,5 @@
 M = {}
 M.setup = function()
-  -- FIXME: Make it work
-  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-  parser_config.embedded_template = {
-    install_info = {
-      url = "https://github.com/tree-sitter/tree-sitter-embedded-template",
-      files = { "src/parser.c" },
-      branch = "main",
-      requires_generate_from_grammar = false,
-    },
-    used_by = "eruby"
-  }
-
   require("nvim-treesitter.configs").setup({
     ensure_installed = {
       "lua",
@@ -49,7 +37,9 @@ M.setup = function()
       -- Instead of true it can also be a list of languages
       additional_vim_regex_highlighting = {},
     },
-    indent = { enable = true },
+    indent = {
+      enable = true,
+    },
     endwise = {
       enable = true,
     },
