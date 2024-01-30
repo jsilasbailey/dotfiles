@@ -20,7 +20,6 @@
   "nvim-treesitter-endwise": { "branch": "master", "commit": "4c344ffc8d54d7e1ba2cefaaa2c10ea93aa1cc2d" },
   "nvim-web-devicons": { "branch": "master", "commit": "5de460ca7595806044eced31e3c36c159a493857" },
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
-  "smart-splits.nvim": { "branch": "master", "commit": "c8a9173d70cbbd1f6e4a414e49e31df2b32a1362" },
   "rose-pine": { "branch": "main", "commit": "9d7474f80afe2f0cfcb4fabfc5451f509d844b85" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "7011eaae0ac1afe036e30c95cf80200b8dc3f21a" },
@@ -40,5 +39,6 @@
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "vim-snippets": { "branch": "master", "commit": "b039190177d97a968d80518470910aae7faf182a" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
-  "vim-test": { "branch": "master", "commit": "c83d5dffa054ac4663aea1eb7374f638b0462510" }
+  "vim-test": { "branch": "master", "commit": "c83d5dffa054ac4663aea1eb7374f638b0462510" },
+  "vim-tmux-navigator": { "branch": "master", "commit": "38b1d0402c4600543281dc85b3f51884205674b6" }
 }
