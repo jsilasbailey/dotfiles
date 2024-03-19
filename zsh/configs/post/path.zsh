@@ -11,12 +11,6 @@ elif command -v brew &> /dev/null &&
   . "$BREW_ASDF_DIR/libexec/asdf.sh"
 fi
 
-# Add the global yarn bin to $PATH
-if command -v yarn &> /dev/null
-then
-  export PATH="$(yarn global bin):$PATH"
-fi
-
 # mkdir .git/safe in the root of repositories you trust
 PATH=".git/safe/../../bin:$PATH"
 
