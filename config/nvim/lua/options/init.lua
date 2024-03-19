@@ -6,7 +6,7 @@ vim.opt.undofile = true
 
 vim.opt.clipboard = "unnamedplus"
 
-vim.opt.wrap = false
+vim.opt.breakindent = true
 vim.opt.cursorline = true
 vim.opt.colorcolumn="80"
 
