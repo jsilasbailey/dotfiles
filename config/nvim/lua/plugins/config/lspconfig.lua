@@ -148,7 +148,6 @@ M.setup = function()
     on_attach = on_lsp_attach,
     filetypes = {
       "markdown",
-      "gitcommit",
     }
   })
 
