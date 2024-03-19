@@ -1,14 +1,17 @@
 M = {}
+
 M.setup = function()
   -- TODO: Extract concerns to different plugin configs
 
   require("mason").setup()
   require("mason-lspconfig").setup({
     ensure_installed = {
-      "eslint",
+      "bashls",
+      "gopls",
       "lua_ls",
       "marksman",
       "rust_analyzer",
+      "solargraph",
       "tailwindcss",
       "tsserver",
     },
@@ -104,28 +107,30 @@ M.setup = function()
     capabilities = capabilities,
   })
 
-  -- ruby_ls
-  -- textDocument/diagnostic support not until nvim 0.10.0 is released
-  -- Until then we are using solargraph again which is working better than ruby_ls anyway
   lsp_config.solargraph.setup({
     cmd = { "bin/solargraph", "stdio" },
     on_attach = on_lsp_attach,
     capabilities = capabilities
   })
 
-  require("typescript").setup({
-    server = {
-      capabilities = capabilities,
-      on_attach = function(client, bufnr)
-        vim.api.nvim_buf_create_user_command(bufnr, "LspOrganizeImports", "TypescriptOrganizeImports", {})
-        vim.api.nvim_buf_create_user_command(bufnr, "LspAddMissingImports", "TypescriptAddMissingImports", {})
-        vim.api.nvim_buf_create_user_command(bufnr, "LspFixAll", "TypescriptFixAll", {})
-        vim.api.nvim_buf_create_user_command(bufnr, "LspRemoveUnused", "TypescriptRemoveUnused", {})
-        vim.api.nvim_buf_create_user_command(bufnr, "LspRenameFile", "TypescriptRenameFile", {})
+  lsp_config.dockerls.setup({
+    capabilities = capabilities,
+    on_attach = on_lsp_attach,
+  })
 
-        on_lsp_attach(client, bufnr)
-      end,
-    },
+  lsp_config.docker_compose_language_service.setup({
+    capabilities = capabilities,
+    on_attach = on_lsp_attach,
+  })
+
+  lsp_config.bashls.setup({
+    capabilities = capabilities,
+    on_attach = on_lsp_attach,
+  })
+
+  lsp_config.tsserver.setup({
+    capabilities = capabilities,
+    on_attach = on_lsp_attach,
   })
 
   lsp_config.tailwindcss.setup({
@@ -150,14 +155,6 @@ M.setup = function()
       "markdown",
     }
   })
-
-  lsp_config.eslint.setup({
-    on_attach = on_lsp_attach,
-    capabilities = capabilities,
-    filetypes = {
-      "javascript",
-      "typescript"
-    }
-  })
 end
+
 return M
