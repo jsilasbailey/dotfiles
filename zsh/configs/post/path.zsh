@@ -11,6 +11,10 @@ elif command -v brew &> /dev/null &&
   . "$BREW_ASDF_DIR/libexec/asdf.sh"
 fi
 
+if command -v go &> /dev/null; then
+  export PATH=$PATH:$(go env GOPATH)/bin
+fi
+
 # mkdir .git/safe in the root of repositories you trust
 PATH=".git/safe/../../bin:$PATH"
 
