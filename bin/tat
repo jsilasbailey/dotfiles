@@ -1,9 +1,20 @@
 #!/bin/sh
 #
-# Attach or create tmux session named the same as current directory.
+# Attach or create tmux session in the directory of arg 1 or select via fzf
+# where to go
 
-path_name="$(basename "$PWD" | tr . -)"
-session_name=${1-$path_name}
+if [ $# -eq 1 ]; then
+    selected=$1
+else
+    # TODO: How to make this repo independent? ENV option? What's the default?
+    selected=$(find ~/Coding -mindepth 1 -maxdepth 2 -type d | fzf)
+fi
+
+if [ -z "$selected" ]; then
+    exit 0
+fi
+
+session_name=$(basename "$selected" | tr . _)
 
 not_in_tmux() {
   [ -z "$TMUX" ]
@@ -14,12 +25,12 @@ session_exists() {
 }
 
 create_detached_session() {
-  (TMUX='' tmux new-session -Ad -s "$session_name")
+  (TMUX='' tmux new-session -Ad -s "$session_name" -c "$selected")
 }
 
 create_if_needed_and_attach() {
   if not_in_tmux; then
-    tmux new-session -As "$session_name"
+    tmux new-session -As "$session_name" -c "$selected"
   else
     if ! session_exists; then
       create_detached_session
