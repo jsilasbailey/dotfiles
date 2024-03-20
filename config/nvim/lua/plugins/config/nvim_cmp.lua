@@ -2,9 +2,9 @@ M = {}
 
 M.setup = function()
   local cmp = require("cmp")
-  local cmp_buffer = require("cmp_buffer")
-  local cmp_git = require("cmp_git")
+  -- TODO: Change to luasnip? Learn how to build your own snippets.
   local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+  local cmp_git = require("cmp_git")
 
   cmp_git.setup()
 
@@ -29,6 +29,7 @@ M.setup = function()
       ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+      -- TODO: Use this
       ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ["<C-e>"] = cmp.mapping({
         i = cmp.mapping.abort(),
