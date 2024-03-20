@@ -1,10 +1,25 @@
-# Load .env file into shell session for environment variables
-
+# Export .env file style file into the current environment
 function envup() {
-  if [ -f .env ]; then
-    export $(sed '/^ *#/ d' .env)
-  else
-    echo 'No .env file found' 1>&2
-    return 1
-  fi
+    if [ $# -eq 0 ]; then
+        echo "Usage: envup <path_to_env_file>"
+        return 1
+    fi
+
+    local env_file="$1"
+
+    if [ ! -f "$env_file" ]; then
+        echo "Error: File not found!"
+        return 1
+    fi
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        if [[ $line =~ ^\# ]] || [[ -z $line ]]; then
+            continue
+        fi
+
+        # Use eval to correctly handle values with spaces or special characters
+        eval export $line
+    done < "$env_file"
+
+    echo "Environment variables have been exported."
 }
