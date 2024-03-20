@@ -24,12 +24,16 @@
 [merge "gemfilelock"]
   name = relocks Gemfile.lock
   driver = bundle install
-[commit]
-  gpgsign = true
 [user]
   name = Jesse Bailey
   email = dev@jsilasbailey.com
-  signingkey = FD8F583FD8970F92
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqwkf2A3zoUnJza2hUaDSHpb+Vwg/iIw8s9iUq/czAN
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[commit]
+  gpgsign = true
 [fetch]
   prune = true
 [rebase]
