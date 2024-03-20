@@ -17,4 +17,5 @@ rerun.txt
 tmp/**/*
 /tags
 todo.txt
+todo.md
 done.txt
