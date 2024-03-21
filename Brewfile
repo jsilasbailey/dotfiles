@@ -18,7 +18,6 @@ brew "spotify-tui"
 brew "starship"
 brew "thoughtbot/formulae/rcm"
 brew "tmux"
-brew "vale"
 brew "wget"
 brew "zsh-completions"
 
