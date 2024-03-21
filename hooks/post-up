@@ -1,8 +1,7 @@
 #!/bin/sh
 
+echo "Updating nvim plugins" >&2
 nvim --headless +Lazy!install +Lazy!clean +qa
-
-reset -Q
 
 if [ -f "$HOME/.git_template/HEAD" ] && \
   [ "$(cat "$HOME/.git_template/HEAD")" = "ref: refs/heads/main" ]; then
