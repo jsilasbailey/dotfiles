@@ -170,25 +170,3 @@ set smartcase
 
 " Netrw settings
 let g:netrw_banner = 0
-
-" WP for word processor
-" Sets up an ideal word processing env in vim
-func! WordProcessor()
-  " movement changes
-  map j gj
-  map k gk
-
-  " formatting text
-  setlocal formatoptions=1
-  setlocal noexpandtab
-  setlocal wrap
-  setlocal linebreak
-
-  " spelling and thesaurus
-  set thesaurus+=/Users/jbailey/.vim/thesaurus/mthesaur.txt
-
-  " complete+=s makes autocompletion search the thesaurus
-  set complete+=s
-endfu
-
-com! WP call WordProcessor()

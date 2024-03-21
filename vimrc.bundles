@@ -10,97 +10,6 @@ function! s:UnPlug(plug_name)
 endfunction
 command!  -nargs=1 UnPlug call s:UnPlug(<args>)
 
-call plug#begin('~/.vim/bundle')
-
-" Define bundles via Github repos
-Plug 'christoomey/vim-run-interactive'
-
-Plug 'pangloss/vim-javascript'
-Plug 'pbrisbin/vim-mkdir'
-Plug 'slim-template/vim-slim'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-eunuch'
-Plug 'https://github.com/tpope/vim-dispatch'
-
-Plug 'tpope/vim-fugitive'
-
-" Set tags for vim-fugitive
-set tags^=.git/tags
-
-" Remove fugitive buffers when done
-autocmd BufReadPost fugitive://* set bufhidden=delete
-
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-
-Plug 'vim-ruby/vim-ruby'
-" Get vim-ruby to play nice with standardrb
-let g:ruby_indent_assignment_style = 'variable'
-
-" Rust
-Plug 'rust-lang/rust.vim'
-let g:rustfmt_autosave = 1
-
-"Use sneak for locomotion
-Plug 'justinmk/vim-sneak'
-
-" Themes
-Plug 'https://github.com/joshdick/onedark.vim'
-
-" Use the golden ratio for auto sizing windows when jumping between them
-Plug 'roman/golden-ratio'
-
-" Golden ratio settings
-let g:golden_ratio_autocommand = 0
-nnoremap <C-w><C-r> :GoldenRatioResize<CR>
-
-" Git gutter
-Plug 'airblade/vim-gitgutter', { 'branch': 'main' }
-
-" Markdown
-Plug 'godlygeek/tabular'
-
-Plug 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled = 1
-
-Plug 'JamshedVesuna/vim-markdown-preview'
-let vim_markdown_preview_github=1
-let vim_markdown_preview_hotkey='<leader>p'
-
-" TOML
-Plug 'cespare/vim-toml', { 'branch': 'main' }
-
-" Typescript and JSX
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-
-" set filetypes as typescriptreact
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
-
-" Liquid
-Plug 'tpope/vim-liquid'
-
-" Auto insert matching "bracket" characters
-Plug 'jiangmiao/auto-pairs'
-
-" Split single line args into multiline
-Plug 'AndrewRadev/splitjoin.vim'
-
-" No hanging args for splitjoin-ruby
-let g:splitjoin_ruby_hanging_args = 0
-let g:splitjoin_ruby_curly_braces = 0
-
-" Emmet style tag generation in vim
-Plug 'mattn/emmet-vim'
-
-Plug 'romainl/vim-devdocs'
-
 function! s:SourceConfigFilesIn(directory)
   let directory_splat = '~/.vim/' . a:directory . '/*'
 
@@ -111,6 +20,18 @@ function! s:SourceConfigFilesIn(directory)
   endfor
 endfunction
 
+call plug#begin('~/.vim/bundle')
+
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'joshdick/onedark.vim'
+
 call s:SourceConfigFilesIn('rcplugins')
+
+" Remove fugitive buffers when done
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 call plug#end()
