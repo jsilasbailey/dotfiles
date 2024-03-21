@@ -90,8 +90,6 @@ return {
   -- Rake/Rails navigation and help
   "tpope/vim-rails",
   "tpope/vim-bundler",
-  -- Generate ctags for bundled gems
-  "tpope/gem-ctags",
   "tpope/vim-projectionist",
   "tpope/vim-rake",
   {

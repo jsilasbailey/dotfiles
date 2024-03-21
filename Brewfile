@@ -1,7 +1,6 @@
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "thoughtbot/formulae"
-tap "universal-ctags/universal-ctags"
 
 brew "asdf"
 brew "exa"
@@ -19,7 +18,6 @@ brew "spotify-tui"
 brew "starship"
 brew "thoughtbot/formulae/rcm"
 brew "tmux"
-brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "vale"
 brew "wget"
 brew "zsh-completions"
