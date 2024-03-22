@@ -20,10 +20,17 @@ return {
   -- Work with surrounding brackets/characters
   "tpope/vim-surround",
   "tpope/vim-abolish",
+  -- Rake/Rails navigation and help
+  "tpope/vim-rails",
+  "tpope/vim-bundler",
+  "tpope/vim-projectionist",
+  "tpope/vim-rake",
   -- Comment/Uncomment lines
   "tpope/vim-commentary",
   -- Repeat plugin commands with `.`
   "tpope/vim-repeat",
+  -- Unix helpers
+  "tpope/vim-eunuch",
   -- Doing the git
   "tpope/vim-fugitive",
   {
@@ -32,8 +39,6 @@ return {
       require("gitsigns").setup()
     end,
   },
-  -- Unix helpers
-  "tpope/vim-eunuch",
   {
     "tpope/vim-dispatch",
     config = function()
@@ -92,11 +97,6 @@ return {
       { "<leader>gt", ":TestVisit<cr>",   desc = "Go to test" },
     },
   },
-  -- Rake/Rails navigation and help
-  "tpope/vim-rails",
-  "tpope/vim-bundler",
-  "tpope/vim-projectionist",
-  "tpope/vim-rake",
   {
     "ggandor/leap.nvim",
     config = function() require("leap").add_default_mappings() end,
@@ -135,37 +135,26 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
-      "petertriho/cmp-git",
       "SirVer/ultisnips",
       "quangnguyen30192/cmp-nvim-ultisnips",
       "honza/vim-snippets",
+      {
+        "petertriho/cmp-git",
+        dependencies = "nvim-lua/plenary.nvim",
+      },
     },
     config = require("plugins.config.nvim_cmp").setup
   },
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-path",
-  "hrsh7th/cmp-cmdline",
-  "hrsh7th/cmp-nvim-lsp",
-  {
-    "petertriho/cmp-git",
-    dependencies = "nvim-lua/plenary.nvim",
-  },
-  "SirVer/ultisnips",
-  "quangnguyen30192/cmp-nvim-ultisnips",
-  "honza/vim-snippets",
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "jose-elias-alvarez/typescript.nvim",
+      "folke/neodev.nvim"
     },
     config = require("plugins.config.lspconfig").setup
   },
-  "jose-elias-alvarez/typescript.nvim",
-  "folke/neodev.nvim",
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
