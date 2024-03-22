@@ -126,7 +126,7 @@ return {
       "<space>s",
     },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function() require("treesj").setup() end,
+    opts = {},
   },
   {
     "hrsh7th/nvim-cmp",
