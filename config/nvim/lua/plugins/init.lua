@@ -9,6 +9,14 @@ return {
     end,
     config = require("plugins.config.treesitter").setup
   },
+  {
+    "RRethy/nvim-treesitter-endwise",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    config = require("plugins.config.nvim_treesitter_context").config
+  },
   -- Work with surrounding brackets/characters
   "tpope/vim-surround",
   "tpope/vim-abolish",
@@ -109,14 +117,6 @@ return {
       { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
-  },
-  {
-    "RRethy/nvim-treesitter-endwise",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    config = require("plugins.config.nvim_treesitter_context").config
   },
   {
     "Wansmer/treesj",
