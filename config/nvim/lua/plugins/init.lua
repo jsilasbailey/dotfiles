@@ -31,12 +31,14 @@ return {
       -- Formatting --
       -- Temporary
       -- rubocop for ruby files
+      -- TODO: Integrate better formatting solutions
       vim.api.nvim_create_user_command(
         "RubocopFixProject",
         "Dispatch! bundle exec rubocop -A",
         { desc = "Run rubocop on the project" }
       )
 
+      -- TODO: Integrate better formatting solutions
       vim.api.nvim_create_user_command(
         "PrettierFile",
         "Dispatch! prettier -w %",
