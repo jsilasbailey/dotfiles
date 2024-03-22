@@ -26,6 +26,31 @@ return {
   -- Unix helpers
   "tpope/vim-eunuch",
   {
+    "tpope/vim-dispatch",
+    config = function()
+      -- Formatting --
+      -- Temporary
+      -- rubocop for ruby files
+      vim.api.nvim_create_user_command(
+        "RubocopFixProject",
+        "Dispatch! bundle exec rubocop -A",
+        { desc = "Run rubocop on the project" }
+      )
+
+      vim.api.nvim_create_user_command(
+        "PrettierFile",
+        "Dispatch! prettier -w %",
+        { desc = "Run prettier on the current file" }
+      )
+
+      vim.api.nvim_create_user_command(
+        "DashWord",
+        "Dispatch! open dash://<cword>",
+        { desc = "Open the word under the cursor in Dash" }
+      )
+    end
+  },
+  {
     "vim-test/vim-test",
     requires = "tpope/vim-dispatch",
     config = function()
@@ -55,31 +80,6 @@ return {
       { "<leader>tl", ":TestLast<cr>",    desc = "Test last test" },
       { "<leader>gt", ":TestVisit<cr>",   desc = "Go to test" },
     },
-  },
-  {
-    "tpope/vim-dispatch",
-    config = function()
-      -- Formatting --
-      -- Temporary
-      -- rubocop for ruby files
-      vim.api.nvim_create_user_command(
-        "RubocopFixProject",
-        "Dispatch! bundle exec rubocop -A",
-        { desc = "Run rubocop on the project" }
-      )
-
-      vim.api.nvim_create_user_command(
-        "PrettierFile",
-        "Dispatch! prettier -w %",
-        { desc = "Run prettier on the current file" }
-      )
-
-      vim.api.nvim_create_user_command(
-        "DashWord",
-        "Dispatch! open dash://<cword>",
-        { desc = "Open the word under the cursor in Dash" }
-      )
-    end
   },
   -- Rake/Rails navigation and help
   "tpope/vim-rails",
