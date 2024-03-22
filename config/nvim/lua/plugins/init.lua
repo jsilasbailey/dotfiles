@@ -1,5 +1,6 @@
 return {
   "nvim-lua/plenary.nvim",
+  "nvim-tree/nvim-web-devicons",
   {
     "nvim-treesitter/nvim-treesitter",
     tag = "v0.9.2",
@@ -109,7 +110,6 @@ return {
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
-  "nvim-tree/nvim-web-devicons",
   {
     "RRethy/nvim-treesitter-endwise",
     dependencies = "nvim-treesitter/nvim-treesitter",
