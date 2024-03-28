@@ -182,5 +182,20 @@ return {
       vim.keymap.set('x', '<TAB>', '<Plug>(doge-comment-jump-forward)')
       vim.keymap.set('x', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
     end
+  },
+  {
+    "folke/zen-mode.nvim",
+    keys = {
+      { "<leader>z", ":ZenMode<CR>" },
+    },
+    opts = {
+      plugins = {
+        tmux = { enabled = true },
+        options = {
+          enabled = true,
+          colorcolumn = false
+        }
+      }
+    }
   }
 }
