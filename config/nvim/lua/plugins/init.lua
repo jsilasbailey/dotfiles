@@ -17,6 +17,8 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     config = require("plugins.config.nvim_treesitter_context").config
   },
+  -- Adjust 'shiftwidth' and 'expandtab' heuristically based on the current file
+  "tpope/vim-sleuth",
   -- Work with surrounding brackets/characters
   "tpope/vim-surround",
   "tpope/vim-abolish",
