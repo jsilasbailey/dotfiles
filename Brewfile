@@ -3,7 +3,7 @@ tap "homebrew/cask-fonts"
 tap "thoughtbot/formulae"
 
 brew "asdf"
-brew "exa"
+brew "eza"
 brew "fzf"
 brew "gh"
 brew "git-delta"
