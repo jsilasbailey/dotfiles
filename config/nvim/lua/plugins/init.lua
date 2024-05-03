@@ -7,7 +7,7 @@ return {
     build = function()
       require("nvim-treesitter.install").update({ with_sync = true })
     end,
-    config = require("plugins.config.treesitter").setup
+    config = require("plugins.config.treesitter").setup,
   },
   {
     "RRethy/nvim-treesitter-endwise",
@@ -15,7 +15,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    config = require("plugins.config.nvim_treesitter_context").config
+    config = require("plugins.config.nvim_treesitter_context").config,
   },
   -- Adjust 'shiftwidth' and 'expandtab' heuristically based on the current file
   "tpope/vim-sleuth",
@@ -44,29 +44,43 @@ return {
   {
     "tpope/vim-dispatch",
     config = function()
-      -- Formatting --
-      -- Temporary
-      -- rubocop for ruby files
-      -- TODO: Integrate better formatting solutions
-      vim.api.nvim_create_user_command(
-        "RubocopFixProject",
-        "Dispatch! bundle exec rubocop -A",
-        { desc = "Run rubocop on the project" }
-      )
-
-      -- TODO: Integrate better formatting solutions
-      vim.api.nvim_create_user_command(
-        "PrettierFile",
-        "Dispatch! prettier -w %",
-        { desc = "Run prettier on the current file" }
-      )
-
       vim.api.nvim_create_user_command(
         "DashWord",
         "Dispatch! open dash://<cword>",
         { desc = "Open the word under the cursor in Dash" }
       )
-    end
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    desc = "Smarter formatting control using formatting fallbacks and formatting smaller sections of the buffer via LSP",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      {
+        "<leader>f",
+        function()
+          require("conform").format({
+            async = true,
+            lsp_fallback = true,
+          })
+        end,
+        mode = "",
+        desc = "[F]ormat buffer",
+      },
+    },
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        javascript = { { "prettierd", "prettier" } },
+        typescript = { { "prettierd", "prettier" } },
+        typescriptreact = { { "prettierd", "prettier" } },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+    },
   },
   {
     "vim-test/vim-test",
@@ -93,15 +107,17 @@ return {
     end,
     keys = {
       { "<leader>tn", ":TestNearest<cr>", desc = "Test nearest to line" },
-      { "<leader>tf", ":TestFile<cr>",    desc = "Test file" },
-      { "<leader>ta", ":TestSuite<cr>",   desc = "Test all tests" },
-      { "<leader>tl", ":TestLast<cr>",    desc = "Test last test" },
-      { "<leader>gt", ":TestVisit<cr>",   desc = "Go to test" },
+      { "<leader>tf", ":TestFile<cr>", desc = "Test file" },
+      { "<leader>ta", ":TestSuite<cr>", desc = "Test all tests" },
+      { "<leader>tl", ":TestLast<cr>", desc = "Test last test" },
+      { "<leader>gt", ":TestVisit<cr>", desc = "Go to test" },
     },
   },
   {
     "ggandor/leap.nvim",
-    config = function() require("leap").add_default_mappings() end,
+    config = function()
+      require("leap").add_default_mappings()
+    end,
   },
   {
     "christoomey/vim-tmux-navigator",
@@ -113,10 +129,10 @@ return {
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
@@ -145,7 +161,7 @@ return {
         dependencies = "nvim-lua/plenary.nvim",
       },
     },
-    config = require("plugins.config.nvim_cmp").setup
+    config = require("plugins.config.nvim_cmp").setup,
   },
   {
     "neovim/nvim-lspconfig",
@@ -153,9 +169,9 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "jose-elias-alvarez/typescript.nvim",
-      "folke/neodev.nvim"
+      "folke/neodev.nvim",
     },
-    config = require("plugins.config.lspconfig").setup
+    config = require("plugins.config.lspconfig").setup,
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -167,23 +183,23 @@ return {
       },
     },
     branch = "0.1.x",
-    config = require("plugins.config.telescope").setup
+    config = require("plugins.config.telescope").setup,
   },
   {
     "kkoomen/vim-doge",
     build = ":call doge#install()",
     config = function()
       -- Generate comment for current line
-      vim.keymap.set('n', '<Leader>dg', '<Plug>(doge-generate)')
+      vim.keymap.set("n", "<Leader>dg", "<Plug>(doge-generate)")
 
       -- Interactive mode comment todo-jumping
-      vim.keymap.set('n', '<TAB>', '<Plug>(doge-comment-jump-forward)')
-      vim.keymap.set('n', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
-      vim.keymap.set('i', '<TAB>', '<Plug>(doge-comment-jump-forward)')
-      vim.keymap.set('i', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
-      vim.keymap.set('x', '<TAB>', '<Plug>(doge-comment-jump-forward)')
-      vim.keymap.set('x', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
-    end
+      vim.keymap.set("n", "<TAB>", "<Plug>(doge-comment-jump-forward)")
+      vim.keymap.set("n", "<S-TAB>", "<Plug>(doge-comment-jump-backward)")
+      vim.keymap.set("i", "<TAB>", "<Plug>(doge-comment-jump-forward)")
+      vim.keymap.set("i", "<S-TAB>", "<Plug>(doge-comment-jump-backward)")
+      vim.keymap.set("x", "<TAB>", "<Plug>(doge-comment-jump-forward)")
+      vim.keymap.set("x", "<S-TAB>", "<Plug>(doge-comment-jump-backward)")
+    end,
   },
   {
     "folke/zen-mode.nvim",
@@ -195,9 +211,9 @@ return {
         tmux = { enabled = true },
         options = {
           enabled = true,
-          colorcolumn = false
-        }
-      }
-    }
-  }
+          colorcolumn = false,
+        },
+      },
+    },
+  },
 }

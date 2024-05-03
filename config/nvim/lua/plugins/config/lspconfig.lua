@@ -78,7 +78,6 @@ M.setup = function()
 
     if client.supports_method("textDocument/formatting") then
       vim.api.nvim_buf_create_user_command(bufnr, "LspFormat", filtered_formatting, {})
-      vim.keymap.set("n", "<leader>f", ":LspFormat<cr>", opts)
     end
 
     if client.supports_method("textDocument/rangeFormatting") then
