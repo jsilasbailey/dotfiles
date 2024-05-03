@@ -5,49 +5,64 @@ set -e
 HOMEBREW_INSTALL_SCRIPT="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 RUST_INSTALL_SCRIPT="https://sh.rustup.rs"
 
-# TODO: Make idempotent
-# TODO: ASDF for ruby/python/node
-# TODO: Install go as well for go tools I'm building
-
 install_homebrew() {
-  /bin/bash -c "$(curl -fsSL $HOMEBREW_INSTALL_SCRIPT)"
+  if command -v brew &> /dev/null; then
+    echo "Homebrew already installed"	
+  else
+    echo "Installing Homebrew"	
+    /bin/bash -c "$(curl -fsSL $HOMEBREW_INSTALL_SCRIPT)"
+  fi
 }
 
 install_rust() {
-  curl --proto '=https' --tlsv1.2 -sSf "$RUST_INSTALL_SCRIPT" | sh
+  if command -v rustc &> /dev/null; then
+    echo "Rust already installed"	
+  else
+    echo "Installing Rust"	
+    curl --proto '=https' --tlsv1.2 -sSf "$RUST_INSTALL_SCRIPT" | sh
+  fi
 }
 
 install_rcm() {
-  brew install rcm
+  if command -v rcup &> /dev/null; then
+    echo "rcm already installed"	
+  else
+    echo "Installing rcm"	
+    brew install rcm
+  fi
 }
 
 dotfiles_config_up() {
-  rcup rcrc
+  rcup -v rcrc
 }
 
 brewfile_up() {
-  rcup Brewfile
+  rcup -v Brewfile
 }
 
 brew_bundle_up() {
   brew bundle install
 }
 
+install_nvim_dependencies() {
+  asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+  asdf plugin add python https://github.com/asdf-community/asdf-python
+  asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+
+  rcup -v tool-versions
+
+  asdf install
+
+  python3 -m pip install --user --upgrade pynvim
+  gem install neovim
+  npm install -g neovim
+}
+
 dotfiles_all_up() {
   rcup -v
 }
 
-# 1. Install latest `python3` and `nodejs` LTS using asdf
-#     - `asdf plugin add python`
-#     - `asdf plugin add nodejs`
-#     - `rcup tool-versions`
-#     - `asdf install`
-# 1. Install python3 and nodejs providers for neovim
-#     - See `:checkhealth provider` in `neovim`
-#     - `pip3 install --user --upgrade pynvim`
-#     - `npm install -g neovim`
-# 1. Symlink the rest of the dotfiles
-#     - `rcup -v`
 main() {
   install_homebrew
   install_rust
@@ -55,6 +70,7 @@ main() {
   dotfiles_config_up
   brewfile_up
   brew_bundle_up
+  install_nvim_dependencies
   dotfiles_all_up
 }
 
