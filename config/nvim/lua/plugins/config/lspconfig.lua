@@ -86,8 +86,6 @@ M.setup = function()
 
     if client.supports_method("textDocument/references") then
       vim.api.nvim_buf_create_user_command(bufnr, "LspReferences", vim.lsp.buf.references, {})
-      -- TODO: Move to trouble config
-      vim.keymap.set("n", "gR", ":TroubleToggle lsp_references<cr>", { buffer = bufnr })
     end
 
     -- FIXME: Range actions not working in TS?
