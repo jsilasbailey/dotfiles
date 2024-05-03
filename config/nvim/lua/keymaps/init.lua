@@ -1,8 +1,8 @@
 local keymap = vim.keymap.set
 
 -- Remap for dealing with word wrap
-keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Save with leader
 keymap("n", "<leader>w", ":w<cr>", { silent = true })
@@ -32,7 +32,6 @@ keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
 -- Windows
 keymap("n", "<A-l>", "10<C-w><", { silent = true })
 keymap("n", "<A-h>", "10<C-w>>", { silent = true })
-
 
 -- Terminal --
 -- Better terminal navigation
