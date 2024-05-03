@@ -66,24 +66,6 @@ M.setup = function()
       vim.api.nvim_buf_create_user_command(bufnr, "LspDocumentSymbols", vim.lsp.buf.document_symbol, {})
     end
 
-    local filtered_formatting = function()
-      vim.lsp.buf.format({
-        -- TODO: Depend on abstractions not concretions
-        filter = function(ls_client)
-          return ls_client.name ~= "tsserver"
-        end,
-        bufnr = bufnr,
-      })
-    end
-
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_buf_create_user_command(bufnr, "LspFormat", filtered_formatting, {})
-    end
-
-    if client.supports_method("textDocument/rangeFormatting") then
-      vim.keymap.set("v", "<leader>f", filtered_formatting, opts)
-    end
-
     if client.supports_method("textDocument/references") then
       vim.api.nvim_buf_create_user_command(bufnr, "LspReferences", vim.lsp.buf.references, {})
     end
@@ -107,7 +89,7 @@ M.setup = function()
   lsp_config.solargraph.setup({
     cmd = { "bin/solargraph", "stdio" },
     on_attach = on_lsp_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
   })
 
   lsp_config.dockerls.setup({
@@ -150,7 +132,7 @@ M.setup = function()
     on_attach = on_lsp_attach,
     filetypes = {
       "markdown",
-    }
+    },
   })
 end
 
