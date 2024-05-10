@@ -3,136 +3,127 @@ M = {}
 M.setup = function()
   -- TODO: Extract concerns to different plugin configs
 
-  require("mason").setup()
-  require("mason-lspconfig").setup({
-    ensure_installed = {
-      "bashls",
-      "gopls",
-      "lua_ls",
-      "marksman",
-      "rust_analyzer",
-      "solargraph",
-      "tailwindcss",
-      "tsserver",
-    },
-  })
-
   local lsp_config = require("lspconfig")
+  require("mason").setup()
 
-  local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-  local capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilities)
-
-  local create_lsp_user_commands = function(client, bufnr)
-    local opts = { buffer = bufnr }
-
-    vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticLine", vim.diagnostic.open_float, {})
-    vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticNext", vim.diagnostic.goto_next, {})
-    vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticPrev", vim.diagnostic.goto_prev, {})
-    vim.api.nvim_buf_create_user_command(bufnr, "LspDiagnosticSetLoclist", vim.diagnostic.setloclist, {})
-    vim.keymap.set("n", "<leader>d", ":LspDiagnosticLine<cr>", opts)
-    vim.keymap.set("n", "[d", ":LspDiagnosticPrev<cr>", opts)
-    vim.keymap.set("n", "]d", ":LspDiagnosticNext<cr>", opts)
-
-    if client.supports_method("textDocument/codeAction") then
-      vim.api.nvim_buf_create_user_command(bufnr, "LspCodeAction", vim.lsp.buf.code_action, {})
-      vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
-    end
-
-    if client.supports_method("textDocument/definition") then
-      vim.api.nvim_buf_create_user_command(bufnr, "LspDefintion", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "gd", ":LspDefintion<cr>", opts)
-    end
-
-    if client.supports_method("textDocument/implementation") then
-      vim.api.nvim_buf_create_user_command(bufnr, "LspImplementation", vim.lsp.buf.implementation, {})
-      vim.keymap.set("n", "gi", ":LspImplementation<cr>", opts)
-    end
-
-    if client.supports_method("textDocument/typeDefinition") then
-      vim.api.nvim_buf_create_user_command(bufnr, "LspTypeDefinition", vim.lsp.buf.type_definition, {})
-      vim.keymap.set("n", "gy", ":LspTypeDefinition<cr>", opts)
-    end
-
-    if client.supports_method("textDocument/hover") then
-      vim.api.nvim_buf_create_user_command(bufnr, "LspHover", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "K", ":LspHover<cr>", opts)
-    end
-
-    if client.supports_method("textDocument/signatureHelp") then
-      vim.api.nvim_buf_create_user_command(bufnr, "LspSignatureHelp", vim.lsp.buf.signature_help, {})
-    end
-
-    if client.supports_method("textDocument/documentSymbols") then
-      vim.api.nvim_buf_create_user_command(bufnr, "LspDocumentSymbols", vim.lsp.buf.document_symbol, {})
-    end
-
-    if client.supports_method("textDocument/references") then
-      vim.api.nvim_buf_create_user_command(bufnr, "LspReferences", vim.lsp.buf.references, {})
-    end
-
-    -- FIXME: Range actions not working in TS?
-    if client.supports_method("textDocument/rename") then
-      vim.api.nvim_buf_create_user_command(bufnr, "LspRename", vim.lsp.buf.rename, {})
-    end
-  end
-
-  local on_lsp_attach = function(client, bufnr)
-    create_lsp_user_commands(client, bufnr)
-  end
-
-  require("neodev").setup({})
-  lsp_config.lua_ls.setup({
-    on_attach = on_lsp_attach,
-    capabilities = capabilities,
-  })
-
-  lsp_config.solargraph.setup({
-    cmd = { "bin/solargraph", "stdio" },
-    on_attach = on_lsp_attach,
-    capabilities = capabilities,
-  })
-
-  lsp_config.dockerls.setup({
-    capabilities = capabilities,
-    on_attach = on_lsp_attach,
-  })
-
-  lsp_config.docker_compose_language_service.setup({
-    capabilities = capabilities,
-    on_attach = on_lsp_attach,
-  })
-
-  lsp_config.bashls.setup({
-    capabilities = capabilities,
-    on_attach = on_lsp_attach,
-  })
-
-  lsp_config.tsserver.setup({
-    capabilities = capabilities,
-    on_attach = on_lsp_attach,
-  })
-
-  lsp_config.tailwindcss.setup({
-    capabilities = capabilities,
-    on_attach = on_lsp_attach,
-  })
-
-  lsp_config.rust_analyzer.setup({
-    capabilities = capabilities,
-    on_attach = on_lsp_attach,
-  })
-
-  lsp_config.gopls.setup({
-    capabilities = capabilities,
-    on_attach = on_lsp_attach,
-  })
-
-  lsp_config.marksman.setup({
-    capabilities = capabilities,
-    on_attach = on_lsp_attach,
-    filetypes = {
-      "markdown",
+  local capabilities = vim.tbl_deep_extend(
+    "force",
+    vim.lsp.protocol.make_client_capabilities(),
+    require("cmp_nvim_lsp").default_capabilities()
+  )
+  local servers = {
+    lua_ls = {
+      settings = {
+        Lua = {
+          completion = {
+            callSnippet = "Replace",
+          },
+          -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+          -- diagnostics = { disable = { 'missing-fields' } },
+        },
+      },
     },
+    bashls = {},
+    docker_compose_language_service = {},
+    dockerls = {},
+    gopls = {},
+    marksman = {},
+    rust_analyzer = {},
+    solargraph = {},
+    tailwindcss = {},
+    tsserver = {},
+  }
+  local ensure_installed = vim.tbl_keys(servers or {})
+
+  require("mason-lspconfig").setup({
+    ensure_installed = ensure_installed,
+    handlers = {
+      function(server_name)
+        local server = servers[server_name] or {}
+        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+        lsp_config[server_name].setup(server)
+      end,
+    },
+  })
+
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+
+    callback = function(event)
+      local map = function(keys, func, desc)
+        vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+      end
+
+      -- Jump to the definition of the word under your cursor.
+      --  This is where a variable was first declared, or where a function is defined, etc.
+      --  To jump back, press <C-t>.
+      map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+
+      -- Find references for the word under your cursor.
+      map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+
+      -- Jump to the implementation of the word under your cursor.
+      --  Useful when your language has ways of declaring types without an actual implementation.
+      map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+
+      -- Jump to the type of the word under your cursor.
+      --  Useful when you're not sure what type a variable is and you want to see
+      --  the definition of its *type*, not where it was *defined*.
+      map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+
+      -- Fuzzy find all the symbols in your current document.
+      --  Symbols are things like variables, functions, types, etc.
+      map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+
+      -- Fuzzy find all the symbols in your current workspace.
+      --  Similar to document symbols, except searches over your entire project.
+      map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+
+      -- Rename the variable under your cursor.
+      --  Most Language Servers support renaming across files, etc.
+      map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+
+      -- Execute a code action, usually your cursor needs to be on top of an error
+      -- or a suggestion from your LSP for this to activate.
+      map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+
+      -- Opens a popup that displays documentation about the word under your cursor
+      --  See `:help K` for why this keymap.
+      map("K", vim.lsp.buf.hover, "Hover Documentation")
+
+      -- WARN: This is not Goto Definition, this is Goto Declaration.
+      --  For example, in C this would take you to the header.
+      map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+      -- The following two autocommands are used to highlight references of the
+      -- word under your cursor when your cursor rests there for a little while.
+      --    See `:help CursorHold` for information about when this is executed
+      --
+      -- When you move your cursor, the highlights will be cleared (the second autocommand).
+      local client = vim.lsp.get_client_by_id(event.data.client_id)
+      if client and client.server_capabilities.documentHighlightProvider then
+        local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+          buffer = event.buf,
+          group = highlight_augroup,
+          callback = vim.lsp.buf.document_highlight,
+        })
+
+        vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+          buffer = event.buf,
+          group = highlight_augroup,
+          callback = vim.lsp.buf.clear_references,
+        })
+
+        vim.api.nvim_create_autocmd("LspDetach", {
+          group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+          callback = function(event2)
+            vim.lsp.buf.clear_references()
+            vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
+          end,
+        })
+      end
+    end,
   })
 end
 
