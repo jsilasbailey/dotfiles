@@ -169,7 +169,7 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "jose-elias-alvarez/typescript.nvim",
-      "folke/neodev.nvim",
+      { "folke/neodev.nvim", opts = {} },
     },
     config = require("plugins.config.lspconfig").setup,
   },
