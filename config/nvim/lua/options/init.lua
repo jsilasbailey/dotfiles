@@ -8,7 +8,7 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.opt.breakindent = true
 vim.opt.cursorline = true
-vim.opt.colorcolumn="80"
+vim.opt.colorcolumn = "80"
 
 vim.opt.mouse = "a"
 
@@ -16,6 +16,10 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.hlsearch = false
+
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.timeout = true
 vim.opt.timeoutlen = 300
