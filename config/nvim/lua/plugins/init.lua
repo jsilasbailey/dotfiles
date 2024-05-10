@@ -103,7 +103,7 @@ return {
       -- OR use neotest for lua async strategies
       -- nvim-neotest/neotest
       vim.g["test#strategy"] = "neovim"
-      vim.g["test#neovim#start_normal"] = "1"
+      -- vim.g["test#neovim#start_normal"] = "1"
     end,
     keys = {
       { "<leader>tn", ":TestNearest<cr>", desc = "Test nearest to line" },
