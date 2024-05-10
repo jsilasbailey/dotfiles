@@ -16,6 +16,7 @@ brew "starship"
 brew "thoughtbot/formulae/rcm"
 brew "tmux"
 brew "zsh-completions"
+brew "ffmpeg"
 
 cask "amethyst"
 cask "wezterm"

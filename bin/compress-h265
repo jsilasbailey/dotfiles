@@ -1,0 +1,16 @@
+#!/bin/bash
+# Compress an input file using the H.265 codec
+# See: https://trac.ffmpeg.org/wiki/Encode/H.265#Ratecontrolmodes
+
+INPUT_FILE="$1"
+OUTPUT_FILE="${INPUT_FILE%.*}_compressed.mp4"
+
+ffmpeg \
+  -i "$INPUT_FILE" \
+  -c:v libx265 \
+  -crf 28 \
+  -preset medium \
+  -c:a aac \
+  -b:a 128k \
+  -tag:v hvc1 \
+  "$OUTPUT_FILE"
