@@ -22,6 +22,8 @@ return {
   -- Work with surrounding brackets/characters
   "tpope/vim-surround",
   "tpope/vim-abolish",
+  -- Explore improvements
+  "tpope/vim-vinegar",
   -- Rake/Rails navigation and help
   "tpope/vim-rails",
   "tpope/vim-bundler",
