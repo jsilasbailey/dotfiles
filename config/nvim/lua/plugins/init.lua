@@ -40,7 +40,21 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     config = function()
-      require("gitsigns").setup()
+      require("gitsigns").setup({
+        on_attach = function(bufnr)
+          local gitsigns = require("gitsigns")
+          vim.keymap.set("n", "]h", gitsigns.next_hunk, { buffer = bufnr })
+          vim.keymap.set("n", "[h", gitsigns.prev_hunk, { buffer = bufnr })
+          vim.keymap.set("n", "<leader>hp", gitsigns.preview_hunk, { buffer = bufnr })
+          vim.keymap.set("n", "<leader>hs", gitsigns.stage_hunk, { buffer = bufnr })
+          vim.keymap.set("v", "<leader>hs", function()
+            gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+          end, { buffer = bufnr })
+          vim.keymap.set("n", "<leader>hb", function()
+            gitsigns.blame_line({ full = true })
+          end, { buffer = bufnr })
+        end,
+      })
     end,
   },
   {
