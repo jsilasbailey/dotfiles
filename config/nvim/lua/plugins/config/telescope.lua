@@ -8,7 +8,7 @@ M.setup = function()
         theme = "dropdown",
         hidden = true,
         layout_strategy = "center",
-        layout_config = { width = 0.5 }
+        layout_config = { width = 0.5 },
       },
     },
     extensions = {
@@ -39,6 +39,12 @@ M.setup = function()
     noremap = true,
     silent = true,
     desc = "Grep word under cursor",
+  })
+
+  vim.api.nvim_set_keymap("n", "z=", ":Telescope spell_suggest<cr>", {
+    noremap = true,
+    silent = true,
+    desc = "Spelling suggestions",
   })
 end
 
