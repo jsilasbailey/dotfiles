@@ -10,6 +10,7 @@ elif command -v brew &> /dev/null &&
   [ -f "$BREW_ASDF_DIR/libexec/asdf.sh" ]; then
   . "$BREW_ASDF_DIR/libexec/asdf.sh"
 fi
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 
 if command -v go &> /dev/null; then
   export PATH=$PATH:$(go env GOPATH)/bin
