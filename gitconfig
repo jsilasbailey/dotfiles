@@ -7,7 +7,7 @@
   ui = auto
 [alias]
   l = log --oneline --graph
-  prlog = "log --reverse --pretty=format:'## %s %n%n%n%b%n'" 
+  prlog = "log --reverse --pretty=format:'## %s %n%n%b%n'" 
   pf = push --force-with-lease
   st = status
   dft = difftool
