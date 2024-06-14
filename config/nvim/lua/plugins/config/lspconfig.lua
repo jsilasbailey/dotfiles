@@ -11,6 +11,14 @@ M.setup = function()
     vim.lsp.protocol.make_client_capabilities(),
     require("cmp_nvim_lsp").default_capabilities()
   )
+  local function organize_imports()
+    local params = {
+      command = "_typescript.organizeImports",
+      arguments = { vim.api.nvim_buf_get_name(0) },
+      title = "",
+    }
+    vim.lsp.buf.execute_command(params)
+  end
   local servers = {
     lua_ls = {
       settings = {
@@ -31,7 +39,22 @@ M.setup = function()
     rust_analyzer = {},
     solargraph = {},
     tailwindcss = {},
-    tsserver = {},
+    tsserver = {
+      on_attach = function(event)
+        vim.keymap.set(
+          "n",
+          "<leader>oi",
+          ":OrganizeImports<cr>",
+          { buffer = event.buf, desc = "LSP: [O]rganize [I]mports" }
+        )
+      end,
+      commands = {
+        OrganizeImports = {
+          organize_imports,
+          description = "Organize Typescript Imports",
+        },
+      },
+    },
   }
   local ensure_installed = vim.tbl_keys(servers or {})
 
