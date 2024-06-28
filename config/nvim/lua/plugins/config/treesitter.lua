@@ -18,6 +18,7 @@ M.setup = function()
       "regex",
       "ruby",
       "rust",
+      "scala",
       "scss",
       "sql",
       "todotxt",
