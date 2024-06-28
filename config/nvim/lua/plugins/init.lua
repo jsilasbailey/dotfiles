@@ -176,6 +176,7 @@ return {
         "petertriho/cmp-git",
         dependencies = "nvim-lua/plenary.nvim",
       },
+      "folke/lazydev.nvim",
     },
     config = require("plugins.config.nvim_cmp").setup,
   },
@@ -186,7 +187,11 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "jose-elias-alvarez/typescript.nvim",
       "hrsh7th/nvim-cmp",
-      { "folke/neodev.nvim", opts = {} },
+      {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {},
+      },
       {
         "scalameta/nvim-metals",
         dependencies = {

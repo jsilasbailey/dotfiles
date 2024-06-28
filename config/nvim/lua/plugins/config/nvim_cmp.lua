@@ -45,6 +45,7 @@ M.setup = function()
     }),
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
+      { name = "lazydev" },
       { name = "ultisnips" },
     }, {
       { name = "buffer" },
