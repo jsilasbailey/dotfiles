@@ -44,6 +44,10 @@ brew_bundle_up() {
   brew bundle install
 }
 
+setup_localrc() {
+  touch ~/.localrc
+}
+
 install_nvim_dependencies() {
   asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
   asdf plugin add python https://github.com/asdf-community/asdf-python
@@ -64,6 +68,7 @@ dotfiles_all_up() {
 }
 
 main() {
+  setup_localrc
   install_homebrew
   install_rust
   install_rcm
