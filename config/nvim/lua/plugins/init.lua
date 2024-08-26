@@ -187,6 +187,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "jose-elias-alvarez/typescript.nvim",
       "hrsh7th/nvim-cmp",
+      "b0o/schemastore.nvim",
       {
         "folke/lazydev.nvim",
         ft = "lua",

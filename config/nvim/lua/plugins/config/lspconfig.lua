@@ -45,6 +45,14 @@ M.setup = function()
         },
       },
     },
+    jsonls = {
+      settings = {
+        json = {
+          schemas = require("schemastore").json.schemas(),
+          validate = { enable = true },
+        },
+      },
+    },
   }
   local ensure_installed = vim.tbl_keys(servers or {})
 
