@@ -208,6 +208,13 @@ return {
           -- a have settings to capture this in your statusline or else you'll not see
           -- any messages from metals. There is more info in the help docs about this
           metals_config.init_options.statusBarProvider = "off"
+          metals_config.settings = {
+            showImplicitArguments = true,
+            showImplicitConversionsAndClasses = true,
+            showInferredType = true,
+          }
+
+          metals_config.root_patterns = { "build.sbt", "build.sc", "build.gradle", "pom.xml" }
 
           metals_config.capabilities = vim.tbl_deep_extend(
             "force",
