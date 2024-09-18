@@ -58,6 +58,18 @@ return {
     end,
   },
   {
+    "pwntester/octo.nvim",
+    desc = "PR review in nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("octo").setup()
+    end,
+  },
+  {
     "tpope/vim-dispatch",
     config = function()
       vim.api.nvim_create_user_command(
