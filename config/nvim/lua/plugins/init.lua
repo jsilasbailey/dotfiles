@@ -3,6 +3,12 @@ return {
   "nvim-tree/nvim-web-devicons",
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = require("plugins.config.nvim_treesitter_context").config,
+      },
+    },
     tag = "v0.9.2",
     build = function()
       require("nvim-treesitter.install").update({ with_sync = true })
@@ -12,10 +18,6 @@ return {
   {
     "RRethy/nvim-treesitter-endwise",
     dependencies = "nvim-treesitter/nvim-treesitter",
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    config = require("plugins.config.nvim_treesitter_context").config,
   },
   -- Adjust 'shiftwidth' and 'expandtab' heuristically based on the current file
   "tpope/vim-sleuth",
@@ -166,6 +168,7 @@ return {
   },
   {
     "Wansmer/treesj",
+    desc = "Split/Join lines utilizing treesitter syntax tree",
     keys = {
       "<space>m",
       "<space>j",
@@ -200,6 +203,10 @@ return {
       "jose-elias-alvarez/typescript.nvim",
       "hrsh7th/nvim-cmp",
       "b0o/schemastore.nvim",
+      {
+        "j-hui/fidget.nvim",
+        opts = {},
+      },
       {
         "folke/lazydev.nvim",
         ft = "lua",
@@ -309,9 +316,5 @@ return {
         },
       },
     },
-  },
-  {
-    "j-hui/fidget.nvim",
-    opts = {},
   },
 }
