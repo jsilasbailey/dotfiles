@@ -199,6 +199,19 @@ return {
     config = require("plugins.config.nvim_cmp").setup,
   },
   {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    dependencies = {
+      -- vim.uv types
+      { "Bilal2453/luvit-meta", lazy = true },
+    },
+    opts = {
+      library = {
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
@@ -206,13 +219,9 @@ return {
       "jose-elias-alvarez/typescript.nvim",
       "hrsh7th/nvim-cmp",
       "b0o/schemastore.nvim",
+      "folke/lazydev.nvim",
       {
         "j-hui/fidget.nvim",
-        opts = {},
-      },
-      {
-        "folke/lazydev.nvim",
-        ft = "lua",
         opts = {},
       },
       {
