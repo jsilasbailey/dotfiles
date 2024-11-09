@@ -1,0 +1,13 @@
+#!/bin/bash
+# Compress an input file using the vp9 codec
+# See: http://trac.ffmpeg.org/wiki/Encode/VP9
+
+INPUT_FILE="$1"
+OUTPUT_FILE="${INPUT_FILE%.*}_compressed.webm"
+
+ffmpeg \
+  -i "$INPUT_FILE" \
+  -crf 31 \
+  -row-mt 1 \
+  -b:v 0 \
+  "$OUTPUT_FILE"
