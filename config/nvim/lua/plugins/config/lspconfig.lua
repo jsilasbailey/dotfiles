@@ -28,8 +28,20 @@ M.setup = function()
     marksman = {},
     rust_analyzer = {},
     solargraph = {},
-    tailwindcss = {},
-    tsserver = {
+    tailwindcss = {
+      settings = {
+        tailwindCSS = {
+          experimental = {
+            classRegex = {
+              "[a-zA-Z]*ClassName='([^']+)'",
+              '[a-zA-Z]*ClassName="([^"]+)"',
+              "[a-zA-Z]*ClassName={`([^`]+)`}",
+            },
+          },
+        },
+      },
+    },
+    ts_ls = {
       on_attach = function(event)
         vim.keymap.set(
           "n",
