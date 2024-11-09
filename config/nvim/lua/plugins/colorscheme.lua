@@ -9,6 +9,11 @@ return {
     name = "rose-pine",
     branch = "main",
     config = function()
+      require("rose-pine").setup({
+        groups = {
+          border = "foam",
+        },
+      })
       vim.cmd("colorscheme rose-pine")
     end,
   },

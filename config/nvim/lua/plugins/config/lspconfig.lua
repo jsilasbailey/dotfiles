@@ -130,12 +130,6 @@ M.setup = function()
       }
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, hover_options)
 
-      local hover_options = {
-        border = "rounded",
-        focusable = true,
-      }
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, hover_options)
-
       -- WARN: This is not Goto Definition, this is Goto Declaration.
       --  For example, in C this would take you to the header.
       map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
