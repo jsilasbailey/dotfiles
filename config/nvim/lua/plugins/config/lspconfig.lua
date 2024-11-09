@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 M.setup = function()
   -- TODO: Extract concerns to different plugin configs
