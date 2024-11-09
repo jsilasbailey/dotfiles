@@ -7,6 +7,9 @@ M.setup = function()
   local cmp_git = require("cmp_git")
   cmp_git.setup()
 
+  local coauthors = require("coauthors")
+  coauthors.setup()
+
   -- Provide text completion from all open buffers
   local all_open_buffers_source = {
     name = "buffer",
@@ -58,6 +61,7 @@ M.setup = function()
     sources = cmp.config.sources({
       { name = "git" },
       { name = "github" },
+      { name = "coauthors" },
     }, {
       all_open_buffers_source,
     }),
