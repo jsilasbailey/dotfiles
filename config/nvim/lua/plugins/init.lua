@@ -45,16 +45,19 @@ return {
       require("gitsigns").setup({
         on_attach = function(bufnr)
           local gitsigns = require("gitsigns")
-          vim.keymap.set("n", "]h", gitsigns.next_hunk, { buffer = bufnr })
-          vim.keymap.set("n", "[h", gitsigns.prev_hunk, { buffer = bufnr })
-          vim.keymap.set("n", "<leader>hp", gitsigns.preview_hunk, { buffer = bufnr })
-          vim.keymap.set("n", "<leader>hs", gitsigns.stage_hunk, { buffer = bufnr })
-          vim.keymap.set("v", "<leader>hs", function()
+          local set = vim.keymap.set
+
+          set("n", "]h", gitsigns.next_hunk, { buffer = bufnr, desc = "Git Next [H]unk" })
+          set("n", "[h", gitsigns.prev_hunk, { buffer = bufnr, desc = "Git Prev [H]unk" })
+          set("n", "<leader>hp", gitsigns.preview_hunk, { buffer = bufnr, desc = "Git [H]unk [P]review" })
+          set("n", "<leader>hr", gitsigns.reset_hunk, { buffer = bufnr, desc = "Git [H]unk [R]eset" })
+          set("n", "<leader>hs", gitsigns.stage_hunk, { buffer = bufnr, desc = "Git [H]unk [S]tage" })
+          set("v", "<leader>hs", function()
             gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
           end, { buffer = bufnr })
-          vim.keymap.set("n", "<leader>hb", function()
+          set("n", "<leader>hb", function()
             gitsigns.blame_line({ full = true })
-          end, { buffer = bufnr })
+          end, { buffer = bufnr, desc = "Git [H]unk [B]lame" })
         end,
       })
     end,
