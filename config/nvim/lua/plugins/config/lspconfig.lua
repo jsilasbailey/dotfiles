@@ -11,7 +11,8 @@ M.setup = function()
     vim.lsp.protocol.make_client_capabilities(),
     require("cmp_nvim_lsp").default_capabilities()
   )
-  local function organize_imports()
+
+  local function ts_organize_imports()
     local params = {
       command = "_typescript.organizeImports",
       arguments = { vim.api.nvim_buf_get_name(0) },
@@ -19,6 +20,7 @@ M.setup = function()
     }
     vim.lsp.buf.execute_command(params)
   end
+
   local servers = {
     lua_ls = {},
     bashls = {},
@@ -28,6 +30,7 @@ M.setup = function()
     marksman = {},
     rust_analyzer = {},
     solargraph = {},
+    eslint = {},
     tailwindcss = {
       settings = {
         tailwindCSS = {
@@ -52,7 +55,7 @@ M.setup = function()
       end,
       commands = {
         OrganizeImports = {
-          organize_imports,
+          ts_organize_imports,
           description = "Organize Typescript Imports",
         },
       },
@@ -125,8 +128,8 @@ M.setup = function()
       map("K", vim.lsp.buf.hover, "Hover Documentation")
 
       local hover_options = {
-        border = "rounded",
-        focusable = true,
+        border = "double",
+        anchor_bias = "below",
       }
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, hover_options)
 
