@@ -1,6 +1,6 @@
 return {
   "nvim-lua/plenary.nvim",
-  "nvim-tree/nvim-web-devicons",
+  -- "nvim-tree/nvim-web-devicons",
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
@@ -24,8 +24,6 @@ return {
   -- Work with surrounding brackets/characters
   "tpope/vim-surround",
   "tpope/vim-abolish",
-  -- Explore improvements
-  "tpope/vim-vinegar",
   -- Rake/Rails navigation and help
   "tpope/vim-rails",
   "tpope/vim-bundler",
@@ -82,6 +80,22 @@ return {
         "Dispatch! open dash://<cword>",
         { desc = "Open the word under the cursor in Dash" }
       )
+    end,
+  },
+  -- Explore improvements
+  -- "tpope/vim-vinegar",
+  {
+    "stevearc/oil.nvim",
+    dependencies = { { "echasnovski/mini.icons", opts = {
+      style = "ascii",
+    } } },
+    config = function()
+      ---@module 'oil'
+      ---@type oil.SetupOpts
+      local opts = {}
+      require("oil").setup(opts)
+
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
     end,
   },
   {
