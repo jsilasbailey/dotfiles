@@ -25,6 +25,7 @@ return {
   "tpope/vim-surround",
   "tpope/vim-abolish",
   -- Rake/Rails navigation and help
+  -- TODO: Load only for rails projects
   "tpope/vim-rails",
   "tpope/vim-bundler",
   "tpope/vim-projectionist",
@@ -167,7 +168,8 @@ return {
       --
       -- OR use neotest for lua async strategies
       -- nvim-neotest/neotest
-      vim.g["test#strategy"] = "neovim"
+      --
+      vim.g["test#strategy"] = "dispatch"
       -- vim.g["test#neovim#start_normal"] = "1"
     end,
     keys = {
@@ -329,7 +331,7 @@ return {
             vim.lsp.protocol.make_client_capabilities(),
             require("cmp_nvim_lsp").default_capabilities()
           )
-          metals_config.on_attach = function(client, bufnr)
+          metals_config.on_attach = function(_client, bufnr)
             vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, {
               buffer = bufnr,
               desc = "LSP: [C]ode [L]ens Run",
@@ -374,22 +376,6 @@ return {
     },
     branch = "0.1.x",
     config = require("plugins.config.telescope").setup,
-  },
-  {
-    "kkoomen/vim-doge",
-    build = ":call doge#install()",
-    config = function()
-      -- Generate comment for current line
-      vim.keymap.set("n", "<Leader>dg", "<Plug>(doge-generate)")
-
-      -- Interactive mode comment todo-jumping
-      vim.keymap.set("n", "<TAB>", "<Plug>(doge-comment-jump-forward)")
-      vim.keymap.set("n", "<S-TAB>", "<Plug>(doge-comment-jump-backward)")
-      vim.keymap.set("i", "<TAB>", "<Plug>(doge-comment-jump-forward)")
-      vim.keymap.set("i", "<S-TAB>", "<Plug>(doge-comment-jump-backward)")
-      vim.keymap.set("x", "<TAB>", "<Plug>(doge-comment-jump-forward)")
-      vim.keymap.set("x", "<S-TAB>", "<Plug>(doge-comment-jump-backward)")
-    end,
   },
   {
     "folke/zen-mode.nvim",
