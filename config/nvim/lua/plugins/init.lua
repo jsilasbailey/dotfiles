@@ -256,13 +256,59 @@ return {
         opts = {},
       },
       {
+        "mfussenegger/nvim-dap",
+        config = function()
+          local dap = require("dap")
+          local ui = require("dap.ui.widgets")
+
+          vim.keymap.set("n", "<leader>dt", function()
+            dap.toggle_breakpoint()
+          end, { desc = "[D]ap [T]oggle breakpoint" })
+
+          vim.keymap.set("n", "<leader>dr", function()
+            dap.repl.toggle()
+          end, { desc = "[D]ap [R]epl toggle" })
+
+          vim.keymap.set("n", "<leader>dh", function()
+            ui.hover()
+          end, { desc = "[D]ap [H]over expression" })
+
+          dap.configurations.scala = {
+            {
+              type = "scala",
+              request = "launch",
+              name = "Run or Test File",
+              metals = { runType = "runOrTestFile" },
+            },
+            {
+              type = "scala",
+              request = "launch",
+              name = "Test Target",
+              metals = { runType = "testTarget" },
+            },
+            {
+              type = "scala",
+              request = "attach",
+              name = "Attach to localhost",
+              hostName = "localhost",
+              port = 5005,
+              buildTarget = "root",
+            },
+          }
+        end,
+      },
+      {
         "scalameta/nvim-metals",
         dependencies = {
           "nvim-lua/plenary.nvim",
         },
         ft = { "scala", "sbt", "java" },
         opts = function()
-          local metals_config = require("metals").bare_config()
+          local metals = require("metals")
+
+          metals.setup_dap()
+
+          local metals_config = metals.bare_config()
           -- "off" will enable LSP progress notifications by Metals and you'll need
           -- to ensure you have a plugin like fidget.nvim installed to handle them.
           --
