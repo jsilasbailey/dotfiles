@@ -9,7 +9,7 @@ return {
         config = require("plugins.config.nvim_treesitter_context").config,
       },
     },
-    tag = "v0.9.2",
+    tag = "v0.9.3",
     build = function()
       require("nvim-treesitter.install").update({ with_sync = true })
     end,
