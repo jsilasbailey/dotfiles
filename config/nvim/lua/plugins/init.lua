@@ -48,7 +48,7 @@ return {
             vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
           end
 
-          set("n", "]c", function()
+          set("n", "]h", function()
             if vim.wo.diff then
               vim.cmd.normal({ "]c", bang = true })
             else
@@ -56,7 +56,7 @@ return {
             end
           end, "Git Next [H]unk")
 
-          set("n", "[c", function()
+          set("n", "[h", function()
             if vim.wo.diff then
               vim.cmd.normal({ "[c", bang = true })
             else
