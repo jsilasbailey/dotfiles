@@ -16,6 +16,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.hlsearch = false
+vim.o.inccommand = "split"
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
