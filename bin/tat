@@ -7,7 +7,7 @@ if [ $# -eq 1 ]; then
     selected=$1
 else
     # TODO: How to make this repo independent? ENV option? What's the default?
-    selected=$(find ~/Coding -mindepth 1 -maxdepth 2 -type d | fzf --tmux)
+    selected=$(find ~/Coding -mindepth 1 -maxdepth 2 -type d | fzf)
 fi
 
 if [ -z "$selected" ]; then
