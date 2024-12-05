@@ -1,81 +1,60 @@
 -- A simple Neovim plugin for piping 'Co-authored-by' completions to nvim-cmp
 local M = {}
-local uv = (vim.uv or vim.loop)
 local cmp = require("cmp")
 
 --- @alias coauthor string
 --- @type coauthor[]
 local coauthors_state = {}
 
---- Scans git log for recent commit authors asynchronously using vim.uv
+--- Scans `git log` for recent commit authors asynchronously
 --- @param depth number
 --- @param callback fun(result: coauthor[])
 local function scan_git_log_async(depth, callback)
-  local stdout = uv.new_pipe(false)
-  local buffer = ""
-  local found_authors = {}
+  vim.system({
+    "git",
+    "log",
+    "-" .. depth,
+    "--format=%aN <%aE>",
+  }, { text = true }, function(out)
+    local data = out.stdout
 
-  uv.spawn("git", {
-    args = {
-      "log",
-      "-" .. depth,
-      "--format=%aN <%aE>",
-    },
-    stdio = {
-      uv.new_pipe(false),
-      stdout,
-      uv.new_pipe(false),
-    },
-  }, function(code, signal) -- on exit
-    -- TODO: Nicer error messaging?
-    -- print("exit code", code)
-    -- print("exit signal", signal)
-  end)
-
-  uv.read_start(stdout, function(err, data)
-    assert(not err, err)
-
-    if data then
-      buffer = buffer .. data
-    else
-      local lines = vim.split(buffer, "\n")
-      for _, line in ipairs(lines) do
-        found_authors[line] = true
+    if out.code == 0 and data then
+      local authors = {}
+      for line in data:gmatch("[^\r\n]+") do
+        authors[line] = true
       end
 
-      callback(vim.tbl_keys(found_authors))
+      callback(vim.tbl_keys(authors))
+    else
+      vim.notify("[coauthors] Git log error: " .. out.stderr, vim.log.levels.ERROR)
     end
   end)
 end
 
-local function as_source()
-  return {
+-- Register the plugin with nvim-cmp
+function M.setup()
+  ---@diagnostic disable-next-line: missing-fields
+  cmp.register_source("coauthors", {
     name = "coauthors",
+    get_keyword_pattern = function()
+      return [[Co-authored-by:\s*\zs.*]]
+    end,
     complete = function(_, _, callback)
       local items = {}
 
-      for _, coauthor in pairs(coauthors_state) do
-        table.insert(items, {
-          label = coauthor,
-        })
+      for _, coauthor in ipairs(coauthors_state) do
+        table.insert(items, { label = coauthor })
       end
 
-      callback({
-        items = items,
-      })
+      callback({ items = items })
     end,
-    keyword_length = 2, -- "Co" will trigger completions
-  }
-end
-
--- Register the plugin with nvim-cmp
-function M.setup()
-  cmp.register_source("coauthors", as_source())
+  })
 
   -- Scan when opening commit messages, not too slow atm
   vim.api.nvim_create_autocmd("BufRead", {
     pattern = "COMMIT_EDITMSG",
     callback = function()
+      print("callback")
       scan_git_log_async(100, function(git_authors)
         coauthors_state = git_authors
       end)
