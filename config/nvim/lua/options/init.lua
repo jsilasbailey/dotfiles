@@ -11,6 +11,7 @@ vim.opt.cursorline = true
 vim.opt.colorcolumn = "80"
 
 vim.opt.mouse = "a"
+vim.o.scrolloff = 30
 
 vim.opt.number = true
 vim.opt.relativenumber = true
