@@ -39,17 +39,16 @@ M.setup = function()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ["<C-l>"] = cmp.mapping(function(fallback)
+      ["<C-j>"] = cmp.mapping(function(fallback)
         cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
       end, { "i", "s" }),
-      ["<C-h>"] = cmp.mapping(function(fallback)
+      ["<C-k>"] = cmp.mapping(function(fallback)
         cmp_ultisnips_mappings.jump_backwards(fallback)
       end, { "i", "s" }),
     }),
     sources = cmp.config.sources({
       { name = "lazydev", group_index = 0 },
       { name = "nvim_lsp" },
-      { name = "lazydev" },
       { name = "ultisnips" },
     }, {
       { name = "buffer" },
