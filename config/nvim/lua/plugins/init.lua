@@ -19,25 +19,32 @@ return {
     "RRethy/nvim-treesitter-endwise",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
-  -- Adjust 'shiftwidth' and 'expandtab' heuristically based on the current file
-  "tpope/vim-sleuth",
-  -- Work with surrounding brackets/characters
-  "tpope/vim-surround",
+  {
+    "tpope/vim-sleuth",
+    desc = "Adjust 'shiftwidth' and 'expandtab' heuristically based on the current file",
+  },
+  {
+    "tpope/vim-surround",
+    desc = "Work with surrounding brackets/characters",
+  },
+  {
+    "tpope/vim-commentary",
+    desc = "Comment/Uncomment lines",
+  },
+  {
+    "tpope/vim-repeat",
+    desc = "Repeat plugin commands with `.`",
+  },
+  {
+    "tpope/vim-fugitive",
+    desc = "Doing the git; possibly the G.O.A.T",
+  },
+  { "tpope/vim-rails", ft = "ruby" },
+  { "tpope/vim-bundler", ft = "ruby" },
+  { "tpope/vim-rake", ft = "ruby" },
+  -- TODO: Learn to use these better
   "tpope/vim-abolish",
-  -- Rake/Rails navigation and help
-  -- TODO: Load only for rails projects
-  "tpope/vim-rails",
-  "tpope/vim-bundler",
   "tpope/vim-projectionist",
-  "tpope/vim-rake",
-  -- Comment/Uncomment lines
-  "tpope/vim-commentary",
-  -- Repeat plugin commands with `.`
-  "tpope/vim-repeat",
-  -- Unix helpers
-  "tpope/vim-eunuch",
-  -- Doing the git
-  "tpope/vim-fugitive",
   {
     "lewis6991/gitsigns.nvim",
     config = function()
@@ -79,18 +86,6 @@ return {
     end,
   },
   {
-    "pwntester/octo.nvim",
-    desc = "PR review in nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      require("octo").setup()
-    end,
-  },
-  {
     "tpope/vim-dispatch",
     config = function()
       vim.api.nvim_create_user_command(
@@ -100,13 +95,11 @@ return {
       )
     end,
   },
-  -- Explore improvements
-  -- "tpope/vim-vinegar",
   {
     "stevearc/oil.nvim",
-    dependencies = { { "echasnovski/mini.icons", opts = {
-      style = "ascii",
-    } } },
+    dependencies = {
+      { "echasnovski/mini.icons", opts = { style = "ascii" } },
+    },
     config = function()
       ---@module 'oil'
       ---@type oil.SetupOpts
@@ -118,7 +111,7 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    desc = "Smarter formatting control using formatting fallbacks and formatting smaller sections of the buffer via LSP",
+    desc = "Smarter formatting using neovim builtin lsp format text edits",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     keys = {
@@ -376,20 +369,5 @@ return {
     },
     branch = "0.1.x",
     config = require("plugins.config.telescope").setup,
-  },
-  {
-    "folke/zen-mode.nvim",
-    keys = {
-      { "<leader>z", ":ZenMode<CR>" },
-    },
-    opts = {
-      plugins = {
-        tmux = { enabled = true },
-        options = {
-          enabled = true,
-          colorcolumn = false,
-        },
-      },
-    },
   },
 }
