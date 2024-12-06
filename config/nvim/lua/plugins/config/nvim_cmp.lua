@@ -2,8 +2,7 @@ local M = {}
 
 M.setup = function()
   local cmp = require("cmp")
-  -- TODO: Change to luasnip? Learn how to build your own snippets.
-  local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+  local ls = require("luasnip")
   local cmp_git = require("cmp_git")
   cmp_git.setup()
 
@@ -24,10 +23,9 @@ M.setup = function()
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        require("luasnip").lsp_expand(args.body)
       end,
     },
-    completion = { completeopt = "menu,menuone,noinsert" },
     mapping = cmp.mapping.preset.insert({
       ["<C-n>"] = cmp.mapping.select_next_item(),
       ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -40,16 +38,28 @@ M.setup = function()
         c = cmp.mapping.close(),
       }),
       ["<C-j>"] = cmp.mapping(function(fallback)
-        cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif ls.locally_jumpable(1) then
+          ls.jump(1)
+        else
+          fallback()
+        end
       end, { "i", "s" }),
       ["<C-k>"] = cmp.mapping(function(fallback)
-        cmp_ultisnips_mappings.jump_backwards(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif ls.locally_jumpable(-1) then
+          ls.jump(-1)
+        else
+          fallback()
+        end
       end, { "i", "s" }),
     }),
     sources = cmp.config.sources({
       { name = "lazydev", group_index = 0 },
       { name = "nvim_lsp" },
-      { name = "ultisnips" },
+      { name = "luasnip" },
     }, {
       { name = "buffer" },
     }),

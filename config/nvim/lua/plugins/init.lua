@@ -208,15 +208,20 @@ return {
     opts = {},
   },
   {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*", -- latest major release
+    -- install jsregexp (optional!).
+    -- build = "make install_jsregexp"
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
-      "SirVer/ultisnips",
-      "quangnguyen30192/cmp-nvim-ultisnips",
-      "honza/vim-snippets",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
       {
         "petertriho/cmp-git",
         dependencies = "nvim-lua/plenary.nvim",
