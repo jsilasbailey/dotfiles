@@ -12,7 +12,7 @@ end
 
 config.color_scheme = "rose-pine"
 
-config.font_size = 12
+config.font_size = 14
 
 config.inactive_pane_hsb = {
   saturation = 0.7,
