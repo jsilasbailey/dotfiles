@@ -54,7 +54,6 @@ function M.setup()
   vim.api.nvim_create_autocmd("BufRead", {
     pattern = "COMMIT_EDITMSG",
     callback = function()
-      print("callback")
       scan_git_log_async(100, function(git_authors)
         coauthors_state = git_authors
       end)
