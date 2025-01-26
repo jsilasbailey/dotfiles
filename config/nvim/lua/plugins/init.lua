@@ -375,4 +375,10 @@ return {
     branch = "0.1.x",
     config = require("plugins.config.telescope").setup,
   },
+  {
+    "folke/snacks.nvim",
+    ---@module 'snacks'
+    ---@type snacks.Config
+    opts = { input = {} },
+  },
 }
