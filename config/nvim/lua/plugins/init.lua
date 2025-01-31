@@ -210,8 +210,30 @@ return {
   {
     "L3MON4D3/LuaSnip",
     version = "v2.*", -- latest major release
-    -- install jsregexp (optional!).
-    -- build = "make install_jsregexp"
+    config = function()
+      local ls = require("luasnip")
+      local s = ls.snippet
+      local i = ls.insert_node
+      local fmt = require("luasnip.extras.fmt").fmt
+
+      ls.add_snippets("typescriptreact", {
+        s(
+          "default",
+          fmt(
+            [[
+          export default function {}({}) {{
+            {}
+          }}
+          ]],
+            {
+              i(1),
+              i(2),
+              i(0),
+            }
+          )
+        ),
+      })
+    end,
   },
   {
     "hrsh7th/nvim-cmp",
