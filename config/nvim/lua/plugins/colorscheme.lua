@@ -17,4 +17,9 @@ return {
       vim.cmd("colorscheme rose-pine")
     end,
   },
+  { "jaredgorski/fogbell.vim" },
+  {
+    "zenbones-theme/zenbones.nvim",
+    dependencies = "rktjmp/lush.nvim",
+  },
 }
