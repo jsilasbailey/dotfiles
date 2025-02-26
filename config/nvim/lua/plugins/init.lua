@@ -399,10 +399,4 @@ return {
     ---@type snacks.Config
     opts = { input = {} },
   },
-  {
-    "folke/snacks.nvim",
-    ---@module 'snacks'
-    ---@type snacks.Config
-    opts = { input = {} },
-  },
 }
