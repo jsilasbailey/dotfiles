@@ -7,14 +7,12 @@ local cmp = require("cmp")
 local coauthors_state = {}
 
 --- Scans `git log` for recent commit authors asynchronously
---- @param depth number
 --- @param callback fun(result: coauthor[])
-local function scan_git_log_async(depth, callback)
+local function scan_git_log_async(callback)
   vim.system({
-    "git",
-    "log",
-    "-" .. depth,
-    "--format=%aN <%aE>",
+    "sh",
+    "-c",
+    "git log --pretty=short | git shortlog -nes | cut -f 2",
   }, { text = true }, function(out)
     local data = out.stdout
 
@@ -26,7 +24,9 @@ local function scan_git_log_async(depth, callback)
 
       callback(vim.tbl_keys(authors))
     else
-      vim.notify("[coauthors] Git log error: " .. out.stderr, vim.log.levels.ERROR)
+      vim.schedule(function()
+        vim.notify("[coauthors] Git shortlog error: " .. out.stderr, vim.log.levels.ERROR)
+      end)
     end
   end)
 end
@@ -54,7 +54,7 @@ function M.setup()
   vim.api.nvim_create_autocmd("BufRead", {
     pattern = "COMMIT_EDITMSG",
     callback = function()
-      scan_git_log_async(100, function(git_authors)
+      scan_git_log_async(function(git_authors)
         coauthors_state = git_authors
       end)
     end,
