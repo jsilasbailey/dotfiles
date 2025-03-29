@@ -5,12 +5,18 @@
 INPUT_FILE="$1"
 OUTPUT_FILE="${INPUT_FILE%.*}_compressed.mp4"
 
+# ffmpeg \
+#   -i "$INPUT_FILE" \
+#   -c:v libx265 \
+#   -crf 28 \
+#   -preset medium \
+#   -c:a aac \
+#   -b:a 128k \
+#   -tag:v hvc1 \
+#   "$OUTPUT_FILE"
+
 ffmpeg \
   -i "$INPUT_FILE" \
-  -c:v libx265 \
-  -crf 28 \
-  -preset medium \
-  -c:a aac \
-  -b:a 128k \
-  -tag:v hvc1 \
+  -vcodec h264 \
+  -acodec aac \
   "$OUTPUT_FILE"
