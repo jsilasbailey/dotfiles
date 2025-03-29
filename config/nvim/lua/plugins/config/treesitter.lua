@@ -2,7 +2,6 @@ local M = {}
 M.setup = function()
   require("nvim-treesitter.configs").setup({
     ensure_installed = {
-      "lua",
       "bash",
       "comment",
       "css",
@@ -12,8 +11,6 @@ M.setup = function()
       "jsdoc",
       "json",
       "make",
-      "markdown",
-      "markdown_inline",
       "python",
       "regex",
       "ruby",
@@ -24,7 +21,6 @@ M.setup = function()
       "todotxt",
       "tsx",
       "typescript",
-      "vim",
       "vue",
       "yaml",
     },
