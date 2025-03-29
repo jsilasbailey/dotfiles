@@ -8,7 +8,6 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.opt.breakindent = true
 vim.opt.cursorline = true
-vim.opt.colorcolumn = "80"
 
 vim.opt.mouse = "a"
 vim.o.scrolloff = 10
