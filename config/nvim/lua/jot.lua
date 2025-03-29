@@ -15,7 +15,7 @@ function M.append_note()
     default = "",
   }, function(input)
     if input then
-      local note = "- " .. input .. "\n"
+      local note = "- [ ] " .. input .. "\n"
       local file = io.open(jot_file, "a")
 
       if file then
@@ -36,6 +36,8 @@ vim.api.nvim_create_user_command("Jot", function()
   M.append_note()
 end, {})
 
+-- TODO: :Jot "text"
+-- TODO: :JotList "search" with nvim floating buffer
 vim.keymap.set("n", "<Leader>j", ":Jot<CR>", { noremap = true, silent = true })
 
 return M
