@@ -9,4 +9,6 @@ return {
       vim.cmd([[colorscheme zenbones]])
     end,
   },
+  { "nyoom-engineering/oxocarbon.nvim" },
+  { "aditya-azad/candle-grey" },
 }
