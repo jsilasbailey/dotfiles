@@ -27,7 +27,6 @@ M.setup = function()
     docker_compose_language_service = {},
     dockerls = {},
     gopls = {},
-    marksman = {},
     rust_analyzer = {},
     solargraph = {},
     eslint = {},
