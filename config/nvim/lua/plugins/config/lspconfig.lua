@@ -43,6 +43,7 @@ M.setup = function()
         },
       },
     },
+    rescriptls = {},
     ts_ls = {
       on_attach = function(_, bufnr)
         vim.keymap.set(
