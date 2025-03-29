@@ -101,12 +101,6 @@ M.setup = function()
 
       map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
       map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-
-      local hover_options = {
-        border = "double",
-        anchor_bias = "below",
-      }
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, hover_options)
     end,
   })
 end
