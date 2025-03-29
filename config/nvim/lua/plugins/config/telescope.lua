@@ -3,6 +3,9 @@ local M = {}
 M.setup = function()
   local telescope = require("telescope")
   telescope.setup({
+    defaults = {
+      path_display = { "truncate" },
+    },
     pickers = {
       find_files = {
         theme = "dropdown",
