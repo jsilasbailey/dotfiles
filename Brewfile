@@ -17,6 +17,7 @@ brew "thoughtbot/formulae/rcm"
 brew "tmux"
 brew "zsh-completions"
 brew "ffmpeg"
+brew "pgformatter"
 
 cask "amethyst"
 cask "wezterm"
