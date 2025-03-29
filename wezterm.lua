@@ -10,7 +10,10 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.color_scheme = "rose-pine"
+config.color_scheme_dirs = {
+  wezterm.home_dir .. "/.config/wezterm/color_schemes",
+}
+config.color_scheme = "Zenbones_dark"
 
 config.font_size = 14
 
