@@ -24,9 +24,9 @@ function M.append_note()
 
         clear()
 
-        vim.notify("Note added to jot.md", vim.log.levels.INFO)
+        vim.notify("[jot] Note added to jot.md", vim.log.levels.INFO)
       else
-        vim.notify("Failed to open jot.md", vim.log.levels.ERROR)
+        vim.notify("[jot] Failed to open jot.md", vim.log.levels.ERROR)
       end
     end
   end)
