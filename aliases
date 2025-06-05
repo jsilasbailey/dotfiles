@@ -25,5 +25,5 @@ alias path='echo $PATH | tr -s ":" "\n"'
 # Custom tools
 alias td="rust_todo"
 
-alias g="git"
+# Git
 alias gf="git branch | fzf | xargs git checkout"
