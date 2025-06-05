@@ -91,6 +91,10 @@ M.setup = function()
       vim.keymap.set("n", "gd", function()
         vim.lsp.buf.definition()
       end, { buffer = event.buf, desc = "LSP: [G]o to [D]efinition" })
+
+      vim.keymap.set("n", "K", function()
+        vim.lsp.buf.hover({ border = "solid" })
+      end, { buffer = event.buf, desc = "LSP: [H]over" })
     end,
   })
 end
