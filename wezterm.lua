@@ -15,7 +15,7 @@ config.color_scheme_dirs = {
 }
 config.color_scheme = "Zenbones_dark"
 
-config.font_size = 14
+config.font_size = 12
 
 config.inactive_pane_hsb = {
   saturation = 0.7,
