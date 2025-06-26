@@ -7,6 +7,10 @@ M.setup = function()
 
   telescope.setup({
     defaults = {
+      preview = {
+        filesize_limit = 1.2,
+        timeout = 150,
+      },
       path_display = {
         shorten = { len = 2, exclude = { 1, 2, -1 } },
       },
