@@ -139,7 +139,7 @@ return {
   {
     "vim-test/vim-test",
     requires = "tpope/vim-dispatch",
-    config = function()
+    init = function()
       -- Async test execution
       --
       -- CustomStrategy to return focus to current window
@@ -157,14 +157,20 @@ return {
       -- OR use neotest for lua async strategies
       -- nvim-neotest/neotest
       --
-      vim.g["test#strategy"] = "dispatch"
+      -- vim.g["test#strategy"] = "dispatch"
+      -- vim.g["test#preserve_screen"] = 1
+
+      -- TODO: This doesn't work the same as below
+      -- vim.g["test#javascript#jest#options"] = "-- TZ=UTC"
+      -- vim.g["test#javascript#vitest#options"] = "TZ=UTC"
+
       -- vim.g["test#neovim#start_normal"] = "1"
     end,
     keys = {
-      { "<leader>tn", ":TestNearest<cr>", desc = "Test nearest to line" },
-      { "<leader>tf", ":TestFile<cr>", desc = "Test file" },
-      { "<leader>ta", ":TestSuite<cr>", desc = "Test all tests" },
-      { "<leader>tl", ":TestLast<cr>", desc = "Test last test" },
+      { "<leader>tn", ":TestNearest TZ=UTC<cr>", desc = "Test nearest to line" },
+      { "<leader>tf", ":TestFile TZ=UTC<cr>", desc = "Test file" },
+      { "<leader>ta", ":TestSuite TZ=UTC<cr>", desc = "Test all tests" },
+      { "<leader>tl", ":TestLast TZ=UTC<cr>", desc = "Test last test" },
       { "<leader>gt", ":TestVisit<cr>", desc = "Go to test" },
     },
   },
