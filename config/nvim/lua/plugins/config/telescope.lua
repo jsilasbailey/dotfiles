@@ -27,6 +27,12 @@ M.setup = function()
 
   telescope.load_extension("fzf")
 
+  vim.keymap.set("n", "<leader>fm", function()
+    telescope.extensions.metals.commands()
+  end, {
+    desc = "Metals",
+  })
+
   vim.keymap.set("n", "<leader>ff", function()
     builtin.find_files(themes.get_ivy())
   end, {
