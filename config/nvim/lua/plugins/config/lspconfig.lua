@@ -1,87 +1,91 @@
 local M = {}
 
 M.setup = function()
-  -- TODO: Extract concerns to different plugin configs
-
-  local lsp_config = require("lspconfig")
   require("mason").setup()
 
-  local capabilities = vim.tbl_deep_extend(
-    "force",
-    vim.lsp.protocol.make_client_capabilities(),
-    require("cmp_nvim_lsp").default_capabilities()
-  )
+  local lsp_servers = {
+    "lua_ls",
+    "ts_ls",
+    "eslint",
+    "buf_ls",
+    "tailwindcss",
+    "rescriptls",
+    "bashls",
+    "jsonls",
+  }
 
-  local function ts_organize_imports()
-    local params = {
-      command = "_typescript.organizeImports",
-      arguments = { vim.api.nvim_buf_get_name(0) },
-      title = "",
-    }
-    vim.lsp.buf.execute_command(params)
-  end
+  vim.lsp.enable(lsp_servers)
 
-  local servers = {
-    lua_ls = {},
-    bashls = {},
-    docker_compose_language_service = {},
-    dockerls = {},
-    gopls = {},
-    rust_analyzer = {},
-    solargraph = {},
-    eslint = {},
-    buf_ls = {},
-    tailwindcss = {
-      settings = {
-        tailwindCSS = {
-          classFunctions = { "tw", "twx", "clsx" },
-          experimental = {
-            classRegex = {
-              "[a-zA-Z]*ClassName='([^']+)'",
-              '[a-zA-Z]*ClassName="([^"]+)"',
-              "[a-zA-Z]*ClassName={`([^`]+)`}",
-            },
+  vim.lsp.config("tailwindcss", {
+    settings = {
+      tailwindCSS = {
+        classFunctions = { "tw", "twx", "clsx" },
+        experimental = {
+          classRegex = {
+            "[a-zA-Z]*ClassName='([^']+)'",
+            '[a-zA-Z]*ClassName="([^"]+)"',
+            "[a-zA-Z]*ClassName={`([^`]+)`}",
           },
         },
       },
     },
-    rescriptls = {},
-    ts_ls = {
-      on_attach = function(_, bufnr)
-        vim.keymap.set(
-          "n",
-          "<leader>oi",
-          ":OrganizeImports<cr>",
-          { buffer = bufnr, desc = "LSP: [O]rganize [I]mports" }
-        )
-      end,
-      commands = {
-        OrganizeImports = {
-          ts_organize_imports,
-          description = "Organize Typescript Imports",
-        },
-      },
-    },
-    jsonls = {
-      settings = {
-        json = {
-          schemas = require("schemastore").json.schemas(),
-          validate = { enable = true },
-        },
-      },
-    },
-  }
-  local ensure_installed = vim.tbl_keys(servers or {})
+  })
 
-  require("mason-lspconfig").setup({
-    ensure_installed = ensure_installed,
-    automatic_installation = false,
-    handlers = {
-      function(server_name)
-        local server = servers[server_name] or {}
-        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-        lsp_config[server_name].setup(server)
-      end,
+  vim.lsp.config("lua_ls", {
+    on_init = function(client)
+      if client.workspace_folders then
+        local path = client.workspace_folders[1].name
+        if
+          path ~= vim.fn.stdpath("config")
+          and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+        then
+          return
+        end
+      end
+
+      client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most
+          -- likely LuaJIT in the case of Neovim)
+          version = "LuaJIT",
+          -- Tell the language server how to find Lua modules same way as Neovim
+          -- (see `:h lua-module-load`)
+          path = {
+            "lua/?.lua",
+            "lua/?/init.lua",
+          },
+        },
+        -- Make the server aware of Neovim runtime files
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME,
+            -- Depending on the usage, you might want to add additional paths
+            -- here.
+            -- '${3rd}/luv/library'
+            -- '${3rd}/busted/library'
+          },
+          -- Or pull in all of 'runtimepath'.
+          -- NOTE: this is a lot slower and will cause issues when working on
+          -- your own configuration.
+          -- See https://github.com/neovim/nvim-lspconfig/issues/3189
+          -- library = {
+          --   vim.api.nvim_get_runtime_file('', true),
+          -- }
+        },
+      })
+    end,
+    settings = {
+      Lua = {},
+    },
+  })
+
+  vim.lsp.config("jsonls", {
+    settings = {
+      json = {
+        schemas = require("schemastore").json.schemas(),
+        validate = { enable = true },
+      },
     },
   })
 
