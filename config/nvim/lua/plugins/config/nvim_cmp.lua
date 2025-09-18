@@ -3,6 +3,7 @@ local M = {}
 M.setup = function()
   local cmp = require("cmp")
   local ls = require("luasnip")
+
   local cmp_git = require("cmp_git")
   cmp_git.setup()
 
@@ -27,8 +28,6 @@ M.setup = function()
       end,
     },
     mapping = cmp.mapping.preset.insert({
-      ["<C-n>"] = cmp.mapping.select_next_item(),
-      ["<C-p>"] = cmp.mapping.select_prev_item(),
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<C-y>"] = cmp.mapping.confirm({ select = true }),
@@ -37,7 +36,7 @@ M.setup = function()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ["<C-j>"] = cmp.mapping(function(fallback)
+      ["<C-n>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif ls.locally_jumpable(1) then
@@ -46,7 +45,7 @@ M.setup = function()
           fallback()
         end
       end, { "i", "s" }),
-      ["<C-k>"] = cmp.mapping(function(fallback)
+      ["<C-p>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif ls.locally_jumpable(-1) then
