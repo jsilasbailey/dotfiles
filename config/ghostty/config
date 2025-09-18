@@ -1,2 +1,3 @@
-theme = dark:zenbones_dark,light:zenbones_light
+theme = dark:Zenbones Dark,light:Zenbones Light
 window-padding-x = 10
+font-size = 12
