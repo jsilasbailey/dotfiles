@@ -344,7 +344,13 @@ return {
             showInferredType = true,
           }
 
-          metals_config.root_patterns = { "build.sbt", "build.sc", "build.gradle", "pom.xml", ".scalafmt.conf" }
+          metals_config.root_patterns = {
+            "build.sbt",
+            "build.sc",
+            "build.gradle",
+            "pom.xml",
+            ".scalafmt.conf", -- Need to add this for smaller projects not using sbt
+          }
 
           metals_config.capabilities = vim.tbl_deep_extend(
             "force",
