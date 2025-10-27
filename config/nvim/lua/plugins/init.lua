@@ -385,6 +385,9 @@ return {
           vim.api.nvim_create_autocmd("FileType", {
             pattern = self.ft,
             callback = function()
+              -- Messes with metals user messaging
+              vim.opt_global.shortmess:remove("F")
+
               require("metals").initialize_or_attach(metals_config)
             end,
             group = nvim_metals_group,
