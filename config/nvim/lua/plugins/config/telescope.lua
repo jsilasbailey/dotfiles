@@ -27,26 +27,28 @@ M.setup = function()
 
   telescope.load_extension("fzf")
 
+  local ivy_theme = themes.get_ivy()
+
   vim.keymap.set("n", "<leader>fm", function()
-    telescope.extensions.metals.commands()
+    telescope.extensions.metals.commands(ivy_theme)
   end, {
     desc = "Metals",
   })
 
   vim.keymap.set("n", "<leader>ff", function()
-    builtin.find_files(themes.get_ivy())
+    builtin.find_files(ivy_theme)
   end, {
     desc = "Find files",
   })
 
   vim.keymap.set("n", "<leader>fg", function()
-    builtin.live_grep()
+    builtin.live_grep(ivy_theme)
   end, {
     desc = "Grep in project",
   })
 
   vim.keymap.set("n", "<leader>k", function()
-    builtin.grep_string()
+    builtin.grep_string(ivy_theme)
   end, {
     desc = "Grep word under cursor",
   })
