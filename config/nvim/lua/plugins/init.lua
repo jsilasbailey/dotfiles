@@ -175,10 +175,11 @@ return {
     },
   },
   {
-    "ggandor/leap.nvim",
-    config = function()
-      require("leap").create_default_mappings()
-    end,
+    url = "https://codeberg.org/andyg/leap.nvim",
+    name = "leap.nvim",
+    keys = {
+      { "s", "<Plug>(leap)", mode = { "n", "x", "o" }, desc = "Leap in current window" },
+    },
   },
   {
     "christoomey/vim-tmux-navigator",
