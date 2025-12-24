@@ -91,17 +91,23 @@ return {
   },
   {
     "stevearc/oil.nvim",
-    dependencies = {
-      { "echasnovski/mini.icons", opts = { style = "ascii" } },
-    },
+    dependencies = { "nvim-mini/mini.icons", opts = { style = "ascii" } },
     config = function()
       ---@module 'oil'
       ---@type oil.SetupOpts
-      local opts = {}
+      local opts = {
+        --- Disable keybinds that collide with window navigation
+        keymaps = {
+          ["<C-h>"] = false,
+          ["<C-l>"] = false,
+        },
+      }
+
       require("oil").setup(opts)
 
       vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
     end,
+    lazy = false,
   },
   {
     "stevearc/conform.nvim",
