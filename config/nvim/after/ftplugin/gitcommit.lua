@@ -1,4 +1,4 @@
-vim.bo.textwidth = 120
+vim.bo.textwidth = 80
 vim.wo.number = false
 vim.wo.spell = true
 vim.bo.expandtab = true

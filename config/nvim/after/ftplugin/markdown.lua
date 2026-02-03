@@ -1,6 +1,6 @@
 if vim.o.modifiable then
   vim.api.nvim_set_option_value("spell", true, { scope = "local" })
-  vim.api.nvim_set_option_value("textwidth", 120, { scope = "local" })
+  vim.api.nvim_set_option_value("textwidth", 80, { scope = "local" })
 
   -- Function to toggle markdown checkboxes
   local function toggle_checkbox()
@@ -22,5 +22,10 @@ if vim.o.modifiable then
 
   -- Map <leader>x to toggle checkbox function
   -- vim.api.nvim_set_keymap("n", "<leader>x", toggle_checkbox, { noremap = true, silent = true })
-  vim.keymap.set("n", "<leader>x", toggle_checkbox, { noremap = true, silent = true })
+  vim.keymap.set(
+    "n",
+    "<leader>x",
+    toggle_checkbox,
+    { noremap = true, silent = true }
+  )
 end
