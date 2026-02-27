@@ -11,12 +11,15 @@ if [ $# -eq 1 ]; then
     selected=$1
 else
     search_path="${TAT_SEARCH_PATH:-$HOME/Coding}"
-    selected=$(find "$search_path" \
-      -mindepth 1 \
-      -maxdepth 2 \
-      -type d \
-      -exec test -d '{}/.git' \; -print \
-      | fzf)
+    selected=$(
+      {
+        echo "$HOME/.dotfiles"
+        find "$search_path" \
+          -mindepth 1 \
+          -maxdepth 2 \
+          -type d
+      } | fzf
+    )
 fi
 
 if [ -z "$selected" ]; then
