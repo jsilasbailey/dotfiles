@@ -7,7 +7,6 @@ vim.opt.undofile = true
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.breakindent = true
-vim.opt.cursorline = true
 
 vim.opt.mouse = "a"
 vim.o.scrolloff = 10
