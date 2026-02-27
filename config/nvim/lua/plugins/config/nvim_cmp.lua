@@ -21,6 +21,10 @@ M.setup = function()
   }
 
   cmp.setup({
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
