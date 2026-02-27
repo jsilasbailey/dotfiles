@@ -333,9 +333,6 @@ return {
       },
       {
         "scalameta/nvim-metals",
-        dependencies = {
-          "nvim-lua/plenary.nvim",
-        },
         ft = { "scala", "sbt", "java" },
         opts = function()
           local metals = require("metals")
@@ -352,18 +349,14 @@ return {
           -- any messages from metals. There is more info in the help docs about this
           metals_config.init_options.statusBarProvider = "off"
 
-          metals_config.settings = {
-            showImplicitArguments = true,
-            showImplicitConversionsAndClasses = true,
-            showInferredType = true,
-          }
-
           metals_config.root_patterns = {
             "build.sbt",
             "build.sc",
             "build.gradle",
             "pom.xml",
-            ".scalafmt.conf", -- Need to add this for smaller projects not using sbt
+
+            -- Need to add this for smaller projects not using sbt
+            ".scalafmt.conf",
           }
 
           metals_config.capabilities = vim.tbl_deep_extend(
@@ -380,7 +373,10 @@ return {
 
             vim.keymap.set("n", "<leader>ws", function()
               require("metals").hover_worksheet()
-            end, { buffer = bufnr, desc = "LSP: [W]ork[S]heet Hover" })
+            end, {
+              buffer = bufnr,
+              desc = "LSP: [W]ork[S]heet Hover",
+            })
 
             vim.keymap.set(
               "n",
@@ -393,7 +389,8 @@ return {
           return metals_config
         end,
         config = function(self, metals_config)
-          local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+          local nvim_metals_group =
+            vim.api.nvim_create_augroup("nvim-metals", { clear = true })
           vim.api.nvim_create_autocmd("FileType", {
             pattern = self.ft,
             callback = function()
