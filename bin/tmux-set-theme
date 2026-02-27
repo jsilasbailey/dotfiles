@@ -1,0 +1,15 @@
+#!/bin/sh
+# Set tmux status line colors based on macOS system theme
+#
+# Current theme: Koda
+#
+# Probably should make this configurable in some way but currently
+# just setting the styles directly
+#
+# Or just use plugins for tmux
+
+if defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark; then
+  tmux set -g status-style bg=#101010,fg=#ffffff
+else
+  tmux set -g status-style bg=#faf9f5,fg=#101010
+fi
