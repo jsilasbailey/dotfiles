@@ -12,6 +12,7 @@ M.setup = function()
     "rescriptls",
     "bashls",
     "jsonls",
+    "ruby_lsp",
   }
 
   vim.lsp.enable(lsp_servers)
