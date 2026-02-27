@@ -23,7 +23,7 @@ alias s="rspec"
 alias path='echo $PATH | tr -s ":" "\n"'
 
 # Custom tools
-alias td="rust_todo"
+alias td="todo.sh"
 
 # Git
 alias gf="git branch | fzf | xargs git checkout"
