@@ -36,8 +36,23 @@ return {
   { "tpope/vim-rails", ft = "ruby" },
   { "tpope/vim-bundler", ft = "ruby" },
   { "tpope/vim-rake", ft = "ruby" },
-  -- TODO: Learn to use these better
-  "tpope/vim-abolish",
+  {
+    "tpope/vim-abolish",
+    config = function()
+      vim.cmd([[Abolish incontenence incontinence]])
+      vim.cmd([[Abolish seperate{,s,d,ly} separate{}]])
+      vim.cmd([[Abolish occured occurred]])
+      vim.cmd([[Abolish occurance{,s} occurrence{}]])
+      vim.cmd([[Abolish definately definitely]])
+      vim.cmd([[Abolish neccessary necessary]])
+      vim.cmd([[Abolish recieve{,d,s,r} receive{}]])
+      vim.cmd([[Abolish enviroment{,s} environment{}]])
+      vim.cmd([[Abolish dependancy{,ies} dependency{,ies}]])
+      vim.cmd([[Abolish refrence{,s,d} reference{}]])
+      vim.cmd([[Abolish gaurantee{,d,s} guarantee{}]])
+      vim.cmd([[Abolish accomodate{,d,s} accommodate{}]])
+    end,
+  },
   "tpope/vim-projectionist",
   {
     "lewis6991/gitsigns.nvim",
