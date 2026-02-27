@@ -120,7 +120,12 @@ return {
 
       require("oil").setup(opts)
 
-      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+      vim.keymap.set(
+        "n",
+        "-",
+        "<CMD>Oil<CR>",
+        { desc = "Open parent directory" }
+      )
     end,
     lazy = false,
   },
@@ -193,7 +198,11 @@ return {
       -- vim.g["test#neovim#start_normal"] = "1"
     end,
     keys = {
-      { "<leader>tn", ":TestNearest TZ=UTC<cr>", desc = "Test nearest to line" },
+      {
+        "<leader>tn",
+        ":TestNearest TZ=UTC<cr>",
+        desc = "Test nearest to line",
+      },
       { "<leader>tf", ":TestFile TZ=UTC<cr>", desc = "Test file" },
       { "<leader>ta", ":TestSuite TZ=UTC<cr>", desc = "Test all tests" },
       { "<leader>tl", ":TestLast TZ=UTC<cr>", desc = "Test last test" },
@@ -204,7 +213,12 @@ return {
     url = "https://codeberg.org/andyg/leap.nvim",
     name = "leap.nvim",
     keys = {
-      { "s", "<Plug>(leap)", mode = { "n", "x", "o" }, desc = "Leap in current window" },
+      {
+        "s",
+        "<Plug>(leap)",
+        mode = { "n", "x", "o" },
+        desc = "Leap in current window",
+      },
     },
   },
   {
