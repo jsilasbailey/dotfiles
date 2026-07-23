@@ -102,6 +102,88 @@ return {
         "Dispatch! open dash://<cword>",
         { desc = "Open the word under the cursor in Dash" }
       )
+
+      -- On-demand sbt tasks that Bloop (the Metals build server) can't do itself:
+      -- proto / Twirl / routes source generation, Bloop-config refresh, Slick
+      -- codegen. Routed through the sbt thin client `sbtn`, which reads
+      -- loquat/project/target/active.json and attaches to the already-running sbt
+      -- server (your Play `sbt console`) — ~1s, no new JVM; cold-boots one if none
+      -- is up. While the Play server is actively `run`ning, sbtn queues behind it
+      -- (single command queue), so fire these from the sbt prompt. Generated
+      -- sources land in target/scala-2.13/{src_managed,twirl,routes}/main, which
+      -- are Bloop's source roots, so Bloop picks them up on its next compile.
+      local function sbt_root()
+        return vim.fs.root(0, "build.sbt") or vim.fn.getcwd()
+      end
+
+      -- Run `sbtn <task>` in a reused terminal split. A terminal (not vim-dispatch
+      -- + quickfix) is deliberate: sbt/sbtn output matches no 'errorformat', so
+      -- quickfix mangles it — a terminal shows it verbatim, colors and all. One
+      -- split is reused across runs (buffer swapped each time) so repeated saves
+      -- don't stack windows; focus stays in your code; a vim.notify reports exit.
+      local term = { win = nil, buf = nil }
+
+      local function sbtn(task)
+        local origin = vim.api.nvim_get_current_win()
+
+        -- Ensure the output window exists (bottom horizontal, 15 rows). For a
+        -- vertical split instead: vim.cmd("botright vsplit") + nvim_win_set_width.
+        if not (term.win and vim.api.nvim_win_is_valid(term.win)) then
+          vim.cmd("botright 15split")
+          term.win = vim.api.nvim_get_current_win()
+        end
+
+        -- Fresh scratch buffer for this run (jobstart term=true converts the
+        -- current buffer, which must be empty & unmodified), shown in the window.
+        local old = term.buf
+        term.buf = vim.api.nvim_create_buf(false, true)
+        vim.api.nvim_win_set_buf(term.win, term.buf)
+        vim.api.nvim_set_current_win(term.win)
+
+        local job = vim.fn.jobstart({ "sbtn", task }, {
+          term = true,
+          cwd = sbt_root(),
+          on_exit = function(_, code)
+            local ok = code == 0
+            vim.notify(
+              ("sbtn %s %s"):format(task, ok and "✓" or ("✗ exit " .. code)),
+              ok and vim.log.levels.INFO or vim.log.levels.ERROR
+            )
+          end,
+        })
+        if job <= 0 then
+          vim.notify(
+            "could not start `sbtn " .. task .. "`",
+            vim.log.levels.ERROR
+          )
+        end
+
+        -- Now that the new buffer is displayed, wipe the previous run's.
+        if old and vim.api.nvim_buf_is_valid(old) then
+          pcall(vim.api.nvim_buf_delete, old, { force = true })
+        end
+
+        -- Keep working in your code; output streams in the split.
+        if vim.api.nvim_win_is_valid(origin) then
+          vim.api.nvim_set_current_win(origin)
+        end
+      end
+
+      vim.api.nvim_create_user_command("SbtProtos", function()
+        sbtn("protocGenerate")
+      end, { desc = "Regen ScalaPB protos (Scala)" })
+      vim.api.nvim_create_user_command("SbtTwirl", function()
+        sbtn("twirlCompileTemplates")
+      end, { desc = "Compile Twirl templates" })
+      vim.api.nvim_create_user_command("SbtRoutes", function()
+        sbtn("compile")
+      end, { desc = "Regen routes (via full compile)" })
+      vim.api.nvim_create_user_command("SbtBloop", function()
+        sbtn("bloopInstall")
+      end, { desc = "Refresh .bloop configs after build.sbt" })
+      vim.api.nvim_create_user_command("SbtSlick", function()
+        sbtn("slick/run")
+      end, { desc = "Regen Tables.scala after evolutions" })
     end,
   },
   {
@@ -196,6 +278,16 @@ return {
       -- vim.g["test#javascript#vitest#options"] = "TZ=UTC"
 
       -- vim.g["test#neovim#start_normal"] = "1"
+
+      -- Route Scala tests through the Bloop server via a custom runner (autoload/test/scala/augustbloop.vim)
+      -- The key MUST be "Scala" (capital, matching g:test#default_runners) so the merge prepends our runner into the same list.
+      vim.g["test#custom_runners"] = { Scala = { "augustbloop" } }
+      vim.g["test#scala#runner"] = "augustbloop"
+
+      -- Async: run tests in a neovim terminal split (TZ=UTC env prefix is inert
+      -- for bloop but harmless; kept for the JS runners).
+      vim.g["test#strategy"] = "neovim"
+      vim.g["test#neovim#term_position"] = "vert botright"
     end,
     keys = {
       {
