@@ -1,8 +1,25 @@
 vim.opt.swapfile = false
 vim.opt.backup = false
 
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+local undodir = os.getenv("HOME") .. "/.vim/undodir"
+local undo_max_age_days = 90
+
+vim.opt.undodir = undodir
 vim.opt.undofile = true
+
+-- Neovim never expires undo files, so we have to trim it
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    if vim.fn.isdirectory(undodir) == 0 then
+      return
+    end
+    vim.fn.jobstart(
+      { "find", undodir, "-type", "f", "-mtime", "+" .. undo_max_age_days, "-delete" },
+      { detach = true }
+    )
+  end,
+})
 
 vim.opt.clipboard = "unnamedplus"
 

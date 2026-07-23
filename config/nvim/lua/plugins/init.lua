@@ -53,7 +53,7 @@ return {
       vim.cmd([[Abolish accomodate{,d,s} accommodate{}]])
     end,
   },
-  "tpope/vim-projectionist",
+  { "tpope/vim-projectionist" },
   {
     "lewis6991/gitsigns.nvim",
     config = function()

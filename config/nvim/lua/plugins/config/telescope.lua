@@ -60,6 +60,8 @@ M.setup = function()
     silent = true,
     desc = "Spelling suggestions",
   })
+
+  vim.keymap.set("c", "<C-R>", "<Plug>(TelescopeFuzzyCommandSearch)", { desc = "Previous commands search" })
 end
 
 return M
