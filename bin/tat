@@ -6,19 +6,27 @@
 # ENV configuration:
 #
 # TAT_SEARCH_PATH -- Where to search for the directories
+# TAT_PINNED_FILE -- File of directories (one path per line) to list first. Blank lines and lines starting with '#' are ignored.
+
+DEFAULT_SEARCH_PATH="$HOME/Coding"
+DEFAULT_PINNED_FILE="$HOME/.config/tat/dirs"
 
 if [ $# -eq 1 ]; then
     selected=$1
 else
-    search_path="${TAT_SEARCH_PATH:-$HOME/Coding}"
+    search_path="${TAT_SEARCH_PATH:-$DEFAULT_SEARCH_PATH}"
+    pinned_file="${TAT_PINNED_FILE:-$DEFAULT_PINNED_FILE}"
+
     selected=$(
       {
-        echo "$HOME/.dotfiles"
+        [ -f "$pinned_file" ] && cat "$pinned_file"
         find "$search_path" \
           -mindepth 1 \
           -maxdepth 2 \
           -type d
-      } | fzf
+      } \
+        | awk 'NF && $0 !~ /^[[:space:]]*#/ && !seen[$0]++' \
+        | fzf
     )
 fi
 
