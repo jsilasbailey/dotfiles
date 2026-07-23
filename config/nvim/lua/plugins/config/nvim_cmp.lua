@@ -5,10 +5,15 @@ M.setup = function()
   local ls = require("luasnip")
 
   local cmp_git = require("cmp_git")
+  ---@diagnostic disable-next-line: missing-parameter
   cmp_git.setup()
 
   local coauthors = require("coauthors")
   coauthors.setup()
+
+  require("render-markdown").setup({
+    completions = { lsp = { enabled = true } },
+  })
 
   -- Provide text completion from all open buffers
   local all_open_buffers_source = {

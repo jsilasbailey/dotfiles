@@ -1,6 +1,7 @@
+vim.api.nvim_set_option_value("number", false, { scope = "local" })
+
 if vim.o.modifiable then
   vim.api.nvim_set_option_value("spell", true, { scope = "local" })
-  vim.api.nvim_set_option_value("textwidth", 80, { scope = "local" })
 
   -- Function to toggle markdown checkboxes
   local function toggle_checkbox()
