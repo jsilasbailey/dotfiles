@@ -70,7 +70,6 @@ set nojoinspaces
 
 " Make it obvious where 80 characters is
 set textwidth=80
-set colorcolumn=+1
 
 " Numbers
 set number
@@ -136,15 +135,12 @@ endif
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-colorscheme onedark
+colorscheme habamax
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
 
 set cursorline
-set colorcolumn=80
-" Disable colorcolumn in qickfix windows
-autocmd Filetype qf set colorcolumn&
 
 " Use mouse
 set mouse=a
