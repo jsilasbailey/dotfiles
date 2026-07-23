@@ -18,7 +18,7 @@
   commentChar = ";"
 [merge]
   ff = only
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 [pull]
   ff = only
 [merge "gemfilelock"]
@@ -44,7 +44,6 @@
 [difftool]
   prompt = false
 [delta]
-  light = false # dark terminal background
   navigate = true
   features = line-numbers decorations
 [pager]
