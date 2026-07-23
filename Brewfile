@@ -1,4 +1,3 @@
-tap "homebrew/cask-fonts"
 tap "thoughtbot/formulae"
 
 brew "colima"
@@ -23,7 +22,5 @@ brew "zsh-completions"
 brew "ffmpeg"
 brew "pgformatter"
 
-cask "amethyst"
-cask "wezterm"
 cask "1password"
 cask "obsidian"

@@ -27,3 +27,4 @@ alias td="todo.sh"
 
 # Git
 alias gf="git branch | fzf | xargs git checkout"
+alias stashls="git stash list | fzf --delimiter=':' --preview 'git stash show -p --color=always {1}' --preview-window=down:80% | cut -d: -f1"
