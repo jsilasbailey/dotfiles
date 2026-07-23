@@ -361,7 +361,7 @@ return {
       },
       {
         "scalameta/nvim-metals",
-        ft = { "scala", "sbt", "java" },
+        ft = { "scala", "sbt", "java", "twirl" },
         opts = function()
           local metals = require("metals")
 
