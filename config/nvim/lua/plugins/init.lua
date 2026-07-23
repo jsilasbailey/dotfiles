@@ -310,7 +310,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "williamboman/mason.nvim",
       "hrsh7th/nvim-cmp",
       "b0o/schemastore.nvim",
       "folke/lazydev.nvim",

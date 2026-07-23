@@ -1,8 +1,6 @@
 local M = {}
 
 M.setup = function()
-  require("mason").setup()
-
   local lsp_servers = {
     "lua_ls",
     "ts_ls",

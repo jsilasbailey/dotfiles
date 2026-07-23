@@ -49,14 +49,11 @@ setup_localrc() {
 }
 
 install_nvim_dependencies() {
-  asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-  asdf plugin add python https://github.com/asdf-community/asdf-python
-  asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-  asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
-
   rcup -v tool-versions
 
-  asdf install
+  rcup -v config/mise/config.toml
+
+  mise install
 
   python3 -m pip install --user --upgrade pynvim
   gem install neovim

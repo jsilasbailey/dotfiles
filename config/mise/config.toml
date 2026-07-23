@@ -1,0 +1,20 @@
+# Global mise config: editor tooling (LSP servers, formatters, linters).
+#
+# These are the binaries nvim used to get from Mason.
+# Project-pinned prettier/eslint will still be used via node_modules with conform.
+#
+# Language runtimes (node/ruby/etc.) live in ~/.tool-versions, not here.
+[tools]
+"lua-language-server" = "latest"
+"stylua" = "latest"
+"buf" = "latest"
+
+"npm:vscode-langservers-extracted" = "latest"
+"npm:@tailwindcss/language-server" = "latest"
+"npm:@rescript/language-server" = "latest"
+"npm:bash-language-server" = "latest"
+"npm:prettier" = "latest"
+"npm:@fsouza/prettierd" = "latest"
+
+"gem:ruby-lsp" = "latest"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260707.2"
