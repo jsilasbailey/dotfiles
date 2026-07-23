@@ -369,6 +369,15 @@ return {
 
           local metals_config = metals.bare_config()
 
+          metals_config.settings = {
+            -- Test out metals 2
+            serverVersion = "2.0.0-M14",
+            serverProperties = { "-Xmx4g" },
+
+            startMcpServer = true,
+            mcpClient = "claude",
+          }
+
           -- "off" will enable LSP progress notifications by Metals and you'll need
           -- to ensure you have a plugin like fidget.nvim installed to handle them.
           --
