@@ -3,7 +3,7 @@ local M = {}
 M.setup = function()
   local lsp_servers = {
     "lua_ls",
-    "ts_ls",
+    "tsgo",
     "eslint",
     "buf_ls",
     "tailwindcss",
