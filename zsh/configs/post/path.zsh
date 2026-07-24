@@ -5,8 +5,8 @@ if command -v mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
 
-if command -v go &> /dev/null; then
-  export PATH=$PATH:$(go env GOPATH)/bin
+if [[ -d ${GOPATH:-$HOME/go}/bin ]]; then
+  export PATH=$PATH:${GOPATH:-$HOME/go}/bin
 fi
 
 # mkdir .git/safe in the root of repositories you trust
