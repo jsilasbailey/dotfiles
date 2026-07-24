@@ -14,10 +14,15 @@ vim.api.nvim_create_autocmd("VimEnter", {
     if vim.fn.isdirectory(undodir) == 0 then
       return
     end
-    vim.fn.jobstart(
-      { "find", undodir, "-type", "f", "-mtime", "+" .. undo_max_age_days, "-delete" },
-      { detach = true }
-    )
+    vim.fn.jobstart({
+      "find",
+      undodir,
+      "-type",
+      "f",
+      "-mtime",
+      "+" .. undo_max_age_days,
+      "-delete",
+    }, { detach = true })
   end,
 })
 

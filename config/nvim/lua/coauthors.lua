@@ -25,7 +25,10 @@ local function scan_git_log_async(callback)
       callback(vim.tbl_keys(authors))
     else
       vim.schedule(function()
-        vim.notify("[coauthors] Git shortlog error: " .. out.stderr, vim.log.levels.ERROR)
+        vim.notify(
+          "[coauthors] Git shortlog error: " .. out.stderr,
+          vim.log.levels.ERROR
+        )
       end)
     end
   end)

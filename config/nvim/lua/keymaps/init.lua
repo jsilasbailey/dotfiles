@@ -48,5 +48,15 @@ end, { desc = "Go to previous [D]iagnostic message" })
 map("n", "]d", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Go to next [D]iagnostic message" })
-map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show [D]iagnostic messages" })
-map("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open [D]iagnostic [Q]uickfix list" })
+map(
+  "n",
+  "<leader>d",
+  vim.diagnostic.open_float,
+  { desc = "Show [D]iagnostic messages" }
+)
+map(
+  "n",
+  "<leader>dq",
+  vim.diagnostic.setloclist,
+  { desc = "Open [D]iagnostic [Q]uickfix list" }
+)
