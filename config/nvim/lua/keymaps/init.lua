@@ -67,3 +67,17 @@ map(
   vim.diagnostic.setloclist,
   { desc = "Open [D]iagnostic [Q]uickfix list" }
 )
+
+-- Completion
+
+map("i", "<C-y>", function()
+  if
+    vim.fn.pumvisible() == 1
+    and vim.fn.complete_info({ "selected" }).selected == -1
+  then
+    return "<C-n><C-y>"
+  end
+  return "<C-y>"
+end, { expr = true })
+
+map("i", "<C-Space>", "<C-x><C-o>")

@@ -1,67 +1,57 @@
--- A simple Neovim plugin for piping 'Co-authored-by' completions to nvim-cmp
 local M = {}
-local cmp = require("cmp")
 
---- @alias coauthor string
---- @type coauthor[]
-local coauthors_state = {}
+local coauthors = {}
 
---- Scans `git log` for recent commit authors asynchronously
---- @param callback fun(result: coauthor[])
-local function scan_git_log_async(callback)
+local function scan_git_log_async()
   vim.system({
     "sh",
     "-c",
     "git log --pretty=short | git shortlog -nes | cut -f 2",
   }, { text = true }, function(out)
-    local data = out.stdout
-
-    if out.code == 0 and data then
-      local authors = {}
-      for line in data:gmatch("[^\r\n]+") do
-        authors[line] = true
-      end
-
-      callback(vim.tbl_keys(authors))
-    else
+    if out.code ~= 0 then
       vim.schedule(function()
         vim.notify(
           "[coauthors] Git shortlog error: " .. out.stderr,
           vim.log.levels.ERROR
         )
       end)
+      return
     end
+
+    local authors = {}
+    for line in out.stdout:gmatch("[^\r\n]+") do
+      authors[line] = true
+    end
+
+    coauthors = vim.tbl_keys(authors)
+    table.sort(coauthors)
   end)
 end
 
--- Register the plugin with nvim-cmp
-function M.setup()
-  ---@diagnostic disable-next-line: missing-fields
-  cmp.register_source("coauthors", {
-    name = "coauthors",
-    get_keyword_pattern = function()
-      return [[Co-authored-by:\s*\zs.*]]
-    end,
-    complete = function(_, _, callback)
-      local items = {}
+function M.complete(findstart, base)
+  local line = vim.api.nvim_get_current_line()
+  local _, prefix_end = line:find("^Co%-authored%-by:%s*")
 
-      for _, coauthor in ipairs(coauthors_state) do
-        table.insert(items, { label = coauthor })
-      end
+  if findstart == 1 then
+    return prefix_end or vim.fn.col(".") - 1
+  end
 
-      callback({ items = items })
-    end,
-  })
+  if not prefix_end then
+    return {}
+  end
 
-  -- Scan when opening commit messages, not too slow atm
-  vim.api.nvim_create_autocmd("BufRead", {
-    pattern = "COMMIT_EDITMSG",
-    callback = function()
-      scan_git_log_async(function(git_authors)
-        coauthors_state = git_authors
-      end)
-    end,
-  })
+  local items = {}
+  for _, author in ipairs(coauthors) do
+    if author:lower():find(base:lower(), 1, true) then
+      table.insert(items, { word = author })
+    end
+  end
+  return items
+end
+
+function M.attach()
+  vim.bo.omnifunc = "v:lua.require'coauthors'.complete"
+  scan_git_log_async()
 end
 
 return M

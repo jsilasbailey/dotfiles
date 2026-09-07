@@ -230,6 +230,7 @@ return {
       },
     },
     opts = {
+      completions = { lsp = { enabled = true } },
       formatters = {
         prettierd = {
           env = { PRETTIERD_LOCAL_PRETTIER_ONLY = "true" },
@@ -346,51 +347,6 @@ return {
     opts = {},
   },
   {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*", -- latest major release
-    config = function()
-      local ls = require("luasnip")
-      local s = ls.snippet
-      local i = ls.insert_node
-      local fmt = require("luasnip.extras.fmt").fmt
-
-      ls.add_snippets("typescriptreact", {
-        s(
-          "default",
-          fmt(
-            [[
-          export default function {}({}) {{
-            {}
-          }}
-          ]],
-            {
-              i(1),
-              i(2),
-              i(0),
-            }
-          )
-        ),
-      })
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-      {
-        "petertriho/cmp-git",
-        dependencies = "nvim-lua/plenary.nvim",
-      },
-      "folke/lazydev.nvim",
-    },
-    config = require("plugins.config.nvim_cmp").setup,
-  },
-  {
     "folke/lazydev.nvim",
     ft = "lua",
     dependencies = {
@@ -406,7 +362,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "hrsh7th/nvim-cmp",
       "b0o/schemastore.nvim",
       "folke/lazydev.nvim",
       {
@@ -499,12 +454,6 @@ return {
             -- Need to add this for smaller projects not using sbt
             ".scalafmt.conf",
           }
-
-          metals_config.capabilities = vim.tbl_deep_extend(
-            "force",
-            vim.lsp.protocol.make_client_capabilities(),
-            require("cmp_nvim_lsp").default_capabilities()
-          )
 
           metals_config.on_attach = function(_client, bufnr)
             vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, {

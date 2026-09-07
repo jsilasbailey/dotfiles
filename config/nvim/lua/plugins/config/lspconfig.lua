@@ -69,6 +69,11 @@ M.setup = function()
       end, { buffer = event.buf, desc = "LSP: [H]over" })
 
       local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+      if client then
+        vim.lsp.completion.enable(true, client.id, event.buf)
+      end
+
       if
         client
         and client:supports_method("textDocument/linkedEditingRange")
