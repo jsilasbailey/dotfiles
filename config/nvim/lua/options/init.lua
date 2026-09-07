@@ -26,7 +26,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
-vim.opt.clipboard = "unnamedplus"
+-- Use register "+ manually instead
+-- vim.opt.clipboard = "unnamedplus"
 
 vim.opt.breakindent = true
 
