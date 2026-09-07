@@ -342,7 +342,27 @@ return {
       "<space>s",
     },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {},
+    opts = function()
+      local u = require("treesj.langs.utils")
+      return {
+        langs = {
+          scala = {
+            arguments = u.set_preset_for_args(),
+            parameters = u.set_preset_for_args(),
+            class_parameters = u.set_preset_for_args(),
+            type_parameters = u.set_preset_for_args(),
+            type_arguments = u.set_preset_for_args(),
+            block = u.set_preset_for_statement(),
+            template_body = u.set_preset_for_statement(),
+            function_definition = { target_nodes = { "parameters", "block" } },
+            call_expression = { target_nodes = { "arguments" } },
+            class_definition = {
+              target_nodes = { "class_parameters", "template_body" },
+            },
+          },
+        },
+      }
+    end,
   },
   {
     "folke/lazydev.nvim",
