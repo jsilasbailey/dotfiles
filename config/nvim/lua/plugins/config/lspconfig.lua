@@ -6,7 +6,7 @@ local esc = k("<Esc>")
 M.setup = function()
   local lsp_servers = {
     "lua_ls",
-    "tsgo",
+    "tsc",
     "eslint",
     "buf_ls",
     "tailwindcss",
