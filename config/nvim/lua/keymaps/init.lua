@@ -42,18 +42,25 @@ map("t", "<C-l>", "<C-\\><C-N><C-w>l", { silent = true })
 map("t", "<C-o>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Diagnostic keymaps
+local function show_diagnostic_float(_, bufnr)
+  vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+end
+
 map("n", "[d", function()
-  vim.diagnostic.jump({ count = 1, float = true })
+  vim.diagnostic.jump({ count = -1, on_jump = show_diagnostic_float })
 end, { desc = "Go to previous [D]iagnostic message" })
+
 map("n", "]d", function()
-  vim.diagnostic.jump({ count = -1, float = true })
+  vim.diagnostic.jump({ count = 1, on_jump = show_diagnostic_float })
 end, { desc = "Go to next [D]iagnostic message" })
+
 map(
   "n",
   "<leader>d",
   vim.diagnostic.open_float,
   { desc = "Show [D]iagnostic messages" }
 )
+
 map(
   "n",
   "<leader>dq",
