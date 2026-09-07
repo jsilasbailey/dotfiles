@@ -178,9 +178,9 @@ return {
       vim.api.nvim_create_user_command("SbtRoutes", function()
         sbtn("compile")
       end, { desc = "Regen routes (via full compile)" })
-      vim.api.nvim_create_user_command("SbtBloop", function()
-        sbtn("bloopInstall")
-      end, { desc = "Refresh .bloop configs after build.sbt" })
+      -- vim.api.nvim_create_user_command("SbtBloop", function()
+      --   sbtn("bloopInstall")
+      -- end, { desc = "Refresh .bloop configs after build.sbt" })
       vim.api.nvim_create_user_command("SbtSlick", function()
         sbtn("slick/run")
       end, { desc = "Regen Tables.scala after evolutions" })
@@ -279,13 +279,17 @@ return {
 
       -- vim.g["test#neovim#start_normal"] = "1"
 
-      -- Route Scala tests through the Bloop server via a custom runner (autoload/test/scala/augustbloop.vim)
-      -- The key MUST be "Scala" (capital, matching g:test#default_runners) so the merge prepends our runner into the same list.
-      vim.g["test#custom_runners"] = { Scala = { "augustbloop" } }
-      vim.g["test#scala#runner"] = "augustbloop"
+      -- Route Scala tests through the running sbt server via `sbtn` with a custom
+      -- runner (autoload/test/scala/augustsbt.vim).
+      --
+      -- Metals uses that same server as its build server, so tests share its warm compile state.
+      -- Swap to "augustbloop" if using bloop as a build server.
+      --
+      -- NOTE: The key MUST be "Scala" (matching g:test#default_runners) so the merge prepends our runner into the same list.
+      vim.g["test#custom_runners"] = { Scala = { "augustsbt" } }
+      vim.g["test#scala#runner"] = "augustsbt"
 
-      -- Async: run tests in a neovim terminal split (TZ=UTC env prefix is inert
-      -- for bloop but harmless; kept for the JS runners).
+      -- Async: run tests in a neovim terminal split
       vim.g["test#strategy"] = "neovim"
       vim.g["test#neovim#term_position"] = "vert botright"
     end,
@@ -462,9 +466,17 @@ return {
           local metals_config = metals.bare_config()
 
           metals_config.settings = {
-            -- Test out metals 2
-            serverVersion = "2.0.0-M14",
-            serverProperties = { "-Xmx4g" },
+            -- Metals 1
+            serverVersion = "1.6.8",
+
+            -- Metals 2
+            -- serverVersion = "2.0.0-M17",
+            -- serverProperties = {
+            --   "-Xmx6g",
+            --   "-XX:+UseG1GC",
+            --   "-XX:G1PeriodicGCInterval=30000",
+            -- },
+            -- shutdownBloopOnEditorClose = true
 
             startMcpServer = true,
             mcpClient = "claude",
