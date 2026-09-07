@@ -8,6 +8,7 @@
 "lua-language-server" = "latest"
 "stylua" = "latest"
 "buf" = "latest"
+"tree-sitter" = "latest"
 
 "npm:vscode-langservers-extracted" = "latest"
 "npm:@tailwindcss/language-server" = "latest"

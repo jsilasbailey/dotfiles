@@ -3,14 +3,14 @@ return {
   -- "nvim-tree/nvim-web-devicons",
   {
     "nvim-treesitter/nvim-treesitter",
-    tag = "v0.9.3",
-    build = function()
-      require("nvim-treesitter.install").update({ with_sync = true })
-    end,
+    branch = "main",
+    lazy = false,
+    build = ":TSUpdate",
     config = require("plugins.config.treesitter").setup,
   },
   {
     "RRethy/nvim-treesitter-endwise",
+    branch = "refactor/migrate-to-stable-treesitter-api",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
