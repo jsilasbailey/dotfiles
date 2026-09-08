@@ -50,7 +50,6 @@ M.setup = function()
     group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 
     callback = function(event)
-      -- TODO: If supports go to def
       vim.keymap.set("n", "gd", function()
         vim.lsp.buf.definition()
       end, { buffer = event.buf, desc = "LSP: [G]o to [D]efinition" })
