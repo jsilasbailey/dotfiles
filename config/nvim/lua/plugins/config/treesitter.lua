@@ -6,9 +6,12 @@ local languages = {
   "css",
   "dockerfile",
   "gitattributes",
+  "html",
   "javascript",
   "jsdoc",
   "json",
+  "latex",
+  "lua",
   "make",
   "python",
   "regex",
@@ -22,7 +25,6 @@ local languages = {
   "typescript",
   "vue",
   "yaml",
-  "lua",
 }
 
 M.setup = function()
