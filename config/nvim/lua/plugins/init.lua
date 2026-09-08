@@ -380,7 +380,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "b0o/schemastore.nvim",
       "folke/lazydev.nvim",
       {
         "j-hui/fidget.nvim",
