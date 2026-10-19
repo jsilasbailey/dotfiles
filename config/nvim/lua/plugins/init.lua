@@ -532,6 +532,14 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
-    opts = {},
+    opts = {
+      heading = {
+        sign = false,
+        icons = {},
+        width = "block",
+        border = true,
+        border_virtual = true,
+      },
+    },
   },
 }
